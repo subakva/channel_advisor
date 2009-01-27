@@ -94,6 +94,26 @@ task :release => :install do |t|
   end
 end
 
+desc "Generate CA Service Definitions"
+task :generate do
+  services = %w(cart_service inventory_service marketplace_ad_service order_service shipping_service store_service tax_service)
+  lib_dir = File.join(File.dirname(__FILE__), 'lib', 'channel_advisor')
+
+  services.each do |service_name|
+    service_dir = File.join(lib_dir, service_name)
+    camel_name = service_name.split('_').map {|w| w.capitalize}.join
+
+    `touch #{File.join(lib_dir, service_name)}.rb`
+    `mkdir -p #{service_dir}`
+    `cd #{service_dir} && wsdl2ruby.rb --wsdl https://api.channeladvisor.com/ChannelAdvisorAPI/v1/#{camel_name}.asmx?WSDL --type client --module_path ChannelAdvisor::#{camel_name}SOAP`
+    `rm -i #{File.join(service_dir, camel_name)}Client.rb`
+    `mv -i #{File.join(service_dir, 'defaultMappingRegistry')}.rb #{File.join(service_dir, 'mapping_registry')}.rb`
+    `mv -i #{File.join(service_dir, 'default')}.rb #{File.join(service_dir, 'types')}.rb`
+    `mv -i #{File.join(service_dir, 'defaultDriver')}.rb #{File.join(service_dir, 'client')}.rb`
+  end
+  
+end
+
 
 Rake::RDocTask.new do |rd|
   rd.main = "README"
