@@ -1,4 +1,4 @@
 require 'rubygems'
 require 'spec'
 
-require File.join(File.dirname(__FILE__), '..', 'lib', 'channel_advisor')
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'channel_advisor'))

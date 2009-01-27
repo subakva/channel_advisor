@@ -1,8 +1,4 @@
 require File.expand_path(File.join(File.dirname(__FILE__), 'channel_advisor', 'shared_requires.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'channel_advisor', 'cart_service.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'channel_advisor', 'inventory_service.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'channel_advisor', 'marketplace_ad_service.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'channel_advisor', 'order_service.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'channel_advisor', 'shipping_service.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'channel_advisor', 'store_service.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'channel_advisor', 'tax_service.rb'))
+Dir.glob(File.join(File.dirname(__FILE__), 'channel_advisor', '*.rb')).each do |f|
+  require File.expand_path(f)
+end

@@ -1,4 +1,14 @@
 require File.expand_path(File.join(File.dirname(__FILE__), 'shared_requires.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'shipping_service', 'types.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'shipping_service', 'mapping_registry.rb'))
-require File.expand_path(File.join(File.dirname(__FILE__), 'shipping_service', 'client.rb'))
+['types.rb', 'mapping_registry.rb', 'client.rb'].each do |required|
+  require File.expand_path(File.join(File.dirname(__FILE__), 'shipping_service', required))
+end
+
+module ChannelAdvisor
+  class ShippingService
+    include ChannelAdvisor::ServiceProxy
+    define_service_methods(
+      ChannelAdvisor::ShippingServiceSOAP,
+      ChannelAdvisor::ShippingServiceSOAP::ShippingServiceSoap
+    )
+  end
+end
