@@ -19,7 +19,7 @@ require 'spec/rake/spectask'
   s.email = "jason@secondrotation.com"
   s.homepage = "http://github.com/secondrotation/channel_advisor/"
 
-  s.test_files = FileList['test/**/*']
+  s.test_files = FileList['spec/**/*']
 
   s.files = FileList['lib/**/*.*', 'README', 'doc/**/*.*', 'bin/**/*.*']
   s.require_paths << 'lib'
@@ -50,9 +50,9 @@ end
 # rake
 desc 'Run specifications'
 Spec::Rake::SpecTask.new(:default) do |t|
-  opts = File.join(File.dirname(__FILE__), "test", 'spec.opts')
+  opts = File.join(File.dirname(__FILE__), "spec", 'spec.opts')
   t.spec_opts << '--options' << opts if File.exists?(opts)
-  t.spec_files = Dir.glob('test/**/*_spec.rb')
+  t.spec_files = Dir.glob('spec/**/*_spec.rb')
 end
 
 desc "Install the gem"
@@ -118,7 +118,7 @@ end
 Rake::RDocTask.new do |rd|
   rd.main = "README"
   files = Dir.glob("**/*.rb")
-  files = files.collect {|f| f unless f.match("test/") || f.match("doc/") }.compact
+  files = files.collect {|f| f unless f.match("spec/") || f.match("doc/") }.compact
   files << "README"
   rd.rdoc_files = files
   rd.rdoc_dir = "doc"
