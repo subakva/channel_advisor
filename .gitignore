@@ -1,1 +1,4 @@
 *.tmproj
+coverage
+tmp
+build.my.gem

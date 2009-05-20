@@ -49,10 +49,18 @@ end
 
 # rake
 desc 'Run specifications'
-Spec::Rake::SpecTask.new(:default) do |t|
+Spec::Rake::SpecTask.new(:spec) do |t|
   opts = File.join(File.dirname(__FILE__), "spec", 'spec.opts')
   t.spec_opts << '--options' << opts if File.exists?(opts)
   t.spec_files = Dir.glob('spec/**/*_spec.rb')
+end
+task :default => :spec
+
+Spec::Rake::SpecTask.new(:rcov) do |spec|
+  opts = File.join(File.dirname(__FILE__), "spec", 'spec.opts')
+  spec.spec_opts << '--options' << opts if File.exists?(opts)
+  spec.spec_files = Dir.glob('spec/**/*_spec.rb')
+  spec.rcov = true
 end
 
 desc "Install the gem"
@@ -94,6 +102,25 @@ task :release => :install do |t|
   end
 end
 
+desc "Run the automated integrity build"
+task :integrity do
+  puts "Starting build..."
+
+  Rake::Task['rcov'].invoke
+
+  require 'metric_fu'
+  MetricFu::Configuration.run do |fu|
+    fu.metrics -= [:rcov] # running rcov seperately
+    fu.metrics -= [:saikuro] # running rcov seperately
+  end
+  Rake::Task['metrics:all'].invoke
+
+  # create the build.my.gem file to trigger a gem build/publish cycle
+  require 'fileutils'
+  FileUtils::Verbose.touch('build.my.gem')
+
+  puts "Done."
+end
 desc "Generate CA Service Definitions"
 task :generate do
   services = %w(cart_service inventory_service marketplace_ad_service order_service shipping_service store_service tax_service)
