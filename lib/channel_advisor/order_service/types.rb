@@ -66,6 +66,28 @@ end
 class ArrayOfBoolean < ::Array
 end
 
+# {http://api.channeladvisor.com/webservices/}APIResultOfRefundOrderResponse
+#   status - ChannelAdvisor::OrderServiceSOAP::ResultStatus
+#   messageCode - SOAP::SOAPInt
+#   message - SOAP::SOAPString
+#   data - SOAP::SOAPString
+#   resultData - ChannelAdvisor::OrderServiceSOAP::RefundOrderResponse
+class APIResultOfRefundOrderResponse
+  attr_accessor :status
+  attr_accessor :messageCode
+  attr_accessor :message
+  attr_accessor :data
+  attr_accessor :resultData
+
+  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
+    @status = status
+    @messageCode = messageCode
+    @message = message
+    @data = data
+    @resultData = resultData
+  end
+end
+
 # {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfOrderResponseItem
 #   status - ChannelAdvisor::OrderServiceSOAP::ResultStatus
 #   messageCode - SOAP::SOAPInt
@@ -197,6 +219,50 @@ class RefundItemRequest
   def initialize(orderID = nil, refundItems = nil)
     @orderID = orderID
     @refundItems = refundItems
+  end
+end
+
+# {http://api.channeladvisor.com/datacontracts/orders}RefundOrderRequest
+#   clientOrderIdentifier - SOAP::SOAPString
+#   orderID - SOAP::SOAPInt
+#   amount - SOAP::SOAPDecimal
+#   adjustmentReason - ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason
+#   refundItems - ChannelAdvisor::OrderServiceSOAP::ArrayOfRefundItem
+class RefundOrderRequest
+  attr_accessor :clientOrderIdentifier
+  attr_accessor :orderID
+  attr_accessor :amount
+  attr_accessor :adjustmentReason
+  attr_accessor :refundItems
+
+  def initialize(clientOrderIdentifier = nil, orderID = nil, amount = nil, adjustmentReason = nil, refundItems = nil)
+    @clientOrderIdentifier = clientOrderIdentifier
+    @orderID = orderID
+    @amount = amount
+    @adjustmentReason = adjustmentReason
+    @refundItems = refundItems
+  end
+end
+
+# {http://api.channeladvisor.com/datacontracts/orders}RefundOrderResponse
+#   clientOrderIdentifier - SOAP::SOAPString
+#   orderID - SOAP::SOAPInt
+#   refundItems - ChannelAdvisor::OrderServiceSOAP::ArrayOfRefundItem
+#   messageCode - SOAP::SOAPInt
+#   message - SOAP::SOAPString
+class RefundOrderResponse
+  attr_accessor :clientOrderIdentifier
+  attr_accessor :orderID
+  attr_accessor :refundItems
+  attr_accessor :messageCode
+  attr_accessor :message
+
+  def initialize(clientOrderIdentifier = nil, orderID = nil, refundItems = nil, messageCode = nil, message = nil)
+    @clientOrderIdentifier = clientOrderIdentifier
+    @orderID = orderID
+    @refundItems = refundItems
+    @messageCode = messageCode
+    @message = message
   end
 end
 
@@ -997,19 +1063,6 @@ class OrderLineItemItemResponse < OrderLineItemItem
   end
 end
 
-# {http://api.channeladvisor.com/datacontracts/orders}OrderLineItemInvoice
-#   lineItemType - ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode
-#   unitPrice - SOAP::SOAPDecimal
-class OrderLineItemInvoice < OrderLineItemBase
-  attr_accessor :lineItemType
-  attr_accessor :unitPrice
-
-  def initialize(lineItemType = nil, unitPrice = nil)
-    @lineItemType = lineItemType
-    @unitPrice = unitPrice
-  end
-end
-
 # {http://api.channeladvisor.com/datacontracts/orders}OrderLineItemPromo
 #   lineItemType - ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode
 #   unitPrice - SOAP::SOAPDecimal
@@ -1023,6 +1076,19 @@ class OrderLineItemPromo < OrderLineItemBase
     @lineItemType = lineItemType
     @unitPrice = unitPrice
     @promoCode = promoCode
+  end
+end
+
+# {http://api.channeladvisor.com/datacontracts/orders}OrderLineItemInvoice
+#   lineItemType - ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode
+#   unitPrice - SOAP::SOAPDecimal
+class OrderLineItemInvoice < OrderLineItemBase
+  attr_accessor :lineItemType
+  attr_accessor :unitPrice
+
+  def initialize(lineItemType = nil, unitPrice = nil)
+    @lineItemType = lineItemType
+    @unitPrice = unitPrice
   end
 end
 
@@ -1353,6 +1419,29 @@ class SubmitAmazonPartialRefundResponse
 
   def initialize(submitAmazonPartialRefundResult = nil)
     @submitAmazonPartialRefundResult = submitAmazonPartialRefundResult
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}SubmitOrderRefund
+#   accountID - SOAP::SOAPString
+#   request - ChannelAdvisor::OrderServiceSOAP::RefundOrderRequest
+class SubmitOrderRefund
+  attr_accessor :accountID
+  attr_accessor :request
+
+  def initialize(accountID = nil, request = nil)
+    @accountID = accountID
+    @request = request
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}SubmitOrderRefundResponse
+#   submitOrderRefundResult - ChannelAdvisor::OrderServiceSOAP::APIResultOfRefundOrderResponse
+class SubmitOrderRefundResponse
+  attr_accessor :submitOrderRefundResult
+
+  def initialize(submitOrderRefundResult = nil)
+    @submitOrderRefundResult = submitOrderRefundResult
   end
 end
 

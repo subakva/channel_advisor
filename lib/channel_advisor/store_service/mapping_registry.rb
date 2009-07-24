@@ -209,7 +209,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::StoreServiceSOAP::GetSearchAnalysisStats,
     :schema_name => XSD::QName.new(NsWebservices, "GetSearchAnalysisStats"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["startDateUTC", "SOAP::SOAPDateTime"],
       ["endDateUTC", "SOAP::SOAPDateTime"]
     ]

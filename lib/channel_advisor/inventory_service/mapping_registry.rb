@@ -101,6 +101,11 @@ module DefaultMappingRegistry
       ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FlagDescription")], [0, 1]],
       ["isBlocked", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "IsBlocked")]],
       ["blockComment", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "BlockComment")], [0, 1]],
+      ["aSIN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ASIN")], [0, 1]],
+      ["iSBN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ISBN")], [0, 1]],
+      ["uPC", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "UPC")], [0, 1]],
+      ["mPN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "MPN")], [0, 1]],
+      ["eAN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "EAN")], [0, 1]],
       ["quantityInfo", ["ChannelAdvisor::InventoryServiceSOAP::QuantityInfoResponse", XSD::QName.new(NsWebservices, "QuantityInfo")], [0, 1]],
       ["priceInfo", ["ChannelAdvisor::InventoryServiceSOAP::PriceInfo", XSD::QName.new(NsWebservices, "PriceInfo")], [0, 1]],
       ["classificationInfo", ["ChannelAdvisor::InventoryServiceSOAP::ClassificationInfo", XSD::QName.new(NsWebservices, "ClassificationInfo")], [0, 1]],
@@ -122,7 +127,12 @@ module DefaultMappingRegistry
       ["pendingCheckout", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingCheckout")]],
       ["pendingPayment", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingPayment")]],
       ["pendingShipment", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingShipment")]],
-      ["isScheduled", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "IsScheduled")]]
+      ["isScheduled", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "IsScheduled")]],
+      ["openPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "OpenPooled")]],
+      ["pendingCheckoutPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingCheckoutPooled")]],
+      ["pendingPaymentPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingPaymentPooled")]],
+      ["pendingShipmentPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingShipmentPooled")]],
+      ["totalPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "TotalPooled")]]
     ]
   )
 
@@ -272,6 +282,9 @@ module DefaultMappingRegistry
       ["skuEndsWith", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "SkuEndsWith")], [0, 1]],
       ["classificationName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ClassificationName")], [0, 1]],
       ["labelName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "LabelName")], [0, 1]],
+      ["quantityCheckField", ["ChannelAdvisor::InventoryServiceSOAP::InventoryItemQuantityField", XSD::QName.new(NsWebservices, "QuantityCheckField")]],
+      ["quantityCheckType", ["ChannelAdvisor::InventoryServiceSOAP::NumericFilterType", XSD::QName.new(NsWebservices, "QuantityCheckType")]],
+      ["quantityCheckValue", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "QuantityCheckValue")]],
       ["pageNumber", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PageNumber")]],
       ["pageSize", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PageSize")]]
     ]
@@ -422,7 +435,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::InventoryItemSubmit,
     :schema_type => XSD::QName.new(NsWebservices, "InventoryItemSubmit"),
     :schema_element => [
-      ["sku", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Sku")], [0, 1]],
+      ["sku", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Sku")]],
       ["title", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Title")], [0, 1]],
       ["subtitle", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Subtitle")], [0, 1]],
       ["shortDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ShortDescription")], [0, 1]],
@@ -435,6 +448,11 @@ module DefaultMappingRegistry
       ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FlagDescription")], [0, 1]],
       ["isBlocked", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "IsBlocked")]],
       ["blockComment", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "BlockComment")], [0, 1]],
+      ["aSIN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ASIN")], [0, 1]],
+      ["iSBN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ISBN")], [0, 1]],
+      ["uPC", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "UPC")], [0, 1]],
+      ["mPN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "MPN")], [0, 1]],
+      ["eAN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "EAN")], [0, 1]],
       ["quantityInfo", ["ChannelAdvisor::InventoryServiceSOAP::QuantityInfoSubmit", XSD::QName.new(NsWebservices, "QuantityInfo")], [0, 1]],
       ["priceInfo", ["ChannelAdvisor::InventoryServiceSOAP::PriceInfo", XSD::QName.new(NsWebservices, "PriceInfo")], [0, 1]],
       ["classificationInfo", ["ChannelAdvisor::InventoryServiceSOAP::ClassificationInfo", XSD::QName.new(NsWebservices, "ClassificationInfo")], [0, 1]],
@@ -442,6 +460,7 @@ module DefaultMappingRegistry
       ["storeInfo", ["ChannelAdvisor::InventoryServiceSOAP::StoreInfo", XSD::QName.new(NsWebservices, "StoreInfo")], [0, 1]],
       ["imageList", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfImageInfoSubmit", XSD::QName.new(NsWebservices, "ImageList")], [0, 1]],
       ["shippingInfo", ["ChannelAdvisor::InventoryServiceSOAP::ShippingInfo", XSD::QName.new(NsWebservices, "ShippingInfo")], [0, 1]],
+      ["labelList", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", XSD::QName.new(NsWebservices, "LabelList")], [0, 1]],
       ["metaDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "MetaDescription")], [0, 1]]
     ]
   )
@@ -470,6 +489,49 @@ module DefaultMappingRegistry
       ["placementName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "PlacementName")], [0, 1]],
       ["folderName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FolderName")], [0, 1]],
       ["filenameOrUrl", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FilenameOrUrl")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfInt32,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfInt32"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "ResultData")]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryQuantityResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfInventoryQuantityResponse"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryQuantityResponse"),
+    :schema_element => [
+      ["inventoryQuantityResponse", ["ChannelAdvisor::InventoryServiceSOAP::InventoryQuantityResponse[]", XSD::QName.new(NsWebservices, "InventoryQuantityResponse")], [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryQuantityResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryQuantityResponse"),
+    :schema_element => [
+      ["sKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "SKU")], [0, 1]],
+      ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "Quantity")]],
+      ["messageCode", ["ChannelAdvisor::InventoryServiceSOAP::ErrorCode", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]]
     ]
   )
 
@@ -560,49 +622,6 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfInt32,
-    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfInt32"),
-    :schema_element => [
-      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
-      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
-      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
-      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
-      ["resultData", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "ResultData")]]
-    ]
-  )
-
-  EncodedRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryQuantityResponse,
-    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfInventoryQuantityResponse"),
-    :schema_element => [
-      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
-      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
-      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
-      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
-      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
-    ]
-  )
-
-  EncodedRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse,
-    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryQuantityResponse"),
-    :schema_element => [
-      ["inventoryQuantityResponse", ["ChannelAdvisor::InventoryServiceSOAP::InventoryQuantityResponse[]", XSD::QName.new(NsWebservices, "InventoryQuantityResponse")], [0, nil]]
-    ]
-  )
-
-  EncodedRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryQuantityResponse,
-    :schema_type => XSD::QName.new(NsWebservices, "InventoryQuantityResponse"),
-    :schema_element => [
-      ["sKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "SKU")], [0, 1]],
-      ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "Quantity")]],
-      ["messageCode", ["ChannelAdvisor::InventoryServiceSOAP::ErrorCode", XSD::QName.new(NsWebservices, "MessageCode")]],
-      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]]
-    ]
-  )
-
-  EncodedRegistry.register(
     :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -637,6 +656,16 @@ module DefaultMappingRegistry
   EncodedRegistry.register(
     :class => ChannelAdvisor::InventoryServiceSOAP::InventoryItemDateRangeField,
     :schema_type => XSD::QName.new(NsWebservices, "InventoryItemDateRangeField")
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryItemQuantityField,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryItemQuantityField")
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::NumericFilterType,
+    :schema_type => XSD::QName.new(NsWebservices, "NumericFilterType")
   )
 
   EncodedRegistry.register(
@@ -755,6 +784,11 @@ module DefaultMappingRegistry
       ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FlagDescription")], [0, 1]],
       ["isBlocked", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "IsBlocked")]],
       ["blockComment", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "BlockComment")], [0, 1]],
+      ["aSIN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ASIN")], [0, 1]],
+      ["iSBN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ISBN")], [0, 1]],
+      ["uPC", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "UPC")], [0, 1]],
+      ["mPN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "MPN")], [0, 1]],
+      ["eAN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "EAN")], [0, 1]],
       ["quantityInfo", ["ChannelAdvisor::InventoryServiceSOAP::QuantityInfoResponse", XSD::QName.new(NsWebservices, "QuantityInfo")], [0, 1]],
       ["priceInfo", ["ChannelAdvisor::InventoryServiceSOAP::PriceInfo", XSD::QName.new(NsWebservices, "PriceInfo")], [0, 1]],
       ["classificationInfo", ["ChannelAdvisor::InventoryServiceSOAP::ClassificationInfo", XSD::QName.new(NsWebservices, "ClassificationInfo")], [0, 1]],
@@ -776,7 +810,12 @@ module DefaultMappingRegistry
       ["pendingCheckout", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingCheckout")]],
       ["pendingPayment", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingPayment")]],
       ["pendingShipment", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingShipment")]],
-      ["isScheduled", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "IsScheduled")]]
+      ["isScheduled", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "IsScheduled")]],
+      ["openPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "OpenPooled")]],
+      ["pendingCheckoutPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingCheckoutPooled")]],
+      ["pendingPaymentPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingPaymentPooled")]],
+      ["pendingShipmentPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PendingShipmentPooled")]],
+      ["totalPooled", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "TotalPooled")]]
     ]
   )
 
@@ -926,6 +965,9 @@ module DefaultMappingRegistry
       ["skuEndsWith", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "SkuEndsWith")], [0, 1]],
       ["classificationName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ClassificationName")], [0, 1]],
       ["labelName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "LabelName")], [0, 1]],
+      ["quantityCheckField", ["ChannelAdvisor::InventoryServiceSOAP::InventoryItemQuantityField", XSD::QName.new(NsWebservices, "QuantityCheckField")]],
+      ["quantityCheckType", ["ChannelAdvisor::InventoryServiceSOAP::NumericFilterType", XSD::QName.new(NsWebservices, "QuantityCheckType")]],
+      ["quantityCheckValue", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "QuantityCheckValue")]],
       ["pageNumber", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PageNumber")]],
       ["pageSize", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "PageSize")]]
     ]
@@ -1076,7 +1118,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::InventoryItemSubmit,
     :schema_type => XSD::QName.new(NsWebservices, "InventoryItemSubmit"),
     :schema_element => [
-      ["sku", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Sku")], [0, 1]],
+      ["sku", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Sku")]],
       ["title", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Title")], [0, 1]],
       ["subtitle", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Subtitle")], [0, 1]],
       ["shortDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ShortDescription")], [0, 1]],
@@ -1089,6 +1131,11 @@ module DefaultMappingRegistry
       ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FlagDescription")], [0, 1]],
       ["isBlocked", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "IsBlocked")]],
       ["blockComment", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "BlockComment")], [0, 1]],
+      ["aSIN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ASIN")], [0, 1]],
+      ["iSBN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ISBN")], [0, 1]],
+      ["uPC", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "UPC")], [0, 1]],
+      ["mPN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "MPN")], [0, 1]],
+      ["eAN", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "EAN")], [0, 1]],
       ["quantityInfo", ["ChannelAdvisor::InventoryServiceSOAP::QuantityInfoSubmit", XSD::QName.new(NsWebservices, "QuantityInfo")], [0, 1]],
       ["priceInfo", ["ChannelAdvisor::InventoryServiceSOAP::PriceInfo", XSD::QName.new(NsWebservices, "PriceInfo")], [0, 1]],
       ["classificationInfo", ["ChannelAdvisor::InventoryServiceSOAP::ClassificationInfo", XSD::QName.new(NsWebservices, "ClassificationInfo")], [0, 1]],
@@ -1096,6 +1143,7 @@ module DefaultMappingRegistry
       ["storeInfo", ["ChannelAdvisor::InventoryServiceSOAP::StoreInfo", XSD::QName.new(NsWebservices, "StoreInfo")], [0, 1]],
       ["imageList", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfImageInfoSubmit", XSD::QName.new(NsWebservices, "ImageList")], [0, 1]],
       ["shippingInfo", ["ChannelAdvisor::InventoryServiceSOAP::ShippingInfo", XSD::QName.new(NsWebservices, "ShippingInfo")], [0, 1]],
+      ["labelList", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", XSD::QName.new(NsWebservices, "LabelList")], [0, 1]],
       ["metaDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "MetaDescription")], [0, 1]]
     ]
   )
@@ -1124,6 +1172,49 @@ module DefaultMappingRegistry
       ["placementName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "PlacementName")], [0, 1]],
       ["folderName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FolderName")], [0, 1]],
       ["filenameOrUrl", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FilenameOrUrl")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfInt32,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfInt32"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "ResultData")]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryQuantityResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfInventoryQuantityResponse"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryQuantityResponse"),
+    :schema_element => [
+      ["inventoryQuantityResponse", ["ChannelAdvisor::InventoryServiceSOAP::InventoryQuantityResponse[]", XSD::QName.new(NsWebservices, "InventoryQuantityResponse")], [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryQuantityResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryQuantityResponse"),
+    :schema_element => [
+      ["sKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "SKU")], [0, 1]],
+      ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "Quantity")]],
+      ["messageCode", ["ChannelAdvisor::InventoryServiceSOAP::ErrorCode", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]]
     ]
   )
 
@@ -1214,49 +1305,6 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfInt32,
-    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfInt32"),
-    :schema_element => [
-      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
-      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
-      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
-      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
-      ["resultData", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "ResultData")]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryQuantityResponse,
-    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfInventoryQuantityResponse"),
-    :schema_element => [
-      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
-      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
-      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
-      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
-      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse,
-    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryQuantityResponse"),
-    :schema_element => [
-      ["inventoryQuantityResponse", ["ChannelAdvisor::InventoryServiceSOAP::InventoryQuantityResponse[]", XSD::QName.new(NsWebservices, "InventoryQuantityResponse")], [0, nil]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryQuantityResponse,
-    :schema_type => XSD::QName.new(NsWebservices, "InventoryQuantityResponse"),
-    :schema_element => [
-      ["sKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "SKU")], [0, 1]],
-      ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "Quantity")]],
-      ["messageCode", ["ChannelAdvisor::InventoryServiceSOAP::ErrorCode", XSD::QName.new(NsWebservices, "MessageCode")]],
-      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
     :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -1294,6 +1342,16 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryItemQuantityField,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryItemQuantityField")
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::NumericFilterType,
+    :schema_type => XSD::QName.new(NsWebservices, "NumericFilterType")
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::InventoryServiceSOAP::InventoryItemSortField,
     :schema_type => XSD::QName.new(NsWebservices, "InventoryItemSortField")
   )
@@ -1317,7 +1375,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::DoesSkuExist,
     :schema_name => XSD::QName.new(NsWebservices, "DoesSkuExist"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["sku", "SOAP::SOAPString", [0, 1]]
     ]
   )
@@ -1335,7 +1393,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::DoesSkuExistList,
     :schema_name => XSD::QName.new(NsWebservices, "DoesSkuExistList"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["skuList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", [0, 1]]
     ]
   )
@@ -1349,27 +1407,10 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::DeleteInventoryItem,
-    :schema_name => XSD::QName.new(NsWebservices, "DeleteInventoryItem"),
-    :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
-      ["sku", "SOAP::SOAPString", [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::DeleteInventoryItemResponse,
-    :schema_name => XSD::QName.new(NsWebservices, "DeleteInventoryItemResponse"),
-    :schema_element => [
-      ["deleteInventoryItemResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean", XSD::QName.new(NsWebservices, "DeleteInventoryItemResult")], [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
     :class => ChannelAdvisor::InventoryServiceSOAP::GetInventoryItemList,
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryItemList"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["skuList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", [0, 1]]
     ]
   )
@@ -1386,7 +1427,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetFilteredInventoryItemList,
     :schema_name => XSD::QName.new(NsWebservices, "GetFilteredInventoryItemList"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["itemCriteria", "ChannelAdvisor::InventoryServiceSOAP::InventoryItemCriteria", [0, 1]],
       ["detailLevel", "ChannelAdvisor::InventoryServiceSOAP::InventoryItemDetailLevel", [0, 1]],
       ["sortField", "ChannelAdvisor::InventoryServiceSOAP::InventoryItemSortField"],
@@ -1406,7 +1447,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetFilteredSkuList,
     :schema_name => XSD::QName.new(NsWebservices, "GetFilteredSkuList"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["itemCriteria", "ChannelAdvisor::InventoryServiceSOAP::InventoryItemCriteria", [0, 1]],
       ["sortField", "ChannelAdvisor::InventoryServiceSOAP::InventoryItemSortField"],
       ["sortDirection", "ChannelAdvisor::InventoryServiceSOAP::SortDirection"]
@@ -1425,7 +1466,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetInventoryItemShippingInfo,
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryItemShippingInfo"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["sku", "SOAP::SOAPString", [0, 1]]
     ]
   )
@@ -1442,7 +1483,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetInventoryItemQuantityInfo,
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryItemQuantityInfo"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["sku", "SOAP::SOAPString", [0, 1]]
     ]
   )
@@ -1459,7 +1500,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetClassificationConfigurationInformation,
     :schema_name => XSD::QName.new(NsWebservices, "GetClassificationConfigurationInformation"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]]
+      ["accountID", "SOAP::SOAPString"]
     ]
   )
 
@@ -1475,7 +1516,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetInventoryItemClassificationAttributeList,
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryItemClassificationAttributeList"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["sku", "SOAP::SOAPString", [0, 1]]
     ]
   )
@@ -1492,7 +1533,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetInventoryItemVariationInfo,
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryItemVariationInfo"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["sku", "SOAP::SOAPString", [0, 1]]
     ]
   )
@@ -1509,7 +1550,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetInventoryItemStoreInfo,
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryItemStoreInfo"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["sku", "SOAP::SOAPString", [0, 1]]
     ]
   )
@@ -1526,7 +1567,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetInventoryItemImageList,
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryItemImageList"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["sku", "SOAP::SOAPString", [0, 1]]
     ]
   )
@@ -1543,59 +1584,8 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::SynchInventoryItem,
     :schema_name => XSD::QName.new(NsWebservices, "SynchInventoryItem"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["item", "ChannelAdvisor::InventoryServiceSOAP::InventoryItemSubmit", [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::SynchInventoryItemList,
-    :schema_name => XSD::QName.new(NsWebservices, "SynchInventoryItemList"),
-    :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
-      ["itemList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryItemSubmit", [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::SynchInventoryItemListResponse,
-    :schema_name => XSD::QName.new(NsWebservices, "SynchInventoryItemListResponse"),
-    :schema_element => [
-      ["synchInventoryItemListResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfSynchInventoryItemResponse", XSD::QName.new(NsWebservices, "SynchInventoryItemListResult")], [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::UpdateInventoryItemQuantityAndPrice,
-    :schema_name => XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPrice"),
-    :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
-      ["itemQuantityAndPrice", "ChannelAdvisor::InventoryServiceSOAP::InventoryItemQuantityAndPrice", [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::UpdateInventoryItemQuantityAndPriceResponse,
-    :schema_name => XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceResponse"),
-    :schema_element => [
-      ["updateInventoryItemQuantityAndPriceResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean", XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceResult")], [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::UpdateInventoryItemQuantityAndPriceList,
-    :schema_name => XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceList"),
-    :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
-      ["itemQuantityAndPriceList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryItemQuantityAndPrice", [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::InventoryServiceSOAP::UpdateInventoryItemQuantityAndPriceListResponse,
-    :schema_name => XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceListResponse"),
-    :schema_element => [
-      ["updateInventoryItemQuantityAndPriceListResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfUpdateInventoryItemResponse", XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceListResult")], [0, 1]]
     ]
   )
 
@@ -1603,7 +1593,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetInventoryQuantity,
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryQuantity"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["sku", "SOAP::SOAPString", [0, 1]]
     ]
   )
@@ -1620,7 +1610,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::InventoryServiceSOAP::GetInventoryQuantityList,
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryQuantityList"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["skuList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", [0, 1]]
     ]
   )
@@ -1630,6 +1620,113 @@ module DefaultMappingRegistry
     :schema_name => XSD::QName.new(NsWebservices, "GetInventoryQuantityListResponse"),
     :schema_element => [
       ["getInventoryQuantityListResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryQuantityResponse", XSD::QName.new(NsWebservices, "GetInventoryQuantityListResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::DeleteInventoryItem,
+    :schema_name => XSD::QName.new(NsWebservices, "DeleteInventoryItem"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString"],
+      ["sku", "SOAP::SOAPString", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::DeleteInventoryItemResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "DeleteInventoryItemResponse"),
+    :schema_element => [
+      ["deleteInventoryItemResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean", XSD::QName.new(NsWebservices, "DeleteInventoryItemResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::SynchInventoryItemList,
+    :schema_name => XSD::QName.new(NsWebservices, "SynchInventoryItemList"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString"],
+      ["itemList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryItemSubmit", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::SynchInventoryItemListResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "SynchInventoryItemListResponse"),
+    :schema_element => [
+      ["synchInventoryItemListResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfSynchInventoryItemResponse", XSD::QName.new(NsWebservices, "SynchInventoryItemListResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::UpdateInventoryItemQuantityAndPrice,
+    :schema_name => XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPrice"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString"],
+      ["itemQuantityAndPrice", "ChannelAdvisor::InventoryServiceSOAP::InventoryItemQuantityAndPrice", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::UpdateInventoryItemQuantityAndPriceResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceResponse"),
+    :schema_element => [
+      ["updateInventoryItemQuantityAndPriceResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean", XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::UpdateInventoryItemQuantityAndPriceList,
+    :schema_name => XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceList"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString"],
+      ["itemQuantityAndPriceList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryItemQuantityAndPrice", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::UpdateInventoryItemQuantityAndPriceListResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceListResponse"),
+    :schema_element => [
+      ["updateInventoryItemQuantityAndPriceListResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfUpdateInventoryItemResponse", XSD::QName.new(NsWebservices, "UpdateInventoryItemQuantityAndPriceListResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::AssignLabelListToInventoryItemList,
+    :schema_name => XSD::QName.new(NsWebservices, "AssignLabelListToInventoryItemList"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString"],
+      ["labelList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", [0, 1]],
+      ["createLabelIfNotExist", "SOAP::SOAPBoolean"],
+      ["skuList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", [0, 1]],
+      ["assignReasonDesc", "SOAP::SOAPString", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::AssignLabelListToInventoryItemListResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "AssignLabelListToInventoryItemListResponse"),
+    :schema_element => [
+      ["assignLabelListToInventoryItemListResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean", XSD::QName.new(NsWebservices, "AssignLabelListToInventoryItemListResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::RemoveLabelListFromInventoryItemList,
+    :schema_name => XSD::QName.new(NsWebservices, "RemoveLabelListFromInventoryItemList"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString"],
+      ["labelList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", [0, 1]],
+      ["skuList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", [0, 1]],
+      ["removeReasonDesc", "SOAP::SOAPString", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::RemoveLabelListFromInventoryItemListResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "RemoveLabelListFromInventoryItemListResponse"),
+    :schema_element => [
+      ["removeLabelListFromInventoryItemListResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean", XSD::QName.new(NsWebservices, "RemoveLabelListFromInventoryItemListResult")], [0, 1]]
     ]
   )
 

@@ -251,7 +251,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::MarketplaceAdServiceSOAP::AddMarketplaceAd,
     :schema_name => XSD::QName.new(NsWebservices, "AddMarketplaceAd"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["adProperties", "ChannelAdvisor::MarketplaceAdServiceSOAP::MarketplaceAd", [0, 1]]
     ]
   )
@@ -277,7 +277,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::MarketplaceAdServiceSOAP::AddMarketplaceAdForSkuList,
     :schema_name => XSD::QName.new(NsWebservices, "AddMarketplaceAdForSkuList"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["skuList", "ChannelAdvisor::MarketplaceAdServiceSOAP::ArrayOfMarketplaceAdSkuRequest", [0, 1]],
       ["postingTemplate", "SOAP::SOAPString", [0, 1]],
       ["adTemplate", "SOAP::SOAPString", [0, 1]],
@@ -303,7 +303,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::MarketplaceAdServiceSOAP::DeleteMarketplaceAd,
     :schema_name => XSD::QName.new(NsWebservices, "DeleteMarketplaceAd"),
     :schema_element => [
-      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["accountID", "SOAP::SOAPString"],
       ["marketplaceAdID", "SOAP::SOAPInt"]
     ]
   )

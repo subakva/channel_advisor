@@ -122,6 +122,11 @@ end
 #   flagDescription - SOAP::SOAPString
 #   isBlocked - SOAP::SOAPBoolean
 #   blockComment - SOAP::SOAPString
+#   aSIN - SOAP::SOAPString
+#   iSBN - SOAP::SOAPString
+#   uPC - SOAP::SOAPString
+#   mPN - SOAP::SOAPString
+#   eAN - SOAP::SOAPString
 #   quantityInfo - ChannelAdvisor::InventoryServiceSOAP::QuantityInfoResponse
 #   priceInfo - ChannelAdvisor::InventoryServiceSOAP::PriceInfo
 #   classificationInfo - ChannelAdvisor::InventoryServiceSOAP::ClassificationInfo
@@ -144,6 +149,11 @@ class InventoryItemResponse
   attr_accessor :flagDescription
   attr_accessor :isBlocked
   attr_accessor :blockComment
+  attr_accessor :aSIN
+  attr_accessor :iSBN
+  attr_accessor :uPC
+  attr_accessor :mPN
+  attr_accessor :eAN
   attr_accessor :quantityInfo
   attr_accessor :priceInfo
   attr_accessor :classificationInfo
@@ -153,7 +163,7 @@ class InventoryItemResponse
   attr_accessor :shippingInfo
   attr_accessor :metaDescription
 
-  def initialize(sku = nil, title = nil, subtitle = nil, shortDescription = nil, description = nil, weight = nil, supplierCode = nil, warehouseLocation = nil, taxProductCode = nil, flagStyle = nil, flagDescription = nil, isBlocked = nil, blockComment = nil, quantityInfo = nil, priceInfo = nil, classificationInfo = nil, variationInfo = nil, storeInfo = nil, imageList = nil, shippingInfo = nil, metaDescription = nil)
+  def initialize(sku = nil, title = nil, subtitle = nil, shortDescription = nil, description = nil, weight = nil, supplierCode = nil, warehouseLocation = nil, taxProductCode = nil, flagStyle = nil, flagDescription = nil, isBlocked = nil, blockComment = nil, aSIN = nil, iSBN = nil, uPC = nil, mPN = nil, eAN = nil, quantityInfo = nil, priceInfo = nil, classificationInfo = nil, variationInfo = nil, storeInfo = nil, imageList = nil, shippingInfo = nil, metaDescription = nil)
     @sku = sku
     @title = title
     @subtitle = subtitle
@@ -167,6 +177,11 @@ class InventoryItemResponse
     @flagDescription = flagDescription
     @isBlocked = isBlocked
     @blockComment = blockComment
+    @aSIN = aSIN
+    @iSBN = iSBN
+    @uPC = uPC
+    @mPN = mPN
+    @eAN = eAN
     @quantityInfo = quantityInfo
     @priceInfo = priceInfo
     @classificationInfo = classificationInfo
@@ -186,6 +201,11 @@ end
 #   pendingPayment - SOAP::SOAPInt
 #   pendingShipment - SOAP::SOAPInt
 #   isScheduled - SOAP::SOAPBoolean
+#   openPooled - SOAP::SOAPInt
+#   pendingCheckoutPooled - SOAP::SOAPInt
+#   pendingPaymentPooled - SOAP::SOAPInt
+#   pendingShipmentPooled - SOAP::SOAPInt
+#   totalPooled - SOAP::SOAPInt
 class QuantityInfoResponse
   attr_accessor :total
   attr_accessor :available
@@ -194,8 +214,13 @@ class QuantityInfoResponse
   attr_accessor :pendingPayment
   attr_accessor :pendingShipment
   attr_accessor :isScheduled
+  attr_accessor :openPooled
+  attr_accessor :pendingCheckoutPooled
+  attr_accessor :pendingPaymentPooled
+  attr_accessor :pendingShipmentPooled
+  attr_accessor :totalPooled
 
-  def initialize(total = nil, available = nil, open = nil, pendingCheckout = nil, pendingPayment = nil, pendingShipment = nil, isScheduled = nil)
+  def initialize(total = nil, available = nil, open = nil, pendingCheckout = nil, pendingPayment = nil, pendingShipment = nil, isScheduled = nil, openPooled = nil, pendingCheckoutPooled = nil, pendingPaymentPooled = nil, pendingShipmentPooled = nil, totalPooled = nil)
     @total = total
     @available = available
     @open = open
@@ -203,6 +228,11 @@ class QuantityInfoResponse
     @pendingPayment = pendingPayment
     @pendingShipment = pendingShipment
     @isScheduled = isScheduled
+    @openPooled = openPooled
+    @pendingCheckoutPooled = pendingCheckoutPooled
+    @pendingPaymentPooled = pendingPaymentPooled
+    @pendingShipmentPooled = pendingShipmentPooled
+    @totalPooled = totalPooled
   end
 end
 
@@ -411,6 +441,9 @@ end
 #   skuEndsWith - SOAP::SOAPString
 #   classificationName - SOAP::SOAPString
 #   labelName - SOAP::SOAPString
+#   quantityCheckField - ChannelAdvisor::InventoryServiceSOAP::InventoryItemQuantityField
+#   quantityCheckType - ChannelAdvisor::InventoryServiceSOAP::NumericFilterType
+#   quantityCheckValue - SOAP::SOAPInt
 #   pageNumber - SOAP::SOAPInt
 #   pageSize - SOAP::SOAPInt
 class InventoryItemCriteria
@@ -422,10 +455,13 @@ class InventoryItemCriteria
   attr_accessor :skuEndsWith
   attr_accessor :classificationName
   attr_accessor :labelName
+  attr_accessor :quantityCheckField
+  attr_accessor :quantityCheckType
+  attr_accessor :quantityCheckValue
   attr_accessor :pageNumber
   attr_accessor :pageSize
 
-  def initialize(dateRangeField = nil, dateRangeStartGMT = nil, dateRangeEndGMT = nil, partialSku = nil, skuStartsWith = nil, skuEndsWith = nil, classificationName = nil, labelName = nil, pageNumber = nil, pageSize = nil)
+  def initialize(dateRangeField = nil, dateRangeStartGMT = nil, dateRangeEndGMT = nil, partialSku = nil, skuStartsWith = nil, skuEndsWith = nil, classificationName = nil, labelName = nil, quantityCheckField = nil, quantityCheckType = nil, quantityCheckValue = nil, pageNumber = nil, pageSize = nil)
     @dateRangeField = dateRangeField
     @dateRangeStartGMT = dateRangeStartGMT
     @dateRangeEndGMT = dateRangeEndGMT
@@ -434,6 +470,9 @@ class InventoryItemCriteria
     @skuEndsWith = skuEndsWith
     @classificationName = classificationName
     @labelName = labelName
+    @quantityCheckField = quantityCheckField
+    @quantityCheckType = quantityCheckType
+    @quantityCheckValue = quantityCheckValue
     @pageNumber = pageNumber
     @pageSize = pageSize
   end
@@ -682,6 +721,11 @@ end
 #   flagDescription - SOAP::SOAPString
 #   isBlocked - SOAP::SOAPBoolean
 #   blockComment - SOAP::SOAPString
+#   aSIN - SOAP::SOAPString
+#   iSBN - SOAP::SOAPString
+#   uPC - SOAP::SOAPString
+#   mPN - SOAP::SOAPString
+#   eAN - SOAP::SOAPString
 #   quantityInfo - ChannelAdvisor::InventoryServiceSOAP::QuantityInfoSubmit
 #   priceInfo - ChannelAdvisor::InventoryServiceSOAP::PriceInfo
 #   classificationInfo - ChannelAdvisor::InventoryServiceSOAP::ClassificationInfo
@@ -689,6 +733,7 @@ end
 #   storeInfo - ChannelAdvisor::InventoryServiceSOAP::StoreInfo
 #   imageList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfImageInfoSubmit
 #   shippingInfo - ChannelAdvisor::InventoryServiceSOAP::ShippingInfo
+#   labelList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfString
 #   metaDescription - SOAP::SOAPString
 class InventoryItemSubmit
   attr_accessor :sku
@@ -704,6 +749,11 @@ class InventoryItemSubmit
   attr_accessor :flagDescription
   attr_accessor :isBlocked
   attr_accessor :blockComment
+  attr_accessor :aSIN
+  attr_accessor :iSBN
+  attr_accessor :uPC
+  attr_accessor :mPN
+  attr_accessor :eAN
   attr_accessor :quantityInfo
   attr_accessor :priceInfo
   attr_accessor :classificationInfo
@@ -711,9 +761,10 @@ class InventoryItemSubmit
   attr_accessor :storeInfo
   attr_accessor :imageList
   attr_accessor :shippingInfo
+  attr_accessor :labelList
   attr_accessor :metaDescription
 
-  def initialize(sku = nil, title = nil, subtitle = nil, shortDescription = nil, description = nil, weight = nil, supplierCode = nil, warehouseLocation = nil, taxProductCode = nil, flagStyle = nil, flagDescription = nil, isBlocked = nil, blockComment = nil, quantityInfo = nil, priceInfo = nil, classificationInfo = nil, variationInfo = nil, storeInfo = nil, imageList = nil, shippingInfo = nil, metaDescription = nil)
+  def initialize(sku = nil, title = nil, subtitle = nil, shortDescription = nil, description = nil, weight = nil, supplierCode = nil, warehouseLocation = nil, taxProductCode = nil, flagStyle = nil, flagDescription = nil, isBlocked = nil, blockComment = nil, aSIN = nil, iSBN = nil, uPC = nil, mPN = nil, eAN = nil, quantityInfo = nil, priceInfo = nil, classificationInfo = nil, variationInfo = nil, storeInfo = nil, imageList = nil, shippingInfo = nil, labelList = nil, metaDescription = nil)
     @sku = sku
     @title = title
     @subtitle = subtitle
@@ -727,6 +778,11 @@ class InventoryItemSubmit
     @flagDescription = flagDescription
     @isBlocked = isBlocked
     @blockComment = blockComment
+    @aSIN = aSIN
+    @iSBN = iSBN
+    @uPC = uPC
+    @mPN = mPN
+    @eAN = eAN
     @quantityInfo = quantityInfo
     @priceInfo = priceInfo
     @classificationInfo = classificationInfo
@@ -734,6 +790,7 @@ class InventoryItemSubmit
     @storeInfo = storeInfo
     @imageList = imageList
     @shippingInfo = shippingInfo
+    @labelList = labelList
     @metaDescription = metaDescription
   end
 end
@@ -768,6 +825,73 @@ class ImageInfoSubmit
     @placementName = placementName
     @folderName = folderName
     @filenameOrUrl = filenameOrUrl
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}APIResultOfInt32
+#   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
+#   messageCode - SOAP::SOAPInt
+#   message - SOAP::SOAPString
+#   data - SOAP::SOAPString
+#   resultData - SOAP::SOAPInt
+class APIResultOfInt32
+  attr_accessor :status
+  attr_accessor :messageCode
+  attr_accessor :message
+  attr_accessor :data
+  attr_accessor :resultData
+
+  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
+    @status = status
+    @messageCode = messageCode
+    @message = message
+    @data = data
+    @resultData = resultData
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfInventoryQuantityResponse
+#   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
+#   messageCode - SOAP::SOAPInt
+#   message - SOAP::SOAPString
+#   data - SOAP::SOAPString
+#   resultData - ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse
+class APIResultOfArrayOfInventoryQuantityResponse
+  attr_accessor :status
+  attr_accessor :messageCode
+  attr_accessor :message
+  attr_accessor :data
+  attr_accessor :resultData
+
+  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
+    @status = status
+    @messageCode = messageCode
+    @message = message
+    @data = data
+    @resultData = resultData
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}ArrayOfInventoryQuantityResponse
+class ArrayOfInventoryQuantityResponse < ::Array
+end
+
+# {http://api.channeladvisor.com/webservices/}InventoryQuantityResponse
+#   sKU - SOAP::SOAPString
+#   quantity - SOAP::SOAPInt
+#   messageCode - ChannelAdvisor::InventoryServiceSOAP::ErrorCode
+#   message - SOAP::SOAPString
+class InventoryQuantityResponse
+  attr_accessor :sKU
+  attr_accessor :quantity
+  attr_accessor :messageCode
+  attr_accessor :message
+
+  def initialize(sKU = nil, quantity = nil, messageCode = nil, message = nil)
+    @sKU = sKU
+    @quantity = quantity
+    @messageCode = messageCode
+    @message = message
   end
 end
 
@@ -879,73 +1003,6 @@ class UpdateInventoryItemResponse
   end
 end
 
-# {http://api.channeladvisor.com/webservices/}APIResultOfInt32
-#   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
-#   messageCode - SOAP::SOAPInt
-#   message - SOAP::SOAPString
-#   data - SOAP::SOAPString
-#   resultData - SOAP::SOAPInt
-class APIResultOfInt32
-  attr_accessor :status
-  attr_accessor :messageCode
-  attr_accessor :message
-  attr_accessor :data
-  attr_accessor :resultData
-
-  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
-    @status = status
-    @messageCode = messageCode
-    @message = message
-    @data = data
-    @resultData = resultData
-  end
-end
-
-# {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfInventoryQuantityResponse
-#   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
-#   messageCode - SOAP::SOAPInt
-#   message - SOAP::SOAPString
-#   data - SOAP::SOAPString
-#   resultData - ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryQuantityResponse
-class APIResultOfArrayOfInventoryQuantityResponse
-  attr_accessor :status
-  attr_accessor :messageCode
-  attr_accessor :message
-  attr_accessor :data
-  attr_accessor :resultData
-
-  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
-    @status = status
-    @messageCode = messageCode
-    @message = message
-    @data = data
-    @resultData = resultData
-  end
-end
-
-# {http://api.channeladvisor.com/webservices/}ArrayOfInventoryQuantityResponse
-class ArrayOfInventoryQuantityResponse < ::Array
-end
-
-# {http://api.channeladvisor.com/webservices/}InventoryQuantityResponse
-#   sKU - SOAP::SOAPString
-#   quantity - SOAP::SOAPInt
-#   messageCode - ChannelAdvisor::InventoryServiceSOAP::ErrorCode
-#   message - SOAP::SOAPString
-class InventoryQuantityResponse
-  attr_accessor :sKU
-  attr_accessor :quantity
-  attr_accessor :messageCode
-  attr_accessor :message
-
-  def initialize(sKU = nil, quantity = nil, messageCode = nil, message = nil)
-    @sKU = sKU
-    @quantity = quantity
-    @messageCode = messageCode
-    @message = message
-  end
-end
-
 # {http://api.channeladvisor.com/webservices/}APIResultOfString
 #   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
 #   messageCode - SOAP::SOAPInt
@@ -1007,6 +1064,25 @@ class InventoryItemDateRangeField < ::String
   LastUpdateDate = InventoryItemDateRangeField.new("LastUpdateDate")
 end
 
+# {http://api.channeladvisor.com/webservices/}InventoryItemQuantityField
+class InventoryItemQuantityField < ::String
+  Available = InventoryItemQuantityField.new("Available")
+  Open = InventoryItemQuantityField.new("Open")
+  PendingCheckout = InventoryItemQuantityField.new("PendingCheckout")
+  PendingPayment = InventoryItemQuantityField.new("PendingPayment")
+  PendingShipment = InventoryItemQuantityField.new("PendingShipment")
+  Total = InventoryItemQuantityField.new("Total")
+end
+
+# {http://api.channeladvisor.com/webservices/}NumericFilterType
+class NumericFilterType < ::String
+  EqualTo = NumericFilterType.new("EqualTo")
+  GreaterThan = NumericFilterType.new("GreaterThan")
+  GreaterThanOrEqualTo = NumericFilterType.new("GreaterThanOrEqualTo")
+  LessThan = NumericFilterType.new("LessThan")
+  LessThanOrEqualTo = NumericFilterType.new("LessThanOrEqualTo")
+end
+
 # {http://api.channeladvisor.com/webservices/}InventoryItemSortField
 class InventoryItemSortField < ::String
   Sku = InventoryItemSortField.new("Sku")
@@ -1059,6 +1135,7 @@ class ErrorCode < ::String
   Invalid_FirstNameLength = ErrorCode.new("Invalid_FirstNameLength")
   Invalid_JobTitleLength = ErrorCode.new("Invalid_JobTitleLength")
   Invalid_LastNameLength = ErrorCode.new("Invalid_LastNameLength")
+  Invalid_OrderId = ErrorCode.new("Invalid_OrderId")
   Invalid_OrderNumberLength = ErrorCode.new("Invalid_OrderNumberLength")
   Invalid_OrderStatus = ErrorCode.new("Invalid_OrderStatus")
   Invalid_PhoneLength = ErrorCode.new("Invalid_PhoneLength")
@@ -1128,29 +1205,6 @@ class DoesSkuExistListResponse
 
   def initialize(doesSkuExistListResult = nil)
     @doesSkuExistListResult = doesSkuExistListResult
-  end
-end
-
-# {http://api.channeladvisor.com/webservices/}DeleteInventoryItem
-#   accountID - SOAP::SOAPString
-#   sku - SOAP::SOAPString
-class DeleteInventoryItem
-  attr_accessor :accountID
-  attr_accessor :sku
-
-  def initialize(accountID = nil, sku = nil)
-    @accountID = accountID
-    @sku = sku
-  end
-end
-
-# {http://api.channeladvisor.com/webservices/}DeleteInventoryItemResponse
-#   deleteInventoryItemResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean
-class DeleteInventoryItemResponse
-  attr_accessor :deleteInventoryItemResult
-
-  def initialize(deleteInventoryItemResult = nil)
-    @deleteInventoryItemResult = deleteInventoryItemResult
   end
 end
 
@@ -1409,6 +1463,75 @@ class SynchInventoryItem
   end
 end
 
+# {http://api.channeladvisor.com/webservices/}GetInventoryQuantity
+#   accountID - SOAP::SOAPString
+#   sku - SOAP::SOAPString
+class GetInventoryQuantity
+  attr_accessor :accountID
+  attr_accessor :sku
+
+  def initialize(accountID = nil, sku = nil)
+    @accountID = accountID
+    @sku = sku
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}GetInventoryQuantityResponse
+#   getInventoryQuantityResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfInt32
+class GetInventoryQuantityResponse
+  attr_accessor :getInventoryQuantityResult
+
+  def initialize(getInventoryQuantityResult = nil)
+    @getInventoryQuantityResult = getInventoryQuantityResult
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}GetInventoryQuantityList
+#   accountID - SOAP::SOAPString
+#   skuList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfString
+class GetInventoryQuantityList
+  attr_accessor :accountID
+  attr_accessor :skuList
+
+  def initialize(accountID = nil, skuList = nil)
+    @accountID = accountID
+    @skuList = skuList
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}GetInventoryQuantityListResponse
+#   getInventoryQuantityListResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryQuantityResponse
+class GetInventoryQuantityListResponse
+  attr_accessor :getInventoryQuantityListResult
+
+  def initialize(getInventoryQuantityListResult = nil)
+    @getInventoryQuantityListResult = getInventoryQuantityListResult
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}DeleteInventoryItem
+#   accountID - SOAP::SOAPString
+#   sku - SOAP::SOAPString
+class DeleteInventoryItem
+  attr_accessor :accountID
+  attr_accessor :sku
+
+  def initialize(accountID = nil, sku = nil)
+    @accountID = accountID
+    @sku = sku
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}DeleteInventoryItemResponse
+#   deleteInventoryItemResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean
+class DeleteInventoryItemResponse
+  attr_accessor :deleteInventoryItemResult
+
+  def initialize(deleteInventoryItemResult = nil)
+    @deleteInventoryItemResult = deleteInventoryItemResult
+  end
+end
+
 # {http://api.channeladvisor.com/webservices/}SynchInventoryItemList
 #   accountID - SOAP::SOAPString
 #   itemList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryItemSubmit
@@ -1478,49 +1601,64 @@ class UpdateInventoryItemQuantityAndPriceListResponse
   end
 end
 
-# {http://api.channeladvisor.com/webservices/}GetInventoryQuantity
+# {http://api.channeladvisor.com/webservices/}AssignLabelListToInventoryItemList
 #   accountID - SOAP::SOAPString
-#   sku - SOAP::SOAPString
-class GetInventoryQuantity
-  attr_accessor :accountID
-  attr_accessor :sku
-
-  def initialize(accountID = nil, sku = nil)
-    @accountID = accountID
-    @sku = sku
-  end
-end
-
-# {http://api.channeladvisor.com/webservices/}GetInventoryQuantityResponse
-#   getInventoryQuantityResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfInt32
-class GetInventoryQuantityResponse
-  attr_accessor :getInventoryQuantityResult
-
-  def initialize(getInventoryQuantityResult = nil)
-    @getInventoryQuantityResult = getInventoryQuantityResult
-  end
-end
-
-# {http://api.channeladvisor.com/webservices/}GetInventoryQuantityList
-#   accountID - SOAP::SOAPString
+#   labelList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfString
+#   createLabelIfNotExist - SOAP::SOAPBoolean
 #   skuList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfString
-class GetInventoryQuantityList
+#   assignReasonDesc - SOAP::SOAPString
+class AssignLabelListToInventoryItemList
   attr_accessor :accountID
+  attr_accessor :labelList
+  attr_accessor :createLabelIfNotExist
   attr_accessor :skuList
+  attr_accessor :assignReasonDesc
 
-  def initialize(accountID = nil, skuList = nil)
+  def initialize(accountID = nil, labelList = nil, createLabelIfNotExist = nil, skuList = nil, assignReasonDesc = nil)
     @accountID = accountID
+    @labelList = labelList
+    @createLabelIfNotExist = createLabelIfNotExist
     @skuList = skuList
+    @assignReasonDesc = assignReasonDesc
   end
 end
 
-# {http://api.channeladvisor.com/webservices/}GetInventoryQuantityListResponse
-#   getInventoryQuantityListResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryQuantityResponse
-class GetInventoryQuantityListResponse
-  attr_accessor :getInventoryQuantityListResult
+# {http://api.channeladvisor.com/webservices/}AssignLabelListToInventoryItemListResponse
+#   assignLabelListToInventoryItemListResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean
+class AssignLabelListToInventoryItemListResponse
+  attr_accessor :assignLabelListToInventoryItemListResult
 
-  def initialize(getInventoryQuantityListResult = nil)
-    @getInventoryQuantityListResult = getInventoryQuantityListResult
+  def initialize(assignLabelListToInventoryItemListResult = nil)
+    @assignLabelListToInventoryItemListResult = assignLabelListToInventoryItemListResult
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}RemoveLabelListFromInventoryItemList
+#   accountID - SOAP::SOAPString
+#   labelList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfString
+#   skuList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfString
+#   removeReasonDesc - SOAP::SOAPString
+class RemoveLabelListFromInventoryItemList
+  attr_accessor :accountID
+  attr_accessor :labelList
+  attr_accessor :skuList
+  attr_accessor :removeReasonDesc
+
+  def initialize(accountID = nil, labelList = nil, skuList = nil, removeReasonDesc = nil)
+    @accountID = accountID
+    @labelList = labelList
+    @skuList = skuList
+    @removeReasonDesc = removeReasonDesc
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}RemoveLabelListFromInventoryItemListResponse
+#   removeLabelListFromInventoryItemListResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean
+class RemoveLabelListFromInventoryItemListResponse
+  attr_accessor :removeLabelListFromInventoryItemListResult
+
+  def initialize(removeLabelListFromInventoryItemListResult = nil)
+    @removeLabelListFromInventoryItemListResult = removeLabelListFromInventoryItemListResult
   end
 end
 

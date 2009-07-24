@@ -12,7 +12,7 @@ require 'spec/rake/spectask'
 
 @gem_spec = Gem::Specification.new do |s|
   s.name = "channel_advisor"
-  s.version = "0.0.3"
+  s.version = "0.0.4"
   s.summary = "channel_advisor"
   s.description = "channel_advisor was developed by: Second Rotation, Inc."
   s.author = "Second Rotation, Inc."
@@ -123,7 +123,7 @@ task :integrity do
 end
 desc "Generate CA Service Definitions"
 task :generate do
-  services = %w(cart_service inventory_service marketplace_ad_service order_service shipping_service store_service tax_service)
+  services = %w(admin_service inventory_service marketplace_ad_service order_service cart_service shipping_service tax_service store_service)
   lib_dir = File.join(File.dirname(__FILE__), 'lib', 'channel_advisor')
 
   services.each do |service_name|
