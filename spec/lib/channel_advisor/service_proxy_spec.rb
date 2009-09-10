@@ -8,7 +8,41 @@ describe ChannelAdvisor::ServiceProxy do
       configatron.channel_advisor.account_id = 'test_account_id'
       @client = mock(ChannelAdvisor::InventoryServiceSOAP::InventoryServiceSoap)
       @client.should_receive(:headerhandler).and_return([])
+
+      @ssl_config = mock(Object)
+      @ssl_config.stub!(:verify_mode=)
+      @streamhandler_client = mock(Object)
+      @streamhandler_client.stub!(:ssl_config).and_return(@ssl_config)
+      @streamhandler = mock(Object)
+      @streamhandler.stub!(:client).and_return(@streamhandler_client)
+      @client.stub!(:streamhandler).and_return(@streamhandler)
+
       ChannelAdvisor::InventoryServiceSOAP::InventoryServiceSoap.should_receive(:new).and_return(@client)
+    end
+
+    describe 'SSL config' do
+      before(:each) do
+        mock_result = mock(Object, :status => 'Success', :resultData => {})
+        response = mock(ChannelAdvisor::InventoryServiceSOAP::GetFilteredSkuListResponse,
+          :getFilteredSkuListResult => mock_result
+        )
+        @client.should_receive(:getFilteredSkuList).and_return(response)
+      end
+
+      it "sets the default SSL verify mode to VERIFY_PEER" do
+        @ssl_config.should_receive(:verify_mode=).with(OpenSSL::SSL::VERIFY_PEER)
+        inventory = ChannelAdvisor::InventoryService.new
+        inventory.getFilteredSkuList
+      end
+
+      it "sets the SSL verify mode from a configatron parameter" do
+        configatron.temp do
+          configatron.channel_advisor.ssl_config.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          @ssl_config.should_receive(:verify_mode=).with(OpenSSL::SSL::VERIFY_NONE)
+          inventory = ChannelAdvisor::InventoryService.new
+          inventory.getFilteredSkuList
+        end
+      end
     end
 
     it "handles getFilteredSkuList request" do

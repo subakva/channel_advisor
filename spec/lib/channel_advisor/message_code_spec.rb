@@ -28,10 +28,10 @@ describe ChannelAdvisor::MessageCode do
     message_code.code.should == 0
   end
 
-  it "raises an error if the code is unknown" do
-    lambda {
-      ChannelAdvisor::MessageCode.get('49')
-    }.should raise_error(ArgumentError, 'Unknown code: 49')
+  it "returns an unknown code if the code is not defined" do
+    message_code = ChannelAdvisor::MessageCode.get('12')
+    message_code.code.should == 12
+    message_code.message.should == 'Unknown Error'
   end
 
   it "uses the class values for get" do

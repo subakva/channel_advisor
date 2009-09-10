@@ -23,7 +23,7 @@ module ChannelAdvisor
       when 5: NoSkuValue
       when 8: TooManySkus
       else
-        raise ArgumentError.new("Unknown code: #{code}")
+        MessageCode.new(code, 'Unknown Error')
       end
     end
   end

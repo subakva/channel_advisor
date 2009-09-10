@@ -12,7 +12,7 @@ require 'spec/rake/spectask'
 
 @gem_spec = Gem::Specification.new do |s|
   s.name = "channel_advisor"
-  s.version = "0.0.4"
+  s.version = "0.0.5"
   s.summary = "channel_advisor"
   s.description = "channel_advisor was developed by: Second Rotation, Inc."
   s.author = "Second Rotation, Inc."
