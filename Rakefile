@@ -112,6 +112,7 @@ task :integrity do
   MetricFu::Configuration.run do |fu|
     fu.metrics -= [:rcov] # running rcov seperately
     fu.metrics -= [:saikuro] # running rcov seperately
+    fu.graphs -= [:rcov, :saikuro]
   end
   Rake::Task['metrics:all'].invoke
 
