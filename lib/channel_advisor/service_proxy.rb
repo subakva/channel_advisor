@@ -8,12 +8,10 @@ module ChannelAdvisor
     module InstanceMethods
       protected
 
-      def client
-        unless @__client
-          @__client = self.class.const_get(:SOAP_CLASS).new
-          @__client.headerhandler << ChannelAdvisor::AuthHandler.new
-        end
-        @__client
+      def init_client(developer_key = nil, password = nil)
+        client = self.class.const_get(:SOAP_CLASS).new
+        client.headerhandler << ChannelAdvisor::AuthHandler.new(developer_key, password)
+        client
       end
 
       def check_for_success(response)
@@ -34,15 +32,21 @@ module ChannelAdvisor
           class_name = method_name[0..0].upcase + method_name[1..-1]
 
           define_method(method_name) do |*args|
-            args = args.unshift(configatron.channel_advisor.account_id)
+            if args.last.is_a? Hash
+              options = args.pop
+            else
+              options = {:account_id => configatron.channel_advisor.account_id}
+            end
+            args = args.unshift(options[:account_id])
+            client = self.init_client(options[:developer_key], options[:password])
             
             verify_mode = configatron.channel_advisor.ssl_config.retrieve('verify_mode', OpenSSL::SSL::VERIFY_PEER)
-            self.client.streamhandler.client.ssl_config.verify_mode = verify_mode
+            client.streamhandler.client.ssl_config.verify_mode = verify_mode
 
             request_class = service_module.const_get(class_name)
             request = request_class.new(*args)
 
-            result = self.client.send(method_name, request)
+            result = client.send(method_name, request)
             response = result.send(result_method)
 
             check_for_success(response)

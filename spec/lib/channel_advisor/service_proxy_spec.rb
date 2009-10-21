@@ -50,7 +50,9 @@ describe ChannelAdvisor::ServiceProxy do
       criteria.skuStartsWith = 'SR123'
       criteria.pageNumber = 1
       criteria.pageSize = 10
-
+      
+      ChannelAdvisor::AuthHandler.should_receive(:new).with(nil, nil)
+      
       request = mock(ChannelAdvisor::InventoryServiceSOAP::GetFilteredSkuList)
       ChannelAdvisor::InventoryServiceSOAP::GetFilteredSkuList.should_receive(:new).with(
         configatron.channel_advisor.account_id, criteria
@@ -92,6 +94,35 @@ describe ChannelAdvisor::ServiceProxy do
       rescue ChannelAdvisor::Error => e
         e.message_code.should == ChannelAdvisor::MessageCode::Unexpected
       end
+    end
+    
+    it "should be able to specify accounts settings in the method" do
+      criteria = ChannelAdvisor::InventoryServiceSOAP::InventoryItemCriteria.new
+      criteria.skuStartsWith = 'SR123'
+      criteria.pageNumber = 1
+      criteria.pageSize = 10
+      
+      ChannelAdvisor::AuthHandler.should_receive(:new).with("FAKEKEY", "FAKEPASS")
+      
+      request = mock(ChannelAdvisor::InventoryServiceSOAP::GetFilteredSkuList)
+      ChannelAdvisor::InventoryServiceSOAP::GetFilteredSkuList.should_receive(:new).with(
+        "FAKEID", criteria
+      ).and_return(request)
+
+      expected_result = ['SR123', 'SR321']
+
+      mock_result = mock(Object)
+      mock_result.should_receive(:status).and_return('Success')
+      mock_result.should_receive(:resultData).and_return(expected_result)
+
+      response = mock(ChannelAdvisor::InventoryServiceSOAP::GetFilteredSkuListResponse)
+      response.should_receive(:getFilteredSkuListResult).and_return(mock_result)
+
+      @client.should_receive(:getFilteredSkuList).with(request).and_return(response)
+
+      inventory = ChannelAdvisor::InventoryService.new
+      result = inventory.getFilteredSkuList(criteria, :account_id => "FAKEID", :developer_key => "FAKEKEY", :password => "FAKEPASS")
+      result.should == expected_result
     end
   end
 
