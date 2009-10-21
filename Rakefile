@@ -59,8 +59,17 @@ task :default => :spec
 Spec::Rake::SpecTask.new(:rcov) do |spec|
   opts = File.join(File.dirname(__FILE__), "spec", 'spec.opts')
   spec.spec_opts << '--options' << opts if File.exists?(opts)
-  spec.spec_files = Dir.glob('spec/**/*_spec.rb')
+  spec.spec_files = Dir.glob('spec/**/*_spec.rb') - Dir.glob('spec/integration/**/*_spec.rb')
   spec.rcov = true
+end
+
+namespace :spec do
+  desc "Integration Spec. USE WITH CAUTION AS IT PUSHES TO CHANNEL ADVISOR"
+  Spec::Rake::SpecTask.new(:integration) do |t|
+    opts = File.join(File.dirname(__FILE__), "spec", 'spec.opts')
+    t.spec_opts << '--options' << opts if File.exists?(opts)
+    t.spec_files = Dir.glob('spec/integration/**/*_spec.rb')
+  end
 end
 
 desc "Install the gem"
