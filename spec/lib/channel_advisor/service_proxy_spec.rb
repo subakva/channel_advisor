@@ -81,6 +81,7 @@ describe ChannelAdvisor::ServiceProxy do
       mock_result = mock(Object)
       mock_result.should_receive(:status).and_return('Failure')
       mock_result.should_receive(:messageCode).and_return(ChannelAdvisor::MessageCode::Unexpected.code)
+      mock_result.should_receive(:message).and_return('There was a problem')
 
       response = mock(ChannelAdvisor::InventoryServiceSOAP::GetFilteredSkuListResponse)
       response.should_receive(:getFilteredSkuListResult).and_return(mock_result)
