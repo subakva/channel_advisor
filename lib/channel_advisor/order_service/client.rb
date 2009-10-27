@@ -52,6 +52,14 @@ class OrderServiceSoap < ::SOAP::RPC::Driver
         :response_style => :document, :response_use => :literal,
         :faults => {} }
     ],
+    [ "http://api.channeladvisor.com/webservices/SetSellerOrderID",
+      "setSellerOrderID",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SetSellerOrderID"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SetSellerOrderIDResponse"]] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal,
+        :faults => {} }
+    ],
     [ "http://api.channeladvisor.com/webservices/Ping",
       "ping",
       [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "Ping"]],

@@ -34,9 +34,7 @@ module DefaultMappingRegistry
       ["accountName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "AccountName")], [0, 1]],
       ["accountType", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "AccountType")], [0, 1]],
       ["resourceName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ResourceName")], [0, 1]],
-      ["status", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Status")], [0, 1]],
-      ["messageCode", ["ChannelAdvisor::AdminServiceSOAP::ErrorCode", XSD::QName.new(NsWebservices, "MessageCode")]],
-      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]]
+      ["status", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Status")], [0, 1]]
     ]
   )
 
@@ -76,11 +74,6 @@ module DefaultMappingRegistry
   EncodedRegistry.register(
     :class => ChannelAdvisor::AdminServiceSOAP::ResultStatus,
     :schema_type => XSD::QName.new(NsWebservices, "ResultStatus")
-  )
-
-  EncodedRegistry.register(
-    :class => ChannelAdvisor::AdminServiceSOAP::ErrorCode,
-    :schema_type => XSD::QName.new(NsWebservices, "ErrorCode")
   )
 
   LiteralRegistry.register(
@@ -112,9 +105,7 @@ module DefaultMappingRegistry
       ["accountName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "AccountName")], [0, 1]],
       ["accountType", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "AccountType")], [0, 1]],
       ["resourceName", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ResourceName")], [0, 1]],
-      ["status", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Status")], [0, 1]],
-      ["messageCode", ["ChannelAdvisor::AdminServiceSOAP::ErrorCode", XSD::QName.new(NsWebservices, "MessageCode")]],
-      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]]
+      ["status", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Status")], [0, 1]]
     ]
   )
 
@@ -154,11 +145,6 @@ module DefaultMappingRegistry
   LiteralRegistry.register(
     :class => ChannelAdvisor::AdminServiceSOAP::ResultStatus,
     :schema_type => XSD::QName.new(NsWebservices, "ResultStatus")
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::AdminServiceSOAP::ErrorCode,
-    :schema_type => XSD::QName.new(NsWebservices, "ErrorCode")
   )
 
   LiteralRegistry.register(

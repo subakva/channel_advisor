@@ -12,7 +12,7 @@ require 'spec/rake/spectask'
 
 @gem_spec = Gem::Specification.new do |s|
   s.name = "channel_advisor"
-  s.version = "0.0.6"
+  s.version = "0.0.7"
   s.summary = "channel_advisor"
   s.description = "channel_advisor was developed by: Second Rotation, Inc."
   s.author = "Second Rotation, Inc."
@@ -131,6 +131,7 @@ task :integrity do
 
   puts "Done."
 end
+
 desc "Generate CA Service Definitions"
 task :generate do
   services = %w(admin_service inventory_service marketplace_ad_service order_service cart_service shipping_service tax_service store_service)

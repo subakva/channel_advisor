@@ -32,6 +32,14 @@ How to Generate the API Classes
   * Execute "rake generate"
   * Remove all the "require" statements from the generated files.
 
+Change Log
+----------
+  = 0.0.7 - Updated to reflect the 2009-10-24 Channel Advisor Release; Added error messages to ChannelAdvisor::Error
+  < 0.0.6 - Everything else
+
+
 Resources
 ----------
 http://developer.channeladvisor.com/display/cadn/ChannelAdvisor+Developer+Network
+
+

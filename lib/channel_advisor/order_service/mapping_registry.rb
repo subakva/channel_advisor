@@ -100,6 +100,26 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfInt,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInt"),
+    :schema_element => [
+      ["int", "SOAP::SOAPInt[]", [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfArrayOfInt32,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfInt32"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::OrderServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfInt", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -187,7 +207,7 @@ module DefaultMappingRegistry
       ["statusUpdateFilterEndTimeGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "StatusUpdateFilterEndTimeGMT")]],
       ["detailLevel", ["ChannelAdvisor::OrderServiceSOAP::DetailLevelType", XSD::QName.new(NsOrders, "DetailLevel")]],
       ["exportState", ["ChannelAdvisor::OrderServiceSOAP::ExportStateType", XSD::QName.new(NsOrders, "ExportState")], [0, 1]],
-      ["orderIDList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfInt", XSD::QName.new(NsOrders, "OrderIDList")], [0, 1]],
+      ["orderIDList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfInt_", XSD::QName.new(NsOrders, "OrderIDList")], [0, 1]],
       ["orderStateFilter", ["ChannelAdvisor::OrderServiceSOAP::OrderStateCode", XSD::QName.new(NsOrders, "OrderStateFilter")]],
       ["paymentStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::PaymentStatusCode", XSD::QName.new(NsOrders, "PaymentStatusFilter")]],
       ["checkoutStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::CheckoutStatusCode", XSD::QName.new(NsOrders, "CheckoutStatusFilter")]],
@@ -198,7 +218,7 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfInt,
+    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfInt_,
     :schema_type => XSD::QName.new(NsOrders, "ArrayOfInt"),
     :schema_element => [
       ["int", "SOAP::SOAPInt[]", [0, nil]]
@@ -449,6 +469,16 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
+    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
+    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
+    :schema_element => [
+      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
+      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
+    ]
+  )
+
+  EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemPromo,
     :schema_type => XSD::QName.new(NsOrders, "OrderLineItemPromo"),
     :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
@@ -456,16 +486,6 @@ module DefaultMappingRegistry
       ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
       ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]],
       ["promoCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PromoCode")], [0, 1]]
-    ]
-  )
-
-  EncodedRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
-    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
-    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
-    :schema_element => [
-      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
-      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
     ]
   )
 
@@ -487,7 +507,10 @@ module DefaultMappingRegistry
       ["salesSourceID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SalesSourceID")], [0, 1]],
       ["vATRate", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "VATRate")]],
       ["unitWeight", ["ChannelAdvisor::OrderServiceSOAP::ItemWeight", XSD::QName.new(NsOrders, "UnitWeight")], [0, 1]],
-      ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]]
+      ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]],
+      ["taxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxCost")]],
+      ["shippingCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingCost")]],
+      ["shippingTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxCost")]]
     ]
   )
 
@@ -754,6 +777,26 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfInt,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInt"),
+    :schema_element => [
+      ["int", "SOAP::SOAPInt[]", [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfArrayOfInt32,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfInt32"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::OrderServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfInt", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -841,7 +884,7 @@ module DefaultMappingRegistry
       ["statusUpdateFilterEndTimeGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "StatusUpdateFilterEndTimeGMT")]],
       ["detailLevel", ["ChannelAdvisor::OrderServiceSOAP::DetailLevelType", XSD::QName.new(NsOrders, "DetailLevel")]],
       ["exportState", ["ChannelAdvisor::OrderServiceSOAP::ExportStateType", XSD::QName.new(NsOrders, "ExportState")], [0, 1]],
-      ["orderIDList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfInt", XSD::QName.new(NsOrders, "OrderIDList")], [0, 1]],
+      ["orderIDList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfInt_", XSD::QName.new(NsOrders, "OrderIDList")], [0, 1]],
       ["orderStateFilter", ["ChannelAdvisor::OrderServiceSOAP::OrderStateCode", XSD::QName.new(NsOrders, "OrderStateFilter")]],
       ["paymentStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::PaymentStatusCode", XSD::QName.new(NsOrders, "PaymentStatusFilter")]],
       ["checkoutStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::CheckoutStatusCode", XSD::QName.new(NsOrders, "CheckoutStatusFilter")]],
@@ -852,7 +895,7 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfInt,
+    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfInt_,
     :schema_type => XSD::QName.new(NsOrders, "ArrayOfInt"),
     :schema_element => [
       ["int", "SOAP::SOAPInt[]", [0, nil]]
@@ -1103,6 +1146,16 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
+    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
+    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
+    :schema_element => [
+      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
+      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemPromo,
     :schema_type => XSD::QName.new(NsOrders, "OrderLineItemPromo"),
     :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
@@ -1110,16 +1163,6 @@ module DefaultMappingRegistry
       ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
       ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]],
       ["promoCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PromoCode")], [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
-    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
-    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
-    :schema_element => [
-      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
-      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
     ]
   )
 
@@ -1141,7 +1184,10 @@ module DefaultMappingRegistry
       ["salesSourceID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SalesSourceID")], [0, 1]],
       ["vATRate", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "VATRate")]],
       ["unitWeight", ["ChannelAdvisor::OrderServiceSOAP::ItemWeight", XSD::QName.new(NsOrders, "UnitWeight")], [0, 1]],
-      ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]]
+      ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]],
+      ["taxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxCost")]],
+      ["shippingCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingCost")]],
+      ["shippingTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxCost")]]
     ]
   )
 
@@ -1424,6 +1470,24 @@ module DefaultMappingRegistry
     :schema_name => XSD::QName.new(NsWebservices, "SubmitOrderResponse"),
     :schema_element => [
       ["submitOrderResult", ["ChannelAdvisor::OrderServiceSOAP::APIResultOfInt32", XSD::QName.new(NsWebservices, "SubmitOrderResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::SetSellerOrderID,
+    :schema_name => XSD::QName.new(NsWebservices, "SetSellerOrderID"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["orderIDList", "ChannelAdvisor::OrderServiceSOAP::ArrayOfInt", [0, 1]],
+      ["sellerOrderIDList", "ChannelAdvisor::OrderServiceSOAP::ArrayOfString", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::SetSellerOrderIDResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "SetSellerOrderIDResponse"),
+    :schema_element => [
+      ["setSellerOrderIDResult", ["ChannelAdvisor::OrderServiceSOAP::APIResultOfArrayOfInt32", XSD::QName.new(NsWebservices, "SetSellerOrderIDResult")], [0, 1]]
     ]
   )
 

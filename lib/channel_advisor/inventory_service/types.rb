@@ -1062,6 +1062,7 @@ end
 class InventoryItemDateRangeField < ::String
   CreateDate = InventoryItemDateRangeField.new("CreateDate")
   LastUpdateDate = InventoryItemDateRangeField.new("LastUpdateDate")
+  QtyLastModifiedDate = InventoryItemDateRangeField.new("QtyLastModifiedDate")
 end
 
 # {http://api.channeladvisor.com/webservices/}InventoryItemQuantityField

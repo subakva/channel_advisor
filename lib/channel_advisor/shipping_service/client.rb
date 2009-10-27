@@ -28,6 +28,14 @@ class ShippingServiceSoap < ::SOAP::RPC::Driver
         :response_style => :document, :response_use => :literal,
         :faults => {} }
     ],
+    [ "http://api.channeladvisor.com/webservices/SubmitOrderShipmentList",
+      "submitOrderShipmentList",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SubmitOrderShipmentList"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SubmitOrderShipmentListResponse"]] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal,
+        :faults => {} }
+    ],
     [ "http://api.channeladvisor.com/webservices/Ping",
       "ping",
       [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "Ping"]],

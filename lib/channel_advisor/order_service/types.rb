@@ -136,6 +136,32 @@ class APIResultOfInt32
   end
 end
 
+# {http://api.channeladvisor.com/webservices/}ArrayOfInt
+class ArrayOfInt < ::Array
+end
+
+# {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfInt32
+#   status - ChannelAdvisor::OrderServiceSOAP::ResultStatus
+#   messageCode - SOAP::SOAPInt
+#   message - SOAP::SOAPString
+#   data - SOAP::SOAPString
+#   resultData - ChannelAdvisor::OrderServiceSOAP::ArrayOfInt
+class APIResultOfArrayOfInt32
+  attr_accessor :status
+  attr_accessor :messageCode
+  attr_accessor :message
+  attr_accessor :data
+  attr_accessor :resultData
+
+  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
+    @status = status
+    @messageCode = messageCode
+    @message = message
+    @data = data
+    @resultData = resultData
+  end
+end
+
 # {http://api.channeladvisor.com/webservices/}APIResultOfString
 #   status - ChannelAdvisor::OrderServiceSOAP::ResultStatus
 #   messageCode - SOAP::SOAPInt
@@ -273,7 +299,7 @@ end
 #   statusUpdateFilterEndTimeGMT - SOAP::SOAPDateTime
 #   detailLevel - ChannelAdvisor::OrderServiceSOAP::DetailLevelType
 #   exportState - ChannelAdvisor::OrderServiceSOAP::ExportStateType
-#   orderIDList - ChannelAdvisor::OrderServiceSOAP::ArrayOfInt
+#   orderIDList - ChannelAdvisor::OrderServiceSOAP::ArrayOfInt_
 #   orderStateFilter - ChannelAdvisor::OrderServiceSOAP::OrderStateCode
 #   paymentStatusFilter - ChannelAdvisor::OrderServiceSOAP::PaymentStatusCode
 #   checkoutStatusFilter - ChannelAdvisor::OrderServiceSOAP::CheckoutStatusCode
@@ -313,7 +339,7 @@ class OrderCriteria
 end
 
 # {http://api.channeladvisor.com/datacontracts/orders}ArrayOfInt
-class ArrayOfInt < ::Array
+class ArrayOfInt_ < ::Array
 end
 
 # {http://api.channeladvisor.com/datacontracts/orders}OrderResponseItem
@@ -1029,6 +1055,9 @@ end
 #   vATRate - SOAP::SOAPDecimal
 #   unitWeight - ChannelAdvisor::OrderServiceSOAP::ItemWeight
 #   warehouseLocation - SOAP::SOAPString
+#   taxCost - SOAP::SOAPDecimal
+#   shippingCost - SOAP::SOAPDecimal
+#   shippingTaxCost - SOAP::SOAPDecimal
 class OrderLineItemItemResponse < OrderLineItemItem
   attr_accessor :lineItemType
   attr_accessor :unitPrice
@@ -1044,8 +1073,11 @@ class OrderLineItemItemResponse < OrderLineItemItem
   attr_accessor :vATRate
   attr_accessor :unitWeight
   attr_accessor :warehouseLocation
+  attr_accessor :taxCost
+  attr_accessor :shippingCost
+  attr_accessor :shippingTaxCost
 
-  def initialize(lineItemType = nil, unitPrice = nil, lineItemID = nil, allowNegativeQuantity = nil, quantity = nil, itemSaleSource = nil, sKU = nil, title = nil, buyerUserID = nil, buyerFeedbackRating = nil, salesSourceID = nil, vATRate = nil, unitWeight = nil, warehouseLocation = nil)
+  def initialize(lineItemType = nil, unitPrice = nil, lineItemID = nil, allowNegativeQuantity = nil, quantity = nil, itemSaleSource = nil, sKU = nil, title = nil, buyerUserID = nil, buyerFeedbackRating = nil, salesSourceID = nil, vATRate = nil, unitWeight = nil, warehouseLocation = nil, taxCost = nil, shippingCost = nil, shippingTaxCost = nil)
     @lineItemType = lineItemType
     @unitPrice = unitPrice
     @lineItemID = lineItemID
@@ -1060,6 +1092,22 @@ class OrderLineItemItemResponse < OrderLineItemItem
     @vATRate = vATRate
     @unitWeight = unitWeight
     @warehouseLocation = warehouseLocation
+    @taxCost = taxCost
+    @shippingCost = shippingCost
+    @shippingTaxCost = shippingTaxCost
+  end
+end
+
+# {http://api.channeladvisor.com/datacontracts/orders}OrderLineItemInvoice
+#   lineItemType - ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode
+#   unitPrice - SOAP::SOAPDecimal
+class OrderLineItemInvoice < OrderLineItemBase
+  attr_accessor :lineItemType
+  attr_accessor :unitPrice
+
+  def initialize(lineItemType = nil, unitPrice = nil)
+    @lineItemType = lineItemType
+    @unitPrice = unitPrice
   end
 end
 
@@ -1076,19 +1124,6 @@ class OrderLineItemPromo < OrderLineItemBase
     @lineItemType = lineItemType
     @unitPrice = unitPrice
     @promoCode = promoCode
-  end
-end
-
-# {http://api.channeladvisor.com/datacontracts/orders}OrderLineItemInvoice
-#   lineItemType - ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode
-#   unitPrice - SOAP::SOAPDecimal
-class OrderLineItemInvoice < OrderLineItemBase
-  attr_accessor :lineItemType
-  attr_accessor :unitPrice
-
-  def initialize(lineItemType = nil, unitPrice = nil)
-    @lineItemType = lineItemType
-    @unitPrice = unitPrice
   end
 end
 
@@ -1488,6 +1523,32 @@ class SubmitOrderResponse
 
   def initialize(submitOrderResult = nil)
     @submitOrderResult = submitOrderResult
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}SetSellerOrderID
+#   accountID - SOAP::SOAPString
+#   orderIDList - ChannelAdvisor::OrderServiceSOAP::ArrayOfInt
+#   sellerOrderIDList - ChannelAdvisor::OrderServiceSOAP::ArrayOfString
+class SetSellerOrderID
+  attr_accessor :accountID
+  attr_accessor :orderIDList
+  attr_accessor :sellerOrderIDList
+
+  def initialize(accountID = nil, orderIDList = nil, sellerOrderIDList = nil)
+    @accountID = accountID
+    @orderIDList = orderIDList
+    @sellerOrderIDList = sellerOrderIDList
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}SetSellerOrderIDResponse
+#   setSellerOrderIDResult - ChannelAdvisor::OrderServiceSOAP::APIResultOfArrayOfInt32
+class SetSellerOrderIDResponse
+  attr_accessor :setSellerOrderIDResult
+
+  def initialize(setSellerOrderIDResult = nil)
+    @setSellerOrderIDResult = setSellerOrderIDResult
   end
 end
 
