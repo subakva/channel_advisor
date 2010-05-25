@@ -120,6 +120,18 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfOrderRefundHistoryResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfOrderRefundHistoryResponse"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::OrderServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::OrderServiceSOAP::OrderRefundHistoryResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -157,10 +169,51 @@ module DefaultMappingRegistry
       ["shippingAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingAmount")]],
       ["shippingTaxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxAmount")]],
       ["taxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxAmount")]],
+      ["giftWrapAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapAmount")]],
+      ["giftWrapTaxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapTaxAmount")]],
       ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "Quantity")]],
       ["refundRequestID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "RefundRequestID")]],
       ["refundRequested", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RefundRequested")]],
+      ["restockQuantity", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RestockQuantity")]],
       ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemRefundHistoryResponse,
+    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemRefundHistoryResponse"),
+    :schema_basetype => XSD::QName.new(NsOrders, "RefundItem"),
+    :schema_element => [
+      ["sKU", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SKU")], [0, 1]],
+      ["amount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "Amount")]],
+      ["shippingAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingAmount")]],
+      ["shippingTaxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxAmount")]],
+      ["taxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxAmount")]],
+      ["giftWrapAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapAmount")]],
+      ["giftWrapTaxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapTaxAmount")]],
+      ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "Quantity")]],
+      ["refundRequestID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "RefundRequestID")]],
+      ["refundRequested", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RefundRequested")]],
+      ["restockQuantity", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RestockQuantity")]],
+      ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]],
+      ["invoiceItemID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "InvoiceItemID")]],
+      ["itemSaleSource", ["ChannelAdvisor::OrderServiceSOAP::SiteToken", XSD::QName.new(NsOrders, "ItemSaleSource")]],
+      ["refundRequestStatus", ["ChannelAdvisor::OrderServiceSOAP::AsyncStatusCode", XSD::QName.new(NsOrders, "RefundRequestStatus")]],
+      ["refundPaymentInfo", ["ChannelAdvisor::OrderServiceSOAP::PaymentInfo", XSD::QName.new(NsOrders, "RefundPaymentInfo")], [0, 1]],
+      ["restockStatus", ["ChannelAdvisor::OrderServiceSOAP::AsyncStatusCode", XSD::QName.new(NsOrders, "RestockStatus")]],
+      ["refundCreateDateGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "RefundCreateDateGMT")]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::PaymentInfo,
+    :schema_type => XSD::QName.new(NsOrders, "PaymentInfo"),
+    :schema_element => [
+      ["paymentType", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentType")], [0, 1]],
+      ["creditCardLast4", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "CreditCardLast4")], [0, 1]],
+      ["payPalID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PayPalID")], [0, 1]],
+      ["merchantReferenceNumber", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "MerchantReferenceNumber")], [0, 1]],
+      ["paymentTransactionID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentTransactionID")], [0, 1]]
     ]
   )
 
@@ -251,7 +304,8 @@ module DefaultMappingRegistry
       ["paymentStatus", ["ChannelAdvisor::OrderServiceSOAP::PaymentStatusCode", XSD::QName.new(NsOrders, "PaymentStatus")]],
       ["paymentDateGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "PaymentDateGMT")]],
       ["shippingStatus", ["ChannelAdvisor::OrderServiceSOAP::ShippingStatusCode", XSD::QName.new(NsOrders, "ShippingStatus")]],
-      ["shippingDateGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "ShippingDateGMT")]]
+      ["shippingDateGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "ShippingDateGMT")]],
+      ["orderRefundStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderRefundStatusCode", XSD::QName.new(NsOrders, "OrderRefundStatus")]]
     ]
   )
 
@@ -282,18 +336,6 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse,
     :schema_type => XSD::QName.new(NsOrders, "PaymentInfoResponse"),
     :schema_basetype => XSD::QName.new(NsOrders, "PaymentInfo"),
-    :schema_element => [
-      ["paymentType", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentType")], [0, 1]],
-      ["creditCardLast4", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "CreditCardLast4")], [0, 1]],
-      ["payPalID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PayPalID")], [0, 1]],
-      ["merchantReferenceNumber", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "MerchantReferenceNumber")], [0, 1]],
-      ["paymentTransactionID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentTransactionID")], [0, 1]]
-    ]
-  )
-
-  EncodedRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::PaymentInfo,
-    :schema_type => XSD::QName.new(NsOrders, "PaymentInfo"),
     :schema_element => [
       ["paymentType", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentType")], [0, 1]],
       ["creditCardLast4", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "CreditCardLast4")], [0, 1]],
@@ -434,6 +476,7 @@ module DefaultMappingRegistry
       ["checkoutSource", ["ChannelAdvisor::OrderServiceSOAP::CheckoutSourceType", XSD::QName.new(NsOrders, "CheckoutSource")]],
       ["vATTaxCalculationOption", ["ChannelAdvisor::OrderServiceSOAP::VAT_Calculation_Type", XSD::QName.new(NsOrders, "VATTaxCalculationOption")]],
       ["vATShippingOption", ["ChannelAdvisor::OrderServiceSOAP::VAT_Calculation_Type", XSD::QName.new(NsOrders, "VATShippingOption")]],
+      ["vATGiftWrapOption", ["ChannelAdvisor::OrderServiceSOAP::VAT_Calculation_Type", XSD::QName.new(NsOrders, "VATGiftWrapOption")]],
       ["lineItemSKUList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemItem", XSD::QName.new(NsOrders, "LineItemSKUList")], [0, 1]],
       ["lineItemInvoiceList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemInvoice", XSD::QName.new(NsOrders, "LineItemInvoiceList")], [0, 1]],
       ["lineItemPromoList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemPromo", XSD::QName.new(NsOrders, "LineItemPromoList")], [0, 1]]
@@ -464,17 +507,14 @@ module DefaultMappingRegistry
       ["buyerUserID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerUserID")], [0, 1]],
       ["buyerFeedbackRating", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "BuyerFeedbackRating")]],
       ["salesSourceID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SalesSourceID")], [0, 1]],
-      ["vATRate", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "VATRate")]]
-    ]
-  )
-
-  EncodedRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
-    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
-    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
-    :schema_element => [
-      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
-      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
+      ["vATRate", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "VATRate")]],
+      ["taxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxCost")]],
+      ["shippingCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingCost")]],
+      ["shippingTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxCost")]],
+      ["giftWrapCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapCost")]],
+      ["giftWrapTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapTaxCost")]],
+      ["giftMessage", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftMessage")], [0, 1]],
+      ["giftWrapLevel", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftWrapLevel")], [0, 1]]
     ]
   )
 
@@ -486,6 +526,16 @@ module DefaultMappingRegistry
       ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
       ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]],
       ["promoCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PromoCode")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
+    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
+    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
+    :schema_element => [
+      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
+      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
     ]
   )
 
@@ -506,11 +556,16 @@ module DefaultMappingRegistry
       ["buyerFeedbackRating", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "BuyerFeedbackRating")]],
       ["salesSourceID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SalesSourceID")], [0, 1]],
       ["vATRate", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "VATRate")]],
-      ["unitWeight", ["ChannelAdvisor::OrderServiceSOAP::ItemWeight", XSD::QName.new(NsOrders, "UnitWeight")], [0, 1]],
-      ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]],
       ["taxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxCost")]],
       ["shippingCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingCost")]],
-      ["shippingTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxCost")]]
+      ["shippingTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxCost")]],
+      ["giftWrapCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapCost")]],
+      ["giftWrapTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapTaxCost")]],
+      ["giftMessage", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftMessage")], [0, 1]],
+      ["giftWrapLevel", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftWrapLevel")], [0, 1]],
+      ["unitWeight", ["ChannelAdvisor::OrderServiceSOAP::ItemWeight", XSD::QName.new(NsOrders, "UnitWeight")], [0, 1]],
+      ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]],
+      ["userName", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "UserName")], [0, 1]]
     ]
   )
 
@@ -559,7 +614,8 @@ module DefaultMappingRegistry
       ["shippingInfo", ["ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse", XSD::QName.new(NsOrders, "ShippingInfo")], [0, 1]],
       ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]],
       ["shoppingCart", ["ChannelAdvisor::OrderServiceSOAP::OrderCart", XSD::QName.new(NsOrders, "ShoppingCart")], [0, 1]],
-      ["customValueList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfCustomValue", XSD::QName.new(NsOrders, "CustomValueList")], [0, 1]]
+      ["customValueList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfCustomValue", XSD::QName.new(NsOrders, "CustomValueList")], [0, 1]],
+      ["buyerIpAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerIpAddress")], [0, 1]]
     ]
   )
 
@@ -624,6 +680,25 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderRefundHistoryResponse,
+    :schema_type => XSD::QName.new(NsOrders, "OrderRefundHistoryResponse"),
+    :schema_element => [
+      ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
+      ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["refundStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderRefundStatusCode", XSD::QName.new(NsOrders, "RefundStatus")]],
+      ["lineItemRefunds", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemRefundHistoryResponse", XSD::QName.new(NsOrders, "LineItemRefunds")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemRefundHistoryResponse,
+    :schema_type => XSD::QName.new(NsOrders, "ArrayOfOrderLineItemRefundHistoryResponse"),
+    :schema_element => [
+      ["orderLineItemRefundHistoryResponse", ["ChannelAdvisor::OrderServiceSOAP::OrderLineItemRefundHistoryResponse[]", XSD::QName.new(NsOrders, "OrderLineItemRefundHistoryResponse")], [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::ResultStatus,
     :schema_type => XSD::QName.new(NsWebservices, "ResultStatus")
   )
@@ -631,6 +706,16 @@ module DefaultMappingRegistry
   EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason,
     :schema_type => XSD::QName.new(NsOrders, "RefundAdjustmentReason")
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::SiteToken,
+    :schema_type => XSD::QName.new(NsOrders, "SiteToken")
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::AsyncStatusCode,
+    :schema_type => XSD::QName.new(NsOrders, "AsyncStatusCode")
   )
 
   EncodedRegistry.register(
@@ -664,6 +749,11 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderRefundStatusCode,
+    :schema_type => XSD::QName.new(NsOrders, "OrderRefundStatusCode")
+  )
+
+  EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::CheckoutSourceType,
     :schema_type => XSD::QName.new(NsOrders, "CheckoutSourceType")
   )
@@ -676,11 +766,6 @@ module DefaultMappingRegistry
   EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode,
     :schema_type => XSD::QName.new(NsOrders, "LineItemTypeCode")
-  )
-
-  EncodedRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::SiteToken,
-    :schema_type => XSD::QName.new(NsOrders, "SiteToken")
   )
 
   LiteralRegistry.register(
@@ -797,6 +882,18 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfOrderRefundHistoryResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfOrderRefundHistoryResponse"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::OrderServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::OrderServiceSOAP::OrderRefundHistoryResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -834,10 +931,51 @@ module DefaultMappingRegistry
       ["shippingAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingAmount")]],
       ["shippingTaxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxAmount")]],
       ["taxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxAmount")]],
+      ["giftWrapAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapAmount")]],
+      ["giftWrapTaxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapTaxAmount")]],
       ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "Quantity")]],
       ["refundRequestID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "RefundRequestID")]],
       ["refundRequested", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RefundRequested")]],
+      ["restockQuantity", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RestockQuantity")]],
       ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemRefundHistoryResponse,
+    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemRefundHistoryResponse"),
+    :schema_basetype => XSD::QName.new(NsOrders, "RefundItem"),
+    :schema_element => [
+      ["sKU", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SKU")], [0, 1]],
+      ["amount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "Amount")]],
+      ["shippingAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingAmount")]],
+      ["shippingTaxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxAmount")]],
+      ["taxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxAmount")]],
+      ["giftWrapAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapAmount")]],
+      ["giftWrapTaxAmount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapTaxAmount")]],
+      ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "Quantity")]],
+      ["refundRequestID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "RefundRequestID")]],
+      ["refundRequested", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RefundRequested")]],
+      ["restockQuantity", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RestockQuantity")]],
+      ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]],
+      ["invoiceItemID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "InvoiceItemID")]],
+      ["itemSaleSource", ["ChannelAdvisor::OrderServiceSOAP::SiteToken", XSD::QName.new(NsOrders, "ItemSaleSource")]],
+      ["refundRequestStatus", ["ChannelAdvisor::OrderServiceSOAP::AsyncStatusCode", XSD::QName.new(NsOrders, "RefundRequestStatus")]],
+      ["refundPaymentInfo", ["ChannelAdvisor::OrderServiceSOAP::PaymentInfo", XSD::QName.new(NsOrders, "RefundPaymentInfo")], [0, 1]],
+      ["restockStatus", ["ChannelAdvisor::OrderServiceSOAP::AsyncStatusCode", XSD::QName.new(NsOrders, "RestockStatus")]],
+      ["refundCreateDateGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "RefundCreateDateGMT")]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::PaymentInfo,
+    :schema_type => XSD::QName.new(NsOrders, "PaymentInfo"),
+    :schema_element => [
+      ["paymentType", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentType")], [0, 1]],
+      ["creditCardLast4", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "CreditCardLast4")], [0, 1]],
+      ["payPalID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PayPalID")], [0, 1]],
+      ["merchantReferenceNumber", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "MerchantReferenceNumber")], [0, 1]],
+      ["paymentTransactionID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentTransactionID")], [0, 1]]
     ]
   )
 
@@ -928,7 +1066,8 @@ module DefaultMappingRegistry
       ["paymentStatus", ["ChannelAdvisor::OrderServiceSOAP::PaymentStatusCode", XSD::QName.new(NsOrders, "PaymentStatus")]],
       ["paymentDateGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "PaymentDateGMT")]],
       ["shippingStatus", ["ChannelAdvisor::OrderServiceSOAP::ShippingStatusCode", XSD::QName.new(NsOrders, "ShippingStatus")]],
-      ["shippingDateGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "ShippingDateGMT")]]
+      ["shippingDateGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "ShippingDateGMT")]],
+      ["orderRefundStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderRefundStatusCode", XSD::QName.new(NsOrders, "OrderRefundStatus")]]
     ]
   )
 
@@ -959,18 +1098,6 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse,
     :schema_type => XSD::QName.new(NsOrders, "PaymentInfoResponse"),
     :schema_basetype => XSD::QName.new(NsOrders, "PaymentInfo"),
-    :schema_element => [
-      ["paymentType", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentType")], [0, 1]],
-      ["creditCardLast4", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "CreditCardLast4")], [0, 1]],
-      ["payPalID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PayPalID")], [0, 1]],
-      ["merchantReferenceNumber", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "MerchantReferenceNumber")], [0, 1]],
-      ["paymentTransactionID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentTransactionID")], [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::PaymentInfo,
-    :schema_type => XSD::QName.new(NsOrders, "PaymentInfo"),
     :schema_element => [
       ["paymentType", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PaymentType")], [0, 1]],
       ["creditCardLast4", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "CreditCardLast4")], [0, 1]],
@@ -1111,6 +1238,7 @@ module DefaultMappingRegistry
       ["checkoutSource", ["ChannelAdvisor::OrderServiceSOAP::CheckoutSourceType", XSD::QName.new(NsOrders, "CheckoutSource")]],
       ["vATTaxCalculationOption", ["ChannelAdvisor::OrderServiceSOAP::VAT_Calculation_Type", XSD::QName.new(NsOrders, "VATTaxCalculationOption")]],
       ["vATShippingOption", ["ChannelAdvisor::OrderServiceSOAP::VAT_Calculation_Type", XSD::QName.new(NsOrders, "VATShippingOption")]],
+      ["vATGiftWrapOption", ["ChannelAdvisor::OrderServiceSOAP::VAT_Calculation_Type", XSD::QName.new(NsOrders, "VATGiftWrapOption")]],
       ["lineItemSKUList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemItem", XSD::QName.new(NsOrders, "LineItemSKUList")], [0, 1]],
       ["lineItemInvoiceList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemInvoice", XSD::QName.new(NsOrders, "LineItemInvoiceList")], [0, 1]],
       ["lineItemPromoList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemPromo", XSD::QName.new(NsOrders, "LineItemPromoList")], [0, 1]]
@@ -1141,17 +1269,14 @@ module DefaultMappingRegistry
       ["buyerUserID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerUserID")], [0, 1]],
       ["buyerFeedbackRating", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "BuyerFeedbackRating")]],
       ["salesSourceID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SalesSourceID")], [0, 1]],
-      ["vATRate", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "VATRate")]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
-    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
-    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
-    :schema_element => [
-      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
-      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
+      ["vATRate", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "VATRate")]],
+      ["taxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxCost")]],
+      ["shippingCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingCost")]],
+      ["shippingTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxCost")]],
+      ["giftWrapCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapCost")]],
+      ["giftWrapTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapTaxCost")]],
+      ["giftMessage", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftMessage")], [0, 1]],
+      ["giftWrapLevel", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftWrapLevel")], [0, 1]]
     ]
   )
 
@@ -1163,6 +1288,16 @@ module DefaultMappingRegistry
       ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
       ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]],
       ["promoCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PromoCode")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
+    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
+    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
+    :schema_element => [
+      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
+      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
     ]
   )
 
@@ -1183,11 +1318,16 @@ module DefaultMappingRegistry
       ["buyerFeedbackRating", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "BuyerFeedbackRating")]],
       ["salesSourceID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SalesSourceID")], [0, 1]],
       ["vATRate", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "VATRate")]],
-      ["unitWeight", ["ChannelAdvisor::OrderServiceSOAP::ItemWeight", XSD::QName.new(NsOrders, "UnitWeight")], [0, 1]],
-      ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]],
       ["taxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "TaxCost")]],
       ["shippingCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingCost")]],
-      ["shippingTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxCost")]]
+      ["shippingTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "ShippingTaxCost")]],
+      ["giftWrapCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapCost")]],
+      ["giftWrapTaxCost", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "GiftWrapTaxCost")]],
+      ["giftMessage", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftMessage")], [0, 1]],
+      ["giftWrapLevel", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftWrapLevel")], [0, 1]],
+      ["unitWeight", ["ChannelAdvisor::OrderServiceSOAP::ItemWeight", XSD::QName.new(NsOrders, "UnitWeight")], [0, 1]],
+      ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]],
+      ["userName", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "UserName")], [0, 1]]
     ]
   )
 
@@ -1236,7 +1376,8 @@ module DefaultMappingRegistry
       ["shippingInfo", ["ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse", XSD::QName.new(NsOrders, "ShippingInfo")], [0, 1]],
       ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]],
       ["shoppingCart", ["ChannelAdvisor::OrderServiceSOAP::OrderCart", XSD::QName.new(NsOrders, "ShoppingCart")], [0, 1]],
-      ["customValueList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfCustomValue", XSD::QName.new(NsOrders, "CustomValueList")], [0, 1]]
+      ["customValueList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfCustomValue", XSD::QName.new(NsOrders, "CustomValueList")], [0, 1]],
+      ["buyerIpAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerIpAddress")], [0, 1]]
     ]
   )
 
@@ -1301,6 +1442,25 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderRefundHistoryResponse,
+    :schema_type => XSD::QName.new(NsOrders, "OrderRefundHistoryResponse"),
+    :schema_element => [
+      ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
+      ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["refundStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderRefundStatusCode", XSD::QName.new(NsOrders, "RefundStatus")]],
+      ["lineItemRefunds", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemRefundHistoryResponse", XSD::QName.new(NsOrders, "LineItemRefunds")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderLineItemRefundHistoryResponse,
+    :schema_type => XSD::QName.new(NsOrders, "ArrayOfOrderLineItemRefundHistoryResponse"),
+    :schema_element => [
+      ["orderLineItemRefundHistoryResponse", ["ChannelAdvisor::OrderServiceSOAP::OrderLineItemRefundHistoryResponse[]", XSD::QName.new(NsOrders, "OrderLineItemRefundHistoryResponse")], [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::ResultStatus,
     :schema_type => XSD::QName.new(NsWebservices, "ResultStatus")
   )
@@ -1308,6 +1468,16 @@ module DefaultMappingRegistry
   LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason,
     :schema_type => XSD::QName.new(NsOrders, "RefundAdjustmentReason")
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::SiteToken,
+    :schema_type => XSD::QName.new(NsOrders, "SiteToken")
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::AsyncStatusCode,
+    :schema_type => XSD::QName.new(NsOrders, "AsyncStatusCode")
   )
 
   LiteralRegistry.register(
@@ -1341,6 +1511,11 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderRefundStatusCode,
+    :schema_type => XSD::QName.new(NsOrders, "OrderRefundStatusCode")
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::CheckoutSourceType,
     :schema_type => XSD::QName.new(NsOrders, "CheckoutSourceType")
   )
@@ -1353,11 +1528,6 @@ module DefaultMappingRegistry
   LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode,
     :schema_type => XSD::QName.new(NsOrders, "LineItemTypeCode")
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::SiteToken,
-    :schema_type => XSD::QName.new(NsOrders, "SiteToken")
   )
 
   LiteralRegistry.register(
@@ -1488,6 +1658,23 @@ module DefaultMappingRegistry
     :schema_name => XSD::QName.new(NsWebservices, "SetSellerOrderIDResponse"),
     :schema_element => [
       ["setSellerOrderIDResult", ["ChannelAdvisor::OrderServiceSOAP::APIResultOfArrayOfInt32", XSD::QName.new(NsWebservices, "SetSellerOrderIDResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::GetOrderRefundHistory,
+    :schema_name => XSD::QName.new(NsWebservices, "GetOrderRefundHistory"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["orderID", "SOAP::SOAPInt"]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::GetOrderRefundHistoryResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "GetOrderRefundHistoryResponse"),
+    :schema_element => [
+      ["getOrderRefundHistoryResult", ["ChannelAdvisor::OrderServiceSOAP::APIResultOfOrderRefundHistoryResponse", XSD::QName.new(NsWebservices, "GetOrderRefundHistoryResult")], [0, 1]]
     ]
   )
 

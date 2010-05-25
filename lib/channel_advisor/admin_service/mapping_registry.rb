@@ -150,7 +150,9 @@ module DefaultMappingRegistry
   LiteralRegistry.register(
     :class => ChannelAdvisor::AdminServiceSOAP::GetAuthorizationList,
     :schema_name => XSD::QName.new(NsWebservices, "GetAuthorizationList"),
-    :schema_element => []
+    :schema_element => [
+      ["localID", "SOAP::SOAPInt"]
+    ]
   )
 
   LiteralRegistry.register(

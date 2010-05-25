@@ -28,6 +28,14 @@ class InventoryServiceSoap < ::SOAP::RPC::Driver
         :response_style => :document, :response_use => :literal,
         :faults => {} }
     ],
+    [ "http://api.channeladvisor.com/webservices/GetInventoryItemListWithFullDetail",
+      "getInventoryItemListWithFullDetail",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetInventoryItemListWithFullDetail"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetInventoryItemListWithFullDetailResponse"]] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal,
+        :faults => {} }
+    ],
     [ "http://api.channeladvisor.com/webservices/GetFilteredInventoryItemList",
       "getFilteredInventoryItemList",
       [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetFilteredInventoryItemList"]],
@@ -100,14 +108,6 @@ class InventoryServiceSoap < ::SOAP::RPC::Driver
         :response_style => :document, :response_use => :literal,
         :faults => {} }
     ],
-    [ "http://api.channeladvisor.com/webservices/SynchInventoryItem",
-      "synchInventoryItem",
-      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SynchInventoryItem"]],
-        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SynchInventoryItemResponse"]] ],
-      { :request_style =>  :document, :request_use =>  :literal,
-        :response_style => :document, :response_use => :literal,
-        :faults => {} }
-    ],
     [ "http://api.channeladvisor.com/webservices/GetInventoryQuantity",
       "getInventoryQuantity",
       [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetInventoryQuantity"]],
@@ -128,6 +128,14 @@ class InventoryServiceSoap < ::SOAP::RPC::Driver
       "deleteInventoryItem",
       [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "DeleteInventoryItem"]],
         ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "DeleteInventoryItemResponse"]] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal,
+        :faults => {} }
+    ],
+    [ "http://api.channeladvisor.com/webservices/SynchInventoryItem",
+      "synchInventoryItem",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SynchInventoryItem"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SynchInventoryItemResponse"]] ],
       { :request_style =>  :document, :request_use =>  :literal,
         :response_style => :document, :response_use => :literal,
         :faults => {} }

@@ -116,8 +116,12 @@ class ResultStatus < ::String
 end
 
 # {http://api.channeladvisor.com/webservices/}GetAuthorizationList
+#   localID - SOAP::SOAPInt
 class GetAuthorizationList
-  def initialize
+  attr_accessor :localID
+
+  def initialize(localID = nil)
+    @localID = localID
   end
 end
 
