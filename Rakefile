@@ -1,14 +1,8 @@
 require 'rake'
 require 'rake/gempackagetask'
-require 'rake/clean'
-require 'rake/testtask'
+require 'rspec'
+require 'rspec/core/rake_task'
 require 'rake/rdoctask'
-require 'find'
-require 'rubyforge'
-require 'rubygems'
-require 'rubygems/gem_runner'
-require 'spec'
-require 'spec/rake/spectask'
 
 @gem_spec = Gem::Specification.new do |s|
   s.name = "channel_advisor"
@@ -24,18 +18,15 @@ require 'spec/rake/spectask'
   s.files = FileList['lib/**/*.*', 'README', 'doc/**/*.*', 'bin/**/*.*']
   s.require_paths << 'lib'
 
-  #s.bindir = "bin"
-  #s.executables << "channel_advisor"
-  #s.default_executable = ""
+  s.add_development_dependency('rspec')
+  s.add_development_dependency('rcov')
+  s.add_development_dependency('metric_fu')
+  s.add_development_dependency('rake')
   s.add_dependency("soap4r", ">=1.5.8")
   s.add_dependency("configatron", ">=2.0.0")
-  #s.extensions << ""
   s.extra_rdoc_files = ["README"]
   s.has_rdoc = true
-  #s.platform = "Gem::Platform::Ruby"
-  # s.required_ruby_version = ">= 1.8.6"
-  #s.requirements << "An ice cold beer."
-  #s.requirements << "Some free time!"
+
   s.rubyforge_project = "channel_advisor"
 end
 
@@ -49,26 +40,20 @@ end
 
 # rake
 desc 'Run specifications'
-Spec::Rake::SpecTask.new(:spec) do |t|
-  opts = File.join(File.dirname(__FILE__), "spec", 'spec.opts')
-  t.spec_opts << '--options' << opts if File.exists?(opts)
-  t.spec_files = Dir.glob('spec/**/*_spec.rb')
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = 'spec/**/*_spec.rb'
 end
 task :default => :spec
 
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  opts = File.join(File.dirname(__FILE__), "spec", 'spec.opts')
-  spec.spec_opts << '--options' << opts if File.exists?(opts)
-  spec.spec_files = Dir.glob('spec/**/*_spec.rb') - Dir.glob('spec/integration/**/*_spec.rb')
+RSpec::Core::RakeTask.new(:rcov) do |spec|
+  spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
 end
 
 namespace :spec do
   desc "Integration Spec. USE WITH CAUTION AS IT PUSHES TO CHANNEL ADVISOR"
-  Spec::Rake::SpecTask.new(:integration) do |t|
-    opts = File.join(File.dirname(__FILE__), "spec", 'spec.opts')
-    t.spec_opts << '--options' << opts if File.exists?(opts)
-    t.spec_files = Dir.glob('spec/integration/**/*_spec.rb')
+  RSpec::Core::RakeTask.new(:integration) do |spec|
+    spec.pattern = 'spec/integration/**/*_spec.rb'
   end
 end
 
@@ -78,41 +63,8 @@ task :install => [:package] do |t|
   puts `#{sudo} gem install #{File.join("pkg", @gem_spec.name)}-#{@gem_spec.version}.gem --no-update-sources --no-ri --no-rdoc`
 end
 
-desc "Release the gem"
-task :release => :install do |t|
-  begin
-    ac_path = File.join(ENV["HOME"], ".rubyforge", "auto-config.yml")
-    if File.exists?(ac_path)
-      fixed = File.open(ac_path).read.gsub("  ~: {}\n\n", '')
-      fixed.gsub!(/    !ruby\/object:Gem::Version \? \n.+\n.+\n\n/, '')
-      puts "Fixing #{ac_path}..."
-      File.open(ac_path, "w") {|f| f.puts fixed}
-    end
-    begin
-      rf = RubyForge.new
-      rf.configure
-      rf.login
-      rf.add_release(@gem_spec.rubyforge_project, @gem_spec.name, @gem_spec.version, File.join("pkg", "#{@gem_spec.name}-#{@gem_spec.version}.gem"))
-    rescue Exception => e
-      if e.message.match("Invalid package_id") || e.message.match("no <package_id> configured for")
-        puts "You need to create the package!"
-        rf.create_package(@gem_spec.rubyforge_project, @gem_spec.name)
-        rf.add_release(@gem_spec.rubyforge_project, @gem_spec.name, @gem_spec.version, File.join("pkg", "#{@gem_spec.name}-#{@gem_spec.version}.gem"))
-      else
-        raise e
-      end
-    end
-  rescue Exception => e
-    if e.message == "You have already released this version."
-      puts e
-    else
-      raise e
-    end
-  end
-end
-
-desc "Run the automated integrity build"
-task :integrity do
+desc "Run the automated hudson build"
+task :hudson do
   puts "Starting build..."
 
   Rake::Task['rcov'].invoke
@@ -124,10 +76,6 @@ task :integrity do
     fu.graphs -= [:rcov, :saikuro]
   end
   Rake::Task['metrics:all'].invoke
-
-  # create the build.my.gem file to trigger a gem build/publish cycle
-  require 'fileutils'
-  FileUtils::Verbose.touch('build.my.gem')
 
   puts "Done."
 end
