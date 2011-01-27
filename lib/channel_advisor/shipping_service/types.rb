@@ -1,3 +1,4 @@
+
 module ChannelAdvisor; module ShippingServiceSOAP
 
 
@@ -181,6 +182,7 @@ end
 #   carrierCode - SOAP::SOAPString
 #   classCode - SOAP::SOAPString
 #   trackingNumber - SOAP::SOAPString
+#   sellerFulfillmentID - SOAP::SOAPString
 #   shipmentCost - SOAP::SOAPDecimal
 #   shipmentTaxCost - SOAP::SOAPDecimal
 #   insuranceCost - SOAP::SOAPDecimal
@@ -190,16 +192,18 @@ class PartialShipmentContents
   attr_accessor :carrierCode
   attr_accessor :classCode
   attr_accessor :trackingNumber
+  attr_accessor :sellerFulfillmentID
   attr_accessor :shipmentCost
   attr_accessor :shipmentTaxCost
   attr_accessor :insuranceCost
 
-  def initialize(shipmentContents = nil, dateShippedGMT = nil, carrierCode = nil, classCode = nil, trackingNumber = nil, shipmentCost = nil, shipmentTaxCost = nil, insuranceCost = nil)
+  def initialize(shipmentContents = nil, dateShippedGMT = nil, carrierCode = nil, classCode = nil, trackingNumber = nil, sellerFulfillmentID = nil, shipmentCost = nil, shipmentTaxCost = nil, insuranceCost = nil)
     @shipmentContents = shipmentContents
     @dateShippedGMT = dateShippedGMT
     @carrierCode = carrierCode
     @classCode = classCode
     @trackingNumber = trackingNumber
+    @sellerFulfillmentID = sellerFulfillmentID
     @shipmentCost = shipmentCost
     @shipmentTaxCost = shipmentTaxCost
     @insuranceCost = insuranceCost
@@ -238,6 +242,7 @@ end
 #   carrierCode - SOAP::SOAPString
 #   classCode - SOAP::SOAPString
 #   trackingNumber - SOAP::SOAPString
+#   sellerFulfillmentID - SOAP::SOAPString
 #   shipmentCost - SOAP::SOAPDecimal
 #   shipmentTaxCost - SOAP::SOAPDecimal
 #   insuranceCost - SOAP::SOAPDecimal
@@ -246,15 +251,17 @@ class FullShipmentContents
   attr_accessor :carrierCode
   attr_accessor :classCode
   attr_accessor :trackingNumber
+  attr_accessor :sellerFulfillmentID
   attr_accessor :shipmentCost
   attr_accessor :shipmentTaxCost
   attr_accessor :insuranceCost
 
-  def initialize(dateShippedGMT = nil, carrierCode = nil, classCode = nil, trackingNumber = nil, shipmentCost = nil, shipmentTaxCost = nil, insuranceCost = nil)
+  def initialize(dateShippedGMT = nil, carrierCode = nil, classCode = nil, trackingNumber = nil, sellerFulfillmentID = nil, shipmentCost = nil, shipmentTaxCost = nil, insuranceCost = nil)
     @dateShippedGMT = dateShippedGMT
     @carrierCode = carrierCode
     @classCode = classCode
     @trackingNumber = trackingNumber
+    @sellerFulfillmentID = sellerFulfillmentID
     @shipmentCost = shipmentCost
     @shipmentTaxCost = shipmentTaxCost
     @insuranceCost = insuranceCost
@@ -360,6 +367,7 @@ end
 #   carrierCode - SOAP::SOAPString
 #   classCode - SOAP::SOAPString
 #   trackingNumber - SOAP::SOAPString
+#   sellerFulfillmentID - SOAP::SOAPString
 class OrderShipped
   attr_accessor :accountID
   attr_accessor :orderID
@@ -367,14 +375,16 @@ class OrderShipped
   attr_accessor :carrierCode
   attr_accessor :classCode
   attr_accessor :trackingNumber
+  attr_accessor :sellerFulfillmentID
 
-  def initialize(accountID = nil, orderID = nil, dateShippedGMT = nil, carrierCode = nil, classCode = nil, trackingNumber = nil)
+  def initialize(accountID = nil, orderID = nil, dateShippedGMT = nil, carrierCode = nil, classCode = nil, trackingNumber = nil, sellerFulfillmentID = nil)
     @accountID = accountID
     @orderID = orderID
     @dateShippedGMT = dateShippedGMT
     @carrierCode = carrierCode
     @classCode = classCode
     @trackingNumber = trackingNumber
+    @sellerFulfillmentID = sellerFulfillmentID
   end
 end
 

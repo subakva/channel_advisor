@@ -1,3 +1,4 @@
+
 module ChannelAdvisor; module TaxServiceSOAP
 
 
@@ -60,6 +61,25 @@ class TaxItemBase
   end
 end
 
+# {http://api.channeladvisor.com/webservices/}TaxItemVatShipping
+#   taxAmount - SOAP::SOAPDecimal
+#   taxRate - SOAP::SOAPDouble
+#   taxType - ChannelAdvisor::TaxServiceSOAP::TaxTypeCode
+#   shippingCost - SOAP::SOAPDecimal
+class TaxItemVatShipping < TaxItemBase
+  attr_accessor :taxAmount
+  attr_accessor :taxRate
+  attr_accessor :taxType
+  attr_accessor :shippingCost
+
+  def initialize(taxAmount = nil, taxRate = nil, taxType = nil, shippingCost = nil)
+    @taxAmount = taxAmount
+    @taxRate = taxRate
+    @taxType = taxType
+    @shippingCost = shippingCost
+  end
+end
+
 # {http://api.channeladvisor.com/webservices/}TaxItemProduct
 #   taxAmount - SOAP::SOAPDecimal
 #   taxRate - SOAP::SOAPDouble
@@ -88,25 +108,6 @@ class TaxItemProduct < TaxItemBase
     @lineItemID = lineItemID
     @title = title
     @sKU = sKU
-  end
-end
-
-# {http://api.channeladvisor.com/webservices/}TaxItemVatShipping
-#   taxAmount - SOAP::SOAPDecimal
-#   taxRate - SOAP::SOAPDouble
-#   taxType - ChannelAdvisor::TaxServiceSOAP::TaxTypeCode
-#   shippingCost - SOAP::SOAPDecimal
-class TaxItemVatShipping < TaxItemBase
-  attr_accessor :taxAmount
-  attr_accessor :taxRate
-  attr_accessor :taxType
-  attr_accessor :shippingCost
-
-  def initialize(taxAmount = nil, taxRate = nil, taxType = nil, shippingCost = nil)
-    @taxAmount = taxAmount
-    @taxRate = taxRate
-    @taxType = taxType
-    @shippingCost = shippingCost
   end
 end
 

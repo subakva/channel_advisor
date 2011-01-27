@@ -1,7 +1,8 @@
+
 module ChannelAdvisor::ShippingServiceSOAP
 
 class ShippingServiceSoap < ::SOAP::RPC::Driver
-  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v1/ShippingService.asmx"
+  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v3/ShippingService.asmx"
 
   Methods = [
     [ "http://api.channeladvisor.com/webservices/GetShippingRateList",

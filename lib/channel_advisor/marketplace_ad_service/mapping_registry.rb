@@ -1,3 +1,4 @@
+
 module ChannelAdvisor; module MarketplaceAdServiceSOAP
 
 module DefaultMappingRegistry

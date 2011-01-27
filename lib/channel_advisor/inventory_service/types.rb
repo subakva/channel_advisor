@@ -1,3 +1,4 @@
+
 module ChannelAdvisor; module InventoryServiceSOAP
 
 
@@ -127,9 +128,21 @@ end
 #   uPC - SOAP::SOAPString
 #   mPN - SOAP::SOAPString
 #   eAN - SOAP::SOAPString
+#   manufacturer - SOAP::SOAPString
+#   brand - SOAP::SOAPString
+#   condition - SOAP::SOAPString
+#   warranty - SOAP::SOAPString
+#   productMargin - SOAP::SOAPDecimal
+#   supplierPO - SOAP::SOAPString
+#   receivedInInventory - SOAP::SOAPDateTime
+#   harmonizedCode - SOAP::SOAPString
+#   height - SOAP::SOAPDecimal
+#   length - SOAP::SOAPDecimal
+#   width - SOAP::SOAPDecimal
+#   classification - SOAP::SOAPString
 #   quantityInfo - ChannelAdvisor::InventoryServiceSOAP::QuantityInfoResponse
 #   priceInfo - ChannelAdvisor::InventoryServiceSOAP::PriceInfo
-#   classificationInfo - ChannelAdvisor::InventoryServiceSOAP::ClassificationInfo
+#   attributeList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfAttributeInfo
 #   variationInfo - ChannelAdvisor::InventoryServiceSOAP::VariationInfo
 #   storeInfo - ChannelAdvisor::InventoryServiceSOAP::StoreInfo
 #   imageList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfImageInfoResponse
@@ -154,16 +167,28 @@ class InventoryItemResponse
   attr_accessor :uPC
   attr_accessor :mPN
   attr_accessor :eAN
+  attr_accessor :manufacturer
+  attr_accessor :brand
+  attr_accessor :condition
+  attr_accessor :warranty
+  attr_accessor :productMargin
+  attr_accessor :supplierPO
+  attr_accessor :receivedInInventory
+  attr_accessor :harmonizedCode
+  attr_accessor :height
+  attr_accessor :length
+  attr_accessor :width
+  attr_accessor :classification
   attr_accessor :quantityInfo
   attr_accessor :priceInfo
-  attr_accessor :classificationInfo
+  attr_accessor :attributeList
   attr_accessor :variationInfo
   attr_accessor :storeInfo
   attr_accessor :imageList
   attr_accessor :shippingInfo
   attr_accessor :metaDescription
 
-  def initialize(sku = nil, title = nil, subtitle = nil, shortDescription = nil, description = nil, weight = nil, supplierCode = nil, warehouseLocation = nil, taxProductCode = nil, flagStyle = nil, flagDescription = nil, isBlocked = nil, blockComment = nil, aSIN = nil, iSBN = nil, uPC = nil, mPN = nil, eAN = nil, quantityInfo = nil, priceInfo = nil, classificationInfo = nil, variationInfo = nil, storeInfo = nil, imageList = nil, shippingInfo = nil, metaDescription = nil)
+  def initialize(sku = nil, title = nil, subtitle = nil, shortDescription = nil, description = nil, weight = nil, supplierCode = nil, warehouseLocation = nil, taxProductCode = nil, flagStyle = nil, flagDescription = nil, isBlocked = nil, blockComment = nil, aSIN = nil, iSBN = nil, uPC = nil, mPN = nil, eAN = nil, manufacturer = nil, brand = nil, condition = nil, warranty = nil, productMargin = nil, supplierPO = nil, receivedInInventory = nil, harmonizedCode = nil, height = nil, length = nil, width = nil, classification = nil, quantityInfo = nil, priceInfo = nil, attributeList = nil, variationInfo = nil, storeInfo = nil, imageList = nil, shippingInfo = nil, metaDescription = nil)
     @sku = sku
     @title = title
     @subtitle = subtitle
@@ -182,9 +207,21 @@ class InventoryItemResponse
     @uPC = uPC
     @mPN = mPN
     @eAN = eAN
+    @manufacturer = manufacturer
+    @brand = brand
+    @condition = condition
+    @warranty = warranty
+    @productMargin = productMargin
+    @supplierPO = supplierPO
+    @receivedInInventory = receivedInInventory
+    @harmonizedCode = harmonizedCode
+    @height = height
+    @length = length
+    @width = width
+    @classification = classification
     @quantityInfo = quantityInfo
     @priceInfo = priceInfo
-    @classificationInfo = classificationInfo
+    @attributeList = attributeList
     @variationInfo = variationInfo
     @storeInfo = storeInfo
     @imageList = imageList
@@ -264,27 +301,14 @@ class PriceInfo
   end
 end
 
-# {http://api.channeladvisor.com/webservices/}ClassificationInfo
-#   name - SOAP::SOAPString
-#   attributeList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfClassificationAttributeInfo
-class ClassificationInfo
-  attr_accessor :name
-  attr_accessor :attributeList
-
-  def initialize(name = nil, attributeList = nil)
-    @name = name
-    @attributeList = attributeList
-  end
+# {http://api.channeladvisor.com/webservices/}ArrayOfAttributeInfo
+class ArrayOfAttributeInfo < ::Array
 end
 
-# {http://api.channeladvisor.com/webservices/}ArrayOfClassificationAttributeInfo
-class ArrayOfClassificationAttributeInfo < ::Array
-end
-
-# {http://api.channeladvisor.com/webservices/}ClassificationAttributeInfo
+# {http://api.channeladvisor.com/webservices/}AttributeInfo
 #   name - SOAP::SOAPString
 #   value - SOAP::SOAPString
-class ClassificationAttributeInfo
+class AttributeInfo
   attr_accessor :name
   attr_accessor :value
 
@@ -619,13 +643,13 @@ class ClassificationConfigurationInformationAttribute
   end
 end
 
-# {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfClassificationAttributeInfo
+# {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfAttributeInfo
 #   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
 #   messageCode - SOAP::SOAPInt
 #   message - SOAP::SOAPString
 #   data - SOAP::SOAPString
-#   resultData - ChannelAdvisor::InventoryServiceSOAP::ArrayOfClassificationAttributeInfo
-class APIResultOfArrayOfClassificationAttributeInfo
+#   resultData - ChannelAdvisor::InventoryServiceSOAP::ArrayOfAttributeInfo
+class APIResultOfArrayOfAttributeInfo
   attr_accessor :status
   attr_accessor :messageCode
   attr_accessor :message
@@ -793,9 +817,21 @@ end
 #   uPC - SOAP::SOAPString
 #   mPN - SOAP::SOAPString
 #   eAN - SOAP::SOAPString
+#   manufacturer - SOAP::SOAPString
+#   brand - SOAP::SOAPString
+#   condition - SOAP::SOAPString
+#   warranty - SOAP::SOAPString
+#   productMargin - SOAP::SOAPDecimal
+#   supplierPO - SOAP::SOAPString
+#   receivedInInventory - SOAP::SOAPDateTime
+#   harmonizedCode - SOAP::SOAPString
+#   height - SOAP::SOAPDecimal
+#   length - SOAP::SOAPDecimal
+#   width - SOAP::SOAPDecimal
+#   classification - SOAP::SOAPString
 #   quantityInfo - ChannelAdvisor::InventoryServiceSOAP::QuantityInfoSubmit
 #   priceInfo - ChannelAdvisor::InventoryServiceSOAP::PriceInfo
-#   classificationInfo - ChannelAdvisor::InventoryServiceSOAP::ClassificationInfo
+#   attributeList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfAttributeInfo
 #   variationInfo - ChannelAdvisor::InventoryServiceSOAP::VariationInfo
 #   storeInfo - ChannelAdvisor::InventoryServiceSOAP::StoreInfo
 #   imageList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfImageInfoSubmit
@@ -821,9 +857,21 @@ class InventoryItemSubmit
   attr_accessor :uPC
   attr_accessor :mPN
   attr_accessor :eAN
+  attr_accessor :manufacturer
+  attr_accessor :brand
+  attr_accessor :condition
+  attr_accessor :warranty
+  attr_accessor :productMargin
+  attr_accessor :supplierPO
+  attr_accessor :receivedInInventory
+  attr_accessor :harmonizedCode
+  attr_accessor :height
+  attr_accessor :length
+  attr_accessor :width
+  attr_accessor :classification
   attr_accessor :quantityInfo
   attr_accessor :priceInfo
-  attr_accessor :classificationInfo
+  attr_accessor :attributeList
   attr_accessor :variationInfo
   attr_accessor :storeInfo
   attr_accessor :imageList
@@ -831,7 +879,7 @@ class InventoryItemSubmit
   attr_accessor :labelList
   attr_accessor :metaDescription
 
-  def initialize(sku = nil, title = nil, subtitle = nil, shortDescription = nil, description = nil, weight = nil, supplierCode = nil, warehouseLocation = nil, taxProductCode = nil, flagStyle = nil, flagDescription = nil, isBlocked = nil, blockComment = nil, aSIN = nil, iSBN = nil, uPC = nil, mPN = nil, eAN = nil, quantityInfo = nil, priceInfo = nil, classificationInfo = nil, variationInfo = nil, storeInfo = nil, imageList = nil, shippingInfo = nil, labelList = nil, metaDescription = nil)
+  def initialize(sku = nil, title = nil, subtitle = nil, shortDescription = nil, description = nil, weight = nil, supplierCode = nil, warehouseLocation = nil, taxProductCode = nil, flagStyle = nil, flagDescription = nil, isBlocked = nil, blockComment = nil, aSIN = nil, iSBN = nil, uPC = nil, mPN = nil, eAN = nil, manufacturer = nil, brand = nil, condition = nil, warranty = nil, productMargin = nil, supplierPO = nil, receivedInInventory = nil, harmonizedCode = nil, height = nil, length = nil, width = nil, classification = nil, quantityInfo = nil, priceInfo = nil, attributeList = nil, variationInfo = nil, storeInfo = nil, imageList = nil, shippingInfo = nil, labelList = nil, metaDescription = nil)
     @sku = sku
     @title = title
     @subtitle = subtitle
@@ -850,9 +898,21 @@ class InventoryItemSubmit
     @uPC = uPC
     @mPN = mPN
     @eAN = eAN
+    @manufacturer = manufacturer
+    @brand = brand
+    @condition = condition
+    @warranty = warranty
+    @productMargin = productMargin
+    @supplierPO = supplierPO
+    @receivedInInventory = receivedInInventory
+    @harmonizedCode = harmonizedCode
+    @height = height
+    @length = length
+    @width = width
+    @classification = classification
     @quantityInfo = quantityInfo
     @priceInfo = priceInfo
-    @classificationInfo = classificationInfo
+    @attributeList = attributeList
     @variationInfo = variationInfo
     @storeInfo = storeInfo
     @imageList = imageList
@@ -1384,10 +1444,10 @@ class GetClassificationConfigurationInformationResponse
   end
 end
 
-# {http://api.channeladvisor.com/webservices/}GetInventoryItemClassificationAttributeList
+# {http://api.channeladvisor.com/webservices/}GetInventoryItemAttributeList
 #   accountID - SOAP::SOAPString
 #   sku - SOAP::SOAPString
-class GetInventoryItemClassificationAttributeList
+class GetInventoryItemAttributeList
   attr_accessor :accountID
   attr_accessor :sku
 
@@ -1397,13 +1457,13 @@ class GetInventoryItemClassificationAttributeList
   end
 end
 
-# {http://api.channeladvisor.com/webservices/}GetInventoryItemClassificationAttributeListResponse
-#   getInventoryItemClassificationAttributeListResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfClassificationAttributeInfo
-class GetInventoryItemClassificationAttributeListResponse
-  attr_accessor :getInventoryItemClassificationAttributeListResult
+# {http://api.channeladvisor.com/webservices/}GetInventoryItemAttributeListResponse
+#   getInventoryItemAttributeListResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfAttributeInfo
+class GetInventoryItemAttributeListResponse
+  attr_accessor :getInventoryItemAttributeListResult
 
-  def initialize(getInventoryItemClassificationAttributeListResult = nil)
-    @getInventoryItemClassificationAttributeListResult = getInventoryItemClassificationAttributeListResult
+  def initialize(getInventoryItemAttributeListResult = nil)
+    @getInventoryItemAttributeListResult = getInventoryItemAttributeListResult
   end
 end
 

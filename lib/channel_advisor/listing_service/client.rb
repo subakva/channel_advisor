@@ -1,7 +1,8 @@
+
 module ChannelAdvisor::ListingServiceSOAP
 
 class ListingServiceSoap < ::SOAP::RPC::Driver
-  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v1/ListingService.asmx"
+  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v3/ListingService.asmx"
 
   Methods = [
     [ "http://api.channeladvisor.com/webservices/WithdrawListings",

@@ -1,3 +1,4 @@
+
 module ChannelAdvisor; module OrderServiceSOAP
 
 module DefaultMappingRegistry
@@ -132,6 +133,34 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderUpdateSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfOrderUpdateSubmit"),
+    :schema_element => [
+      ["orderUpdateSubmit", ["ChannelAdvisor::OrderServiceSOAP::OrderUpdateSubmit[]", XSD::QName.new(NsWebservices, "OrderUpdateSubmit")], [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderUpdateSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "OrderUpdateSubmit"),
+    :schema_element => [
+      ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "OrderID")]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsWebservices, "FlagStyle")]],
+      ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FlagDescription")], [0, 1]],
+      ["transactionNotes", ["ChannelAdvisor::OrderServiceSOAP::TransactionNoteSubmit", XSD::QName.new(NsWebservices, "TransactionNotes")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::TransactionNoteSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "TransactionNoteSubmit"),
+    :schema_element => [
+      ["note", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Note")], [0, 1]],
+      ["shouldOverwrite", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "ShouldOverwrite")]]
+    ]
+  )
+
+  EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -175,7 +204,8 @@ module DefaultMappingRegistry
       ["refundRequestID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "RefundRequestID")]],
       ["refundRequested", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RefundRequested")]],
       ["restockQuantity", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RestockQuantity")]],
-      ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]]
+      ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]],
+      ["sellerRefundID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SellerRefundID")], [0, 1]]
     ]
   )
 
@@ -196,6 +226,7 @@ module DefaultMappingRegistry
       ["refundRequested", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RefundRequested")]],
       ["restockQuantity", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RestockQuantity")]],
       ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]],
+      ["sellerRefundID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SellerRefundID")], [0, 1]],
       ["invoiceItemID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "InvoiceItemID")]],
       ["itemSaleSource", ["ChannelAdvisor::OrderServiceSOAP::SiteToken", XSD::QName.new(NsOrders, "ItemSaleSource")]],
       ["refundRequestStatus", ["ChannelAdvisor::OrderServiceSOAP::AsyncStatusCode", XSD::QName.new(NsOrders, "RefundRequestStatus")]],
@@ -234,6 +265,7 @@ module DefaultMappingRegistry
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["amount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "Amount")]],
       ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]],
+      ["sellerRefundID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SellerRefundID")], [0, 1]],
       ["refundItems", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfRefundItem", XSD::QName.new(NsOrders, "RefundItems")], [0, 1]]
     ]
   )
@@ -258,6 +290,7 @@ module DefaultMappingRegistry
       ["orderCreationFilterEndTimeGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "OrderCreationFilterEndTimeGMT")]],
       ["statusUpdateFilterBeginTimeGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "StatusUpdateFilterBeginTimeGMT")]],
       ["statusUpdateFilterEndTimeGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "StatusUpdateFilterEndTimeGMT")]],
+      ["joinDateFiltersWithOr", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "JoinDateFiltersWithOr")]],
       ["detailLevel", ["ChannelAdvisor::OrderServiceSOAP::DetailLevelType", XSD::QName.new(NsOrders, "DetailLevel")]],
       ["exportState", ["ChannelAdvisor::OrderServiceSOAP::ExportStateType", XSD::QName.new(NsOrders, "ExportState")], [0, 1]],
       ["orderIDList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfInt_", XSD::QName.new(NsOrders, "OrderIDList")], [0, 1]],
@@ -265,6 +298,7 @@ module DefaultMappingRegistry
       ["paymentStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::PaymentStatusCode", XSD::QName.new(NsOrders, "PaymentStatusFilter")]],
       ["checkoutStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::CheckoutStatusCode", XSD::QName.new(NsOrders, "CheckoutStatusFilter")]],
       ["shippingStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::ShippingStatusCode", XSD::QName.new(NsOrders, "ShippingStatusFilter")]],
+      ["distributionCenterCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "DistributionCenterCode")], [0, 1]],
       ["pageNumberFilter", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "PageNumberFilter")]],
       ["pageSize", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "PageSize")]]
     ]
@@ -291,6 +325,7 @@ module DefaultMappingRegistry
       ["dateCancelledGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "DateCancelledGMT")]],
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsOrders, "FlagStyle")]],
       ["orderStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderStatus", XSD::QName.new(NsOrders, "OrderStatus")], [0, 1]]
     ]
   )
@@ -322,13 +357,15 @@ module DefaultMappingRegistry
       ["dateCancelledGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "DateCancelledGMT")]],
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsOrders, "FlagStyle")]],
       ["orderStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderStatus", XSD::QName.new(NsOrders, "OrderStatus")], [0, 1]],
       ["resellerID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ResellerID")], [0, 1]],
       ["buyerEmailAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerEmailAddress")], [0, 1]],
       ["emailOptIn", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "EmailOptIn")]],
       ["paymentInfo", ["ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse", XSD::QName.new(NsOrders, "PaymentInfo")], [0, 1]],
       ["shippingInfo", ["ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse", XSD::QName.new(NsOrders, "ShippingInfo")], [0, 1]],
-      ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]]
+      ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]],
+      ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "FlagDescription")], [0, 1]]
     ]
   )
 
@@ -457,6 +494,7 @@ module DefaultMappingRegistry
       ["dateCancelledGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "DateCancelledGMT")]],
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsOrders, "FlagStyle")]],
       ["orderStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderStatus", XSD::QName.new(NsOrders, "OrderStatus")], [0, 1]],
       ["resellerID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ResellerID")], [0, 1]],
       ["buyerEmailAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerEmailAddress")], [0, 1]],
@@ -464,6 +502,7 @@ module DefaultMappingRegistry
       ["paymentInfo", ["ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse", XSD::QName.new(NsOrders, "PaymentInfo")], [0, 1]],
       ["shippingInfo", ["ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse", XSD::QName.new(NsOrders, "ShippingInfo")], [0, 1]],
       ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]],
+      ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "FlagDescription")], [0, 1]],
       ["shoppingCart", ["ChannelAdvisor::OrderServiceSOAP::OrderCart", XSD::QName.new(NsOrders, "ShoppingCart")], [0, 1]]
     ]
   )
@@ -519,6 +558,16 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
+    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
+    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
+    :schema_element => [
+      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
+      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
+    ]
+  )
+
+  EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemPromo,
     :schema_type => XSD::QName.new(NsOrders, "OrderLineItemPromo"),
     :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
@@ -526,16 +575,6 @@ module DefaultMappingRegistry
       ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
       ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]],
       ["promoCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PromoCode")], [0, 1]]
-    ]
-  )
-
-  EncodedRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
-    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
-    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
-    :schema_element => [
-      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
-      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
     ]
   )
 
@@ -565,7 +604,8 @@ module DefaultMappingRegistry
       ["giftWrapLevel", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftWrapLevel")], [0, 1]],
       ["unitWeight", ["ChannelAdvisor::OrderServiceSOAP::ItemWeight", XSD::QName.new(NsOrders, "UnitWeight")], [0, 1]],
       ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]],
-      ["userName", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "UserName")], [0, 1]]
+      ["userName", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "UserName")], [0, 1]],
+      ["distributionCenterCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "DistributionCenterCode")], [0, 1]]
     ]
   )
 
@@ -606,6 +646,7 @@ module DefaultMappingRegistry
       ["dateCancelledGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "DateCancelledGMT")]],
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsOrders, "FlagStyle")]],
       ["orderStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderStatus", XSD::QName.new(NsOrders, "OrderStatus")], [0, 1]],
       ["resellerID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ResellerID")], [0, 1]],
       ["buyerEmailAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerEmailAddress")], [0, 1]],
@@ -613,9 +654,11 @@ module DefaultMappingRegistry
       ["paymentInfo", ["ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse", XSD::QName.new(NsOrders, "PaymentInfo")], [0, 1]],
       ["shippingInfo", ["ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse", XSD::QName.new(NsOrders, "ShippingInfo")], [0, 1]],
       ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]],
+      ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "FlagDescription")], [0, 1]],
       ["shoppingCart", ["ChannelAdvisor::OrderServiceSOAP::OrderCart", XSD::QName.new(NsOrders, "ShoppingCart")], [0, 1]],
       ["customValueList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfCustomValue", XSD::QName.new(NsOrders, "CustomValueList")], [0, 1]],
-      ["buyerIpAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerIpAddress")], [0, 1]]
+      ["buyerIpAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerIpAddress")], [0, 1]],
+      ["transactionNotes", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "TransactionNotes")], [0, 1]]
     ]
   )
 
@@ -746,6 +789,11 @@ module DefaultMappingRegistry
   EncodedRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::ShippingStatusCode,
     :schema_type => XSD::QName.new(NsOrders, "ShippingStatusCode")
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::FlagType,
+    :schema_type => XSD::QName.new(NsOrders, "FlagType")
   )
 
   EncodedRegistry.register(
@@ -894,6 +942,34 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderUpdateSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfOrderUpdateSubmit"),
+    :schema_element => [
+      ["orderUpdateSubmit", ["ChannelAdvisor::OrderServiceSOAP::OrderUpdateSubmit[]", XSD::QName.new(NsWebservices, "OrderUpdateSubmit")], [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderUpdateSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "OrderUpdateSubmit"),
+    :schema_element => [
+      ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "OrderID")]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsWebservices, "FlagStyle")]],
+      ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "FlagDescription")], [0, 1]],
+      ["transactionNotes", ["ChannelAdvisor::OrderServiceSOAP::TransactionNoteSubmit", XSD::QName.new(NsWebservices, "TransactionNotes")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::TransactionNoteSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "TransactionNoteSubmit"),
+    :schema_element => [
+      ["note", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Note")], [0, 1]],
+      ["shouldOverwrite", ["SOAP::SOAPBoolean", XSD::QName.new(NsWebservices, "ShouldOverwrite")]]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -937,7 +1013,8 @@ module DefaultMappingRegistry
       ["refundRequestID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "RefundRequestID")]],
       ["refundRequested", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RefundRequested")]],
       ["restockQuantity", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RestockQuantity")]],
-      ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]]
+      ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]],
+      ["sellerRefundID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SellerRefundID")], [0, 1]]
     ]
   )
 
@@ -958,6 +1035,7 @@ module DefaultMappingRegistry
       ["refundRequested", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RefundRequested")]],
       ["restockQuantity", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "RestockQuantity")]],
       ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]],
+      ["sellerRefundID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SellerRefundID")], [0, 1]],
       ["invoiceItemID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "InvoiceItemID")]],
       ["itemSaleSource", ["ChannelAdvisor::OrderServiceSOAP::SiteToken", XSD::QName.new(NsOrders, "ItemSaleSource")]],
       ["refundRequestStatus", ["ChannelAdvisor::OrderServiceSOAP::AsyncStatusCode", XSD::QName.new(NsOrders, "RefundRequestStatus")]],
@@ -996,6 +1074,7 @@ module DefaultMappingRegistry
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["amount", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "Amount")]],
       ["adjustmentReason", ["ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason", XSD::QName.new(NsOrders, "AdjustmentReason")]],
+      ["sellerRefundID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "SellerRefundID")], [0, 1]],
       ["refundItems", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfRefundItem", XSD::QName.new(NsOrders, "RefundItems")], [0, 1]]
     ]
   )
@@ -1020,6 +1099,7 @@ module DefaultMappingRegistry
       ["orderCreationFilterEndTimeGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "OrderCreationFilterEndTimeGMT")]],
       ["statusUpdateFilterBeginTimeGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "StatusUpdateFilterBeginTimeGMT")]],
       ["statusUpdateFilterEndTimeGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "StatusUpdateFilterEndTimeGMT")]],
+      ["joinDateFiltersWithOr", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "JoinDateFiltersWithOr")]],
       ["detailLevel", ["ChannelAdvisor::OrderServiceSOAP::DetailLevelType", XSD::QName.new(NsOrders, "DetailLevel")]],
       ["exportState", ["ChannelAdvisor::OrderServiceSOAP::ExportStateType", XSD::QName.new(NsOrders, "ExportState")], [0, 1]],
       ["orderIDList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfInt_", XSD::QName.new(NsOrders, "OrderIDList")], [0, 1]],
@@ -1027,6 +1107,7 @@ module DefaultMappingRegistry
       ["paymentStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::PaymentStatusCode", XSD::QName.new(NsOrders, "PaymentStatusFilter")]],
       ["checkoutStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::CheckoutStatusCode", XSD::QName.new(NsOrders, "CheckoutStatusFilter")]],
       ["shippingStatusFilter", ["ChannelAdvisor::OrderServiceSOAP::ShippingStatusCode", XSD::QName.new(NsOrders, "ShippingStatusFilter")]],
+      ["distributionCenterCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "DistributionCenterCode")], [0, 1]],
       ["pageNumberFilter", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "PageNumberFilter")]],
       ["pageSize", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "PageSize")]]
     ]
@@ -1053,6 +1134,7 @@ module DefaultMappingRegistry
       ["dateCancelledGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "DateCancelledGMT")]],
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsOrders, "FlagStyle")]],
       ["orderStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderStatus", XSD::QName.new(NsOrders, "OrderStatus")], [0, 1]]
     ]
   )
@@ -1084,13 +1166,15 @@ module DefaultMappingRegistry
       ["dateCancelledGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "DateCancelledGMT")]],
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsOrders, "FlagStyle")]],
       ["orderStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderStatus", XSD::QName.new(NsOrders, "OrderStatus")], [0, 1]],
       ["resellerID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ResellerID")], [0, 1]],
       ["buyerEmailAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerEmailAddress")], [0, 1]],
       ["emailOptIn", ["SOAP::SOAPBoolean", XSD::QName.new(NsOrders, "EmailOptIn")]],
       ["paymentInfo", ["ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse", XSD::QName.new(NsOrders, "PaymentInfo")], [0, 1]],
       ["shippingInfo", ["ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse", XSD::QName.new(NsOrders, "ShippingInfo")], [0, 1]],
-      ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]]
+      ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]],
+      ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "FlagDescription")], [0, 1]]
     ]
   )
 
@@ -1219,6 +1303,7 @@ module DefaultMappingRegistry
       ["dateCancelledGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "DateCancelledGMT")]],
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsOrders, "FlagStyle")]],
       ["orderStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderStatus", XSD::QName.new(NsOrders, "OrderStatus")], [0, 1]],
       ["resellerID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ResellerID")], [0, 1]],
       ["buyerEmailAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerEmailAddress")], [0, 1]],
@@ -1226,6 +1311,7 @@ module DefaultMappingRegistry
       ["paymentInfo", ["ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse", XSD::QName.new(NsOrders, "PaymentInfo")], [0, 1]],
       ["shippingInfo", ["ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse", XSD::QName.new(NsOrders, "ShippingInfo")], [0, 1]],
       ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]],
+      ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "FlagDescription")], [0, 1]],
       ["shoppingCart", ["ChannelAdvisor::OrderServiceSOAP::OrderCart", XSD::QName.new(NsOrders, "ShoppingCart")], [0, 1]]
     ]
   )
@@ -1281,6 +1367,16 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
+    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
+    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
+    :schema_element => [
+      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
+      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemPromo,
     :schema_type => XSD::QName.new(NsOrders, "OrderLineItemPromo"),
     :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
@@ -1288,16 +1384,6 @@ module DefaultMappingRegistry
       ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
       ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]],
       ["promoCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "PromoCode")], [0, 1]]
-    ]
-  )
-
-  LiteralRegistry.register(
-    :class => ChannelAdvisor::OrderServiceSOAP::OrderLineItemInvoice,
-    :schema_type => XSD::QName.new(NsOrders, "OrderLineItemInvoice"),
-    :schema_basetype => XSD::QName.new(NsOrders, "OrderLineItemBase"),
-    :schema_element => [
-      ["lineItemType", ["ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode", XSD::QName.new(NsOrders, "LineItemType")]],
-      ["unitPrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsOrders, "UnitPrice")]]
     ]
   )
 
@@ -1327,7 +1413,8 @@ module DefaultMappingRegistry
       ["giftWrapLevel", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "GiftWrapLevel")], [0, 1]],
       ["unitWeight", ["ChannelAdvisor::OrderServiceSOAP::ItemWeight", XSD::QName.new(NsOrders, "UnitWeight")], [0, 1]],
       ["warehouseLocation", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "WarehouseLocation")], [0, 1]],
-      ["userName", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "UserName")], [0, 1]]
+      ["userName", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "UserName")], [0, 1]],
+      ["distributionCenterCode", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "DistributionCenterCode")], [0, 1]]
     ]
   )
 
@@ -1368,6 +1455,7 @@ module DefaultMappingRegistry
       ["dateCancelledGMT", ["SOAP::SOAPDateTime", XSD::QName.new(NsOrders, "DateCancelledGMT")]],
       ["orderID", ["SOAP::SOAPInt", XSD::QName.new(NsOrders, "OrderID")]],
       ["clientOrderIdentifier", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ClientOrderIdentifier")], [0, 1]],
+      ["flagStyle", ["ChannelAdvisor::OrderServiceSOAP::FlagType", XSD::QName.new(NsOrders, "FlagStyle")]],
       ["orderStatus", ["ChannelAdvisor::OrderServiceSOAP::OrderStatus", XSD::QName.new(NsOrders, "OrderStatus")], [0, 1]],
       ["resellerID", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "ResellerID")], [0, 1]],
       ["buyerEmailAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerEmailAddress")], [0, 1]],
@@ -1375,9 +1463,11 @@ module DefaultMappingRegistry
       ["paymentInfo", ["ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse", XSD::QName.new(NsOrders, "PaymentInfo")], [0, 1]],
       ["shippingInfo", ["ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse", XSD::QName.new(NsOrders, "ShippingInfo")], [0, 1]],
       ["billingInfo", ["ChannelAdvisor::OrderServiceSOAP::BillingInfo", XSD::QName.new(NsOrders, "BillingInfo")], [0, 1]],
+      ["flagDescription", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "FlagDescription")], [0, 1]],
       ["shoppingCart", ["ChannelAdvisor::OrderServiceSOAP::OrderCart", XSD::QName.new(NsOrders, "ShoppingCart")], [0, 1]],
       ["customValueList", ["ChannelAdvisor::OrderServiceSOAP::ArrayOfCustomValue", XSD::QName.new(NsOrders, "CustomValueList")], [0, 1]],
-      ["buyerIpAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerIpAddress")], [0, 1]]
+      ["buyerIpAddress", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "BuyerIpAddress")], [0, 1]],
+      ["transactionNotes", ["SOAP::SOAPString", XSD::QName.new(NsOrders, "TransactionNotes")], [0, 1]]
     ]
   )
 
@@ -1508,6 +1598,11 @@ module DefaultMappingRegistry
   LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::ShippingStatusCode,
     :schema_type => XSD::QName.new(NsOrders, "ShippingStatusCode")
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::FlagType,
+    :schema_type => XSD::QName.new(NsOrders, "FlagType")
   )
 
   LiteralRegistry.register(
@@ -1662,6 +1757,25 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::SetSellerOrderItemIDList,
+    :schema_name => XSD::QName.new(NsWebservices, "SetSellerOrderItemIDList"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["orderID", "SOAP::SOAPInt"],
+      ["lineItemIDList", "ChannelAdvisor::OrderServiceSOAP::ArrayOfInt", [0, 1]],
+      ["sellerOrderItemIDList", "ChannelAdvisor::OrderServiceSOAP::ArrayOfString", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::SetSellerOrderItemIDListResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "SetSellerOrderItemIDListResponse"),
+    :schema_element => [
+      ["setSellerOrderItemIDListResult", ["ChannelAdvisor::OrderServiceSOAP::APIResultOfArrayOfBoolean", XSD::QName.new(NsWebservices, "SetSellerOrderItemIDListResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::OrderServiceSOAP::GetOrderRefundHistory,
     :schema_name => XSD::QName.new(NsWebservices, "GetOrderRefundHistory"),
     :schema_element => [
@@ -1675,6 +1789,23 @@ module DefaultMappingRegistry
     :schema_name => XSD::QName.new(NsWebservices, "GetOrderRefundHistoryResponse"),
     :schema_element => [
       ["getOrderRefundHistoryResult", ["ChannelAdvisor::OrderServiceSOAP::APIResultOfOrderRefundHistoryResponse", XSD::QName.new(NsWebservices, "GetOrderRefundHistoryResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::UpdateOrderList,
+    :schema_name => XSD::QName.new(NsWebservices, "UpdateOrderList"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString", [0, 1]],
+      ["updateOrderSubmitList", "ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderUpdateSubmit", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::OrderServiceSOAP::UpdateOrderListResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "UpdateOrderListResponse"),
+    :schema_element => [
+      ["updateOrderListResult", ["ChannelAdvisor::OrderServiceSOAP::APIResultOfArrayOfBoolean", XSD::QName.new(NsWebservices, "UpdateOrderListResult")], [0, 1]]
     ]
   )
 

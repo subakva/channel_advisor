@@ -1,3 +1,4 @@
+
 module ChannelAdvisor; module OrderServiceSOAP
 
 
@@ -184,6 +185,42 @@ class APIResultOfOrderRefundHistoryResponse
   end
 end
 
+# {http://api.channeladvisor.com/webservices/}ArrayOfOrderUpdateSubmit
+class ArrayOfOrderUpdateSubmit < ::Array
+end
+
+# {http://api.channeladvisor.com/webservices/}OrderUpdateSubmit
+#   orderID - SOAP::SOAPInt
+#   flagStyle - ChannelAdvisor::OrderServiceSOAP::FlagType
+#   flagDescription - SOAP::SOAPString
+#   transactionNotes - ChannelAdvisor::OrderServiceSOAP::TransactionNoteSubmit
+class OrderUpdateSubmit
+  attr_accessor :orderID
+  attr_accessor :flagStyle
+  attr_accessor :flagDescription
+  attr_accessor :transactionNotes
+
+  def initialize(orderID = nil, flagStyle = nil, flagDescription = nil, transactionNotes = nil)
+    @orderID = orderID
+    @flagStyle = flagStyle
+    @flagDescription = flagDescription
+    @transactionNotes = transactionNotes
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}TransactionNoteSubmit
+#   note - SOAP::SOAPString
+#   shouldOverwrite - SOAP::SOAPBoolean
+class TransactionNoteSubmit
+  attr_accessor :note
+  attr_accessor :shouldOverwrite
+
+  def initialize(note = nil, shouldOverwrite = nil)
+    @note = note
+    @shouldOverwrite = shouldOverwrite
+  end
+end
+
 # {http://api.channeladvisor.com/webservices/}APIResultOfString
 #   status - ChannelAdvisor::OrderServiceSOAP::ResultStatus
 #   messageCode - SOAP::SOAPInt
@@ -236,6 +273,7 @@ end
 #   refundRequested - SOAP::SOAPBoolean
 #   restockQuantity - SOAP::SOAPBoolean
 #   adjustmentReason - ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason
+#   sellerRefundID - SOAP::SOAPString
 class RefundItem
   attr_accessor :sKU
   attr_accessor :amount
@@ -249,8 +287,9 @@ class RefundItem
   attr_accessor :refundRequested
   attr_accessor :restockQuantity
   attr_accessor :adjustmentReason
+  attr_accessor :sellerRefundID
 
-  def initialize(sKU = nil, amount = nil, shippingAmount = nil, shippingTaxAmount = nil, taxAmount = nil, giftWrapAmount = nil, giftWrapTaxAmount = nil, quantity = nil, refundRequestID = nil, refundRequested = nil, restockQuantity = nil, adjustmentReason = nil)
+  def initialize(sKU = nil, amount = nil, shippingAmount = nil, shippingTaxAmount = nil, taxAmount = nil, giftWrapAmount = nil, giftWrapTaxAmount = nil, quantity = nil, refundRequestID = nil, refundRequested = nil, restockQuantity = nil, adjustmentReason = nil, sellerRefundID = nil)
     @sKU = sKU
     @amount = amount
     @shippingAmount = shippingAmount
@@ -263,6 +302,7 @@ class RefundItem
     @refundRequested = refundRequested
     @restockQuantity = restockQuantity
     @adjustmentReason = adjustmentReason
+    @sellerRefundID = sellerRefundID
   end
 end
 
@@ -279,6 +319,7 @@ end
 #   refundRequested - SOAP::SOAPBoolean
 #   restockQuantity - SOAP::SOAPBoolean
 #   adjustmentReason - ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason
+#   sellerRefundID - SOAP::SOAPString
 #   invoiceItemID - SOAP::SOAPInt
 #   itemSaleSource - ChannelAdvisor::OrderServiceSOAP::SiteToken
 #   refundRequestStatus - ChannelAdvisor::OrderServiceSOAP::AsyncStatusCode
@@ -298,6 +339,7 @@ class OrderLineItemRefundHistoryResponse < RefundItem
   attr_accessor :refundRequested
   attr_accessor :restockQuantity
   attr_accessor :adjustmentReason
+  attr_accessor :sellerRefundID
   attr_accessor :invoiceItemID
   attr_accessor :itemSaleSource
   attr_accessor :refundRequestStatus
@@ -305,7 +347,7 @@ class OrderLineItemRefundHistoryResponse < RefundItem
   attr_accessor :restockStatus
   attr_accessor :refundCreateDateGMT
 
-  def initialize(sKU = nil, amount = nil, shippingAmount = nil, shippingTaxAmount = nil, taxAmount = nil, giftWrapAmount = nil, giftWrapTaxAmount = nil, quantity = nil, refundRequestID = nil, refundRequested = nil, restockQuantity = nil, adjustmentReason = nil, invoiceItemID = nil, itemSaleSource = nil, refundRequestStatus = nil, refundPaymentInfo = nil, restockStatus = nil, refundCreateDateGMT = nil)
+  def initialize(sKU = nil, amount = nil, shippingAmount = nil, shippingTaxAmount = nil, taxAmount = nil, giftWrapAmount = nil, giftWrapTaxAmount = nil, quantity = nil, refundRequestID = nil, refundRequested = nil, restockQuantity = nil, adjustmentReason = nil, sellerRefundID = nil, invoiceItemID = nil, itemSaleSource = nil, refundRequestStatus = nil, refundPaymentInfo = nil, restockStatus = nil, refundCreateDateGMT = nil)
     @sKU = sKU
     @amount = amount
     @shippingAmount = shippingAmount
@@ -318,6 +360,7 @@ class OrderLineItemRefundHistoryResponse < RefundItem
     @refundRequested = refundRequested
     @restockQuantity = restockQuantity
     @adjustmentReason = adjustmentReason
+    @sellerRefundID = sellerRefundID
     @invoiceItemID = invoiceItemID
     @itemSaleSource = itemSaleSource
     @refundRequestStatus = refundRequestStatus
@@ -389,19 +432,22 @@ end
 #   orderID - SOAP::SOAPInt
 #   amount - SOAP::SOAPDecimal
 #   adjustmentReason - ChannelAdvisor::OrderServiceSOAP::RefundAdjustmentReason
+#   sellerRefundID - SOAP::SOAPString
 #   refundItems - ChannelAdvisor::OrderServiceSOAP::ArrayOfRefundItem
 class RefundOrderRequest
   attr_accessor :clientOrderIdentifier
   attr_accessor :orderID
   attr_accessor :amount
   attr_accessor :adjustmentReason
+  attr_accessor :sellerRefundID
   attr_accessor :refundItems
 
-  def initialize(clientOrderIdentifier = nil, orderID = nil, amount = nil, adjustmentReason = nil, refundItems = nil)
+  def initialize(clientOrderIdentifier = nil, orderID = nil, amount = nil, adjustmentReason = nil, sellerRefundID = nil, refundItems = nil)
     @clientOrderIdentifier = clientOrderIdentifier
     @orderID = orderID
     @amount = amount
     @adjustmentReason = adjustmentReason
+    @sellerRefundID = sellerRefundID
     @refundItems = refundItems
   end
 end
@@ -433,6 +479,7 @@ end
 #   orderCreationFilterEndTimeGMT - SOAP::SOAPDateTime
 #   statusUpdateFilterBeginTimeGMT - SOAP::SOAPDateTime
 #   statusUpdateFilterEndTimeGMT - SOAP::SOAPDateTime
+#   joinDateFiltersWithOr - SOAP::SOAPBoolean
 #   detailLevel - ChannelAdvisor::OrderServiceSOAP::DetailLevelType
 #   exportState - ChannelAdvisor::OrderServiceSOAP::ExportStateType
 #   orderIDList - ChannelAdvisor::OrderServiceSOAP::ArrayOfInt_
@@ -440,6 +487,7 @@ end
 #   paymentStatusFilter - ChannelAdvisor::OrderServiceSOAP::PaymentStatusCode
 #   checkoutStatusFilter - ChannelAdvisor::OrderServiceSOAP::CheckoutStatusCode
 #   shippingStatusFilter - ChannelAdvisor::OrderServiceSOAP::ShippingStatusCode
+#   distributionCenterCode - SOAP::SOAPString
 #   pageNumberFilter - SOAP::SOAPInt
 #   pageSize - SOAP::SOAPInt
 class OrderCriteria
@@ -447,6 +495,7 @@ class OrderCriteria
   attr_accessor :orderCreationFilterEndTimeGMT
   attr_accessor :statusUpdateFilterBeginTimeGMT
   attr_accessor :statusUpdateFilterEndTimeGMT
+  attr_accessor :joinDateFiltersWithOr
   attr_accessor :detailLevel
   attr_accessor :exportState
   attr_accessor :orderIDList
@@ -454,14 +503,16 @@ class OrderCriteria
   attr_accessor :paymentStatusFilter
   attr_accessor :checkoutStatusFilter
   attr_accessor :shippingStatusFilter
+  attr_accessor :distributionCenterCode
   attr_accessor :pageNumberFilter
   attr_accessor :pageSize
 
-  def initialize(orderCreationFilterBeginTimeGMT = nil, orderCreationFilterEndTimeGMT = nil, statusUpdateFilterBeginTimeGMT = nil, statusUpdateFilterEndTimeGMT = nil, detailLevel = nil, exportState = nil, orderIDList = nil, orderStateFilter = nil, paymentStatusFilter = nil, checkoutStatusFilter = nil, shippingStatusFilter = nil, pageNumberFilter = nil, pageSize = nil)
+  def initialize(orderCreationFilterBeginTimeGMT = nil, orderCreationFilterEndTimeGMT = nil, statusUpdateFilterBeginTimeGMT = nil, statusUpdateFilterEndTimeGMT = nil, joinDateFiltersWithOr = nil, detailLevel = nil, exportState = nil, orderIDList = nil, orderStateFilter = nil, paymentStatusFilter = nil, checkoutStatusFilter = nil, shippingStatusFilter = nil, distributionCenterCode = nil, pageNumberFilter = nil, pageSize = nil)
     @orderCreationFilterBeginTimeGMT = orderCreationFilterBeginTimeGMT
     @orderCreationFilterEndTimeGMT = orderCreationFilterEndTimeGMT
     @statusUpdateFilterBeginTimeGMT = statusUpdateFilterBeginTimeGMT
     @statusUpdateFilterEndTimeGMT = statusUpdateFilterEndTimeGMT
+    @joinDateFiltersWithOr = joinDateFiltersWithOr
     @detailLevel = detailLevel
     @exportState = exportState
     @orderIDList = orderIDList
@@ -469,6 +520,7 @@ class OrderCriteria
     @paymentStatusFilter = paymentStatusFilter
     @checkoutStatusFilter = checkoutStatusFilter
     @shippingStatusFilter = shippingStatusFilter
+    @distributionCenterCode = distributionCenterCode
     @pageNumberFilter = pageNumberFilter
     @pageSize = pageSize
   end
@@ -488,6 +540,7 @@ end
 #   dateCancelledGMT - SOAP::SOAPDateTime
 #   orderID - SOAP::SOAPInt
 #   clientOrderIdentifier - SOAP::SOAPString
+#   flagStyle - ChannelAdvisor::OrderServiceSOAP::FlagType
 class OrderResponseItem
   attr_accessor :numberOfMatches
   attr_accessor :orderTimeGMT
@@ -497,8 +550,9 @@ class OrderResponseItem
   attr_accessor :dateCancelledGMT
   attr_accessor :orderID
   attr_accessor :clientOrderIdentifier
+  attr_accessor :flagStyle
 
-  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil)
+  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil, flagStyle = nil)
     @numberOfMatches = numberOfMatches
     @orderTimeGMT = orderTimeGMT
     @lastUpdateDate = lastUpdateDate
@@ -507,6 +561,7 @@ class OrderResponseItem
     @dateCancelledGMT = dateCancelledGMT
     @orderID = orderID
     @clientOrderIdentifier = clientOrderIdentifier
+    @flagStyle = flagStyle
   end
 end
 
@@ -519,6 +574,7 @@ end
 #   dateCancelledGMT - SOAP::SOAPDateTime
 #   orderID - SOAP::SOAPInt
 #   clientOrderIdentifier - SOAP::SOAPString
+#   flagStyle - ChannelAdvisor::OrderServiceSOAP::FlagType
 #   orderStatus - ChannelAdvisor::OrderServiceSOAP::OrderStatus
 class OrderResponseDetailLow < OrderResponseItem
   attr_accessor :numberOfMatches
@@ -529,9 +585,10 @@ class OrderResponseDetailLow < OrderResponseItem
   attr_accessor :dateCancelledGMT
   attr_accessor :orderID
   attr_accessor :clientOrderIdentifier
+  attr_accessor :flagStyle
   attr_accessor :orderStatus
 
-  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil, orderStatus = nil)
+  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil, flagStyle = nil, orderStatus = nil)
     @numberOfMatches = numberOfMatches
     @orderTimeGMT = orderTimeGMT
     @lastUpdateDate = lastUpdateDate
@@ -540,6 +597,7 @@ class OrderResponseDetailLow < OrderResponseItem
     @dateCancelledGMT = dateCancelledGMT
     @orderID = orderID
     @clientOrderIdentifier = clientOrderIdentifier
+    @flagStyle = flagStyle
     @orderStatus = orderStatus
   end
 end
@@ -553,6 +611,7 @@ end
 #   dateCancelledGMT - SOAP::SOAPDateTime
 #   orderID - SOAP::SOAPInt
 #   clientOrderIdentifier - SOAP::SOAPString
+#   flagStyle - ChannelAdvisor::OrderServiceSOAP::FlagType
 #   orderStatus - ChannelAdvisor::OrderServiceSOAP::OrderStatus
 #   resellerID - SOAP::SOAPString
 #   buyerEmailAddress - SOAP::SOAPString
@@ -560,6 +619,7 @@ end
 #   paymentInfo - ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse
 #   shippingInfo - ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse
 #   billingInfo - ChannelAdvisor::OrderServiceSOAP::BillingInfo
+#   flagDescription - SOAP::SOAPString
 class OrderResponseDetailMedium < OrderResponseDetailLow
   attr_accessor :numberOfMatches
   attr_accessor :orderTimeGMT
@@ -569,6 +629,7 @@ class OrderResponseDetailMedium < OrderResponseDetailLow
   attr_accessor :dateCancelledGMT
   attr_accessor :orderID
   attr_accessor :clientOrderIdentifier
+  attr_accessor :flagStyle
   attr_accessor :orderStatus
   attr_accessor :resellerID
   attr_accessor :buyerEmailAddress
@@ -576,8 +637,9 @@ class OrderResponseDetailMedium < OrderResponseDetailLow
   attr_accessor :paymentInfo
   attr_accessor :shippingInfo
   attr_accessor :billingInfo
+  attr_accessor :flagDescription
 
-  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil, orderStatus = nil, resellerID = nil, buyerEmailAddress = nil, emailOptIn = nil, paymentInfo = nil, shippingInfo = nil, billingInfo = nil)
+  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil, flagStyle = nil, orderStatus = nil, resellerID = nil, buyerEmailAddress = nil, emailOptIn = nil, paymentInfo = nil, shippingInfo = nil, billingInfo = nil, flagDescription = nil)
     @numberOfMatches = numberOfMatches
     @orderTimeGMT = orderTimeGMT
     @lastUpdateDate = lastUpdateDate
@@ -586,6 +648,7 @@ class OrderResponseDetailMedium < OrderResponseDetailLow
     @dateCancelledGMT = dateCancelledGMT
     @orderID = orderID
     @clientOrderIdentifier = clientOrderIdentifier
+    @flagStyle = flagStyle
     @orderStatus = orderStatus
     @resellerID = resellerID
     @buyerEmailAddress = buyerEmailAddress
@@ -593,6 +656,7 @@ class OrderResponseDetailMedium < OrderResponseDetailLow
     @paymentInfo = paymentInfo
     @shippingInfo = shippingInfo
     @billingInfo = billingInfo
+    @flagDescription = flagDescription
   end
 end
 
@@ -605,6 +669,7 @@ end
 #   dateCancelledGMT - SOAP::SOAPDateTime
 #   orderID - SOAP::SOAPInt
 #   clientOrderIdentifier - SOAP::SOAPString
+#   flagStyle - ChannelAdvisor::OrderServiceSOAP::FlagType
 #   orderStatus - ChannelAdvisor::OrderServiceSOAP::OrderStatus
 #   resellerID - SOAP::SOAPString
 #   buyerEmailAddress - SOAP::SOAPString
@@ -612,6 +677,7 @@ end
 #   paymentInfo - ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse
 #   shippingInfo - ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse
 #   billingInfo - ChannelAdvisor::OrderServiceSOAP::BillingInfo
+#   flagDescription - SOAP::SOAPString
 #   shoppingCart - ChannelAdvisor::OrderServiceSOAP::OrderCart
 class OrderResponseDetailHigh < OrderResponseDetailMedium
   attr_accessor :numberOfMatches
@@ -622,6 +688,7 @@ class OrderResponseDetailHigh < OrderResponseDetailMedium
   attr_accessor :dateCancelledGMT
   attr_accessor :orderID
   attr_accessor :clientOrderIdentifier
+  attr_accessor :flagStyle
   attr_accessor :orderStatus
   attr_accessor :resellerID
   attr_accessor :buyerEmailAddress
@@ -629,9 +696,10 @@ class OrderResponseDetailHigh < OrderResponseDetailMedium
   attr_accessor :paymentInfo
   attr_accessor :shippingInfo
   attr_accessor :billingInfo
+  attr_accessor :flagDescription
   attr_accessor :shoppingCart
 
-  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil, orderStatus = nil, resellerID = nil, buyerEmailAddress = nil, emailOptIn = nil, paymentInfo = nil, shippingInfo = nil, billingInfo = nil, shoppingCart = nil)
+  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil, flagStyle = nil, orderStatus = nil, resellerID = nil, buyerEmailAddress = nil, emailOptIn = nil, paymentInfo = nil, shippingInfo = nil, billingInfo = nil, flagDescription = nil, shoppingCart = nil)
     @numberOfMatches = numberOfMatches
     @orderTimeGMT = orderTimeGMT
     @lastUpdateDate = lastUpdateDate
@@ -640,6 +708,7 @@ class OrderResponseDetailHigh < OrderResponseDetailMedium
     @dateCancelledGMT = dateCancelledGMT
     @orderID = orderID
     @clientOrderIdentifier = clientOrderIdentifier
+    @flagStyle = flagStyle
     @orderStatus = orderStatus
     @resellerID = resellerID
     @buyerEmailAddress = buyerEmailAddress
@@ -647,6 +716,7 @@ class OrderResponseDetailHigh < OrderResponseDetailMedium
     @paymentInfo = paymentInfo
     @shippingInfo = shippingInfo
     @billingInfo = billingInfo
+    @flagDescription = flagDescription
     @shoppingCart = shoppingCart
   end
 end
@@ -660,6 +730,7 @@ end
 #   dateCancelledGMT - SOAP::SOAPDateTime
 #   orderID - SOAP::SOAPInt
 #   clientOrderIdentifier - SOAP::SOAPString
+#   flagStyle - ChannelAdvisor::OrderServiceSOAP::FlagType
 #   orderStatus - ChannelAdvisor::OrderServiceSOAP::OrderStatus
 #   resellerID - SOAP::SOAPString
 #   buyerEmailAddress - SOAP::SOAPString
@@ -667,9 +738,11 @@ end
 #   paymentInfo - ChannelAdvisor::OrderServiceSOAP::PaymentInfoResponse
 #   shippingInfo - ChannelAdvisor::OrderServiceSOAP::ShippingInfoResponse
 #   billingInfo - ChannelAdvisor::OrderServiceSOAP::BillingInfo
+#   flagDescription - SOAP::SOAPString
 #   shoppingCart - ChannelAdvisor::OrderServiceSOAP::OrderCart
 #   customValueList - ChannelAdvisor::OrderServiceSOAP::ArrayOfCustomValue
 #   buyerIpAddress - SOAP::SOAPString
+#   transactionNotes - SOAP::SOAPString
 class OrderResponseDetailComplete < OrderResponseDetailHigh
   attr_accessor :numberOfMatches
   attr_accessor :orderTimeGMT
@@ -679,6 +752,7 @@ class OrderResponseDetailComplete < OrderResponseDetailHigh
   attr_accessor :dateCancelledGMT
   attr_accessor :orderID
   attr_accessor :clientOrderIdentifier
+  attr_accessor :flagStyle
   attr_accessor :orderStatus
   attr_accessor :resellerID
   attr_accessor :buyerEmailAddress
@@ -686,11 +760,13 @@ class OrderResponseDetailComplete < OrderResponseDetailHigh
   attr_accessor :paymentInfo
   attr_accessor :shippingInfo
   attr_accessor :billingInfo
+  attr_accessor :flagDescription
   attr_accessor :shoppingCart
   attr_accessor :customValueList
   attr_accessor :buyerIpAddress
+  attr_accessor :transactionNotes
 
-  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil, orderStatus = nil, resellerID = nil, buyerEmailAddress = nil, emailOptIn = nil, paymentInfo = nil, shippingInfo = nil, billingInfo = nil, shoppingCart = nil, customValueList = nil, buyerIpAddress = nil)
+  def initialize(numberOfMatches = nil, orderTimeGMT = nil, lastUpdateDate = nil, totalOrderAmount = nil, orderState = nil, dateCancelledGMT = nil, orderID = nil, clientOrderIdentifier = nil, flagStyle = nil, orderStatus = nil, resellerID = nil, buyerEmailAddress = nil, emailOptIn = nil, paymentInfo = nil, shippingInfo = nil, billingInfo = nil, flagDescription = nil, shoppingCart = nil, customValueList = nil, buyerIpAddress = nil, transactionNotes = nil)
     @numberOfMatches = numberOfMatches
     @orderTimeGMT = orderTimeGMT
     @lastUpdateDate = lastUpdateDate
@@ -699,6 +775,7 @@ class OrderResponseDetailComplete < OrderResponseDetailHigh
     @dateCancelledGMT = dateCancelledGMT
     @orderID = orderID
     @clientOrderIdentifier = clientOrderIdentifier
+    @flagStyle = flagStyle
     @orderStatus = orderStatus
     @resellerID = resellerID
     @buyerEmailAddress = buyerEmailAddress
@@ -706,9 +783,11 @@ class OrderResponseDetailComplete < OrderResponseDetailHigh
     @paymentInfo = paymentInfo
     @shippingInfo = shippingInfo
     @billingInfo = billingInfo
+    @flagDescription = flagDescription
     @shoppingCart = shoppingCart
     @customValueList = customValueList
     @buyerIpAddress = buyerIpAddress
+    @transactionNotes = transactionNotes
   end
 end
 
@@ -1185,6 +1264,7 @@ end
 #   unitWeight - ChannelAdvisor::OrderServiceSOAP::ItemWeight
 #   warehouseLocation - SOAP::SOAPString
 #   userName - SOAP::SOAPString
+#   distributionCenterCode - SOAP::SOAPString
 class OrderLineItemItemResponse < OrderLineItemItem
   attr_accessor :lineItemType
   attr_accessor :unitPrice
@@ -1208,8 +1288,9 @@ class OrderLineItemItemResponse < OrderLineItemItem
   attr_accessor :unitWeight
   attr_accessor :warehouseLocation
   attr_accessor :userName
+  attr_accessor :distributionCenterCode
 
-  def initialize(lineItemType = nil, unitPrice = nil, lineItemID = nil, allowNegativeQuantity = nil, quantity = nil, itemSaleSource = nil, sKU = nil, title = nil, buyerUserID = nil, buyerFeedbackRating = nil, salesSourceID = nil, vATRate = nil, taxCost = nil, shippingCost = nil, shippingTaxCost = nil, giftWrapCost = nil, giftWrapTaxCost = nil, giftMessage = nil, giftWrapLevel = nil, unitWeight = nil, warehouseLocation = nil, userName = nil)
+  def initialize(lineItemType = nil, unitPrice = nil, lineItemID = nil, allowNegativeQuantity = nil, quantity = nil, itemSaleSource = nil, sKU = nil, title = nil, buyerUserID = nil, buyerFeedbackRating = nil, salesSourceID = nil, vATRate = nil, taxCost = nil, shippingCost = nil, shippingTaxCost = nil, giftWrapCost = nil, giftWrapTaxCost = nil, giftMessage = nil, giftWrapLevel = nil, unitWeight = nil, warehouseLocation = nil, userName = nil, distributionCenterCode = nil)
     @lineItemType = lineItemType
     @unitPrice = unitPrice
     @lineItemID = lineItemID
@@ -1232,6 +1313,20 @@ class OrderLineItemItemResponse < OrderLineItemItem
     @unitWeight = unitWeight
     @warehouseLocation = warehouseLocation
     @userName = userName
+    @distributionCenterCode = distributionCenterCode
+  end
+end
+
+# {http://api.channeladvisor.com/datacontracts/orders}OrderLineItemInvoice
+#   lineItemType - ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode
+#   unitPrice - SOAP::SOAPDecimal
+class OrderLineItemInvoice < OrderLineItemBase
+  attr_accessor :lineItemType
+  attr_accessor :unitPrice
+
+  def initialize(lineItemType = nil, unitPrice = nil)
+    @lineItemType = lineItemType
+    @unitPrice = unitPrice
   end
 end
 
@@ -1248,19 +1343,6 @@ class OrderLineItemPromo < OrderLineItemBase
     @lineItemType = lineItemType
     @unitPrice = unitPrice
     @promoCode = promoCode
-  end
-end
-
-# {http://api.channeladvisor.com/datacontracts/orders}OrderLineItemInvoice
-#   lineItemType - ChannelAdvisor::OrderServiceSOAP::LineItemTypeCode
-#   unitPrice - SOAP::SOAPDecimal
-class OrderLineItemInvoice < OrderLineItemBase
-  attr_accessor :lineItemType
-  attr_accessor :unitPrice
-
-  def initialize(lineItemType = nil, unitPrice = nil)
-    @lineItemType = lineItemType
-    @unitPrice = unitPrice
   end
 end
 
@@ -1421,7 +1503,7 @@ end
 
 # {http://api.channeladvisor.com/datacontracts/orders}RefundAdjustmentReason
 class RefundAdjustmentReason < ::String
-  AlternateItemProvied = RefundAdjustmentReason.new("AlternateItemProvied")
+  AlternateItemProvided = RefundAdjustmentReason.new("AlternateItemProvided")
   BuyerCancelled = RefundAdjustmentReason.new("BuyerCancelled")
   CouldNotShip = RefundAdjustmentReason.new("CouldNotShip")
   CustomerExchange = RefundAdjustmentReason.new("CustomerExchange")
@@ -1435,6 +1517,8 @@ end
 # {http://api.channeladvisor.com/datacontracts/orders}SiteToken
 class SiteToken < ::String
   AMAZON_AUCTIONS = SiteToken.new("AMAZON_AUCTIONS")
+  AMAZON_DE = SiteToken.new("AMAZON_DE")
+  AMAZON_FR = SiteToken.new("AMAZON_FR")
   AMAZON_MARKETPLACE = SiteToken.new("AMAZON_MARKETPLACE")
   AMAZON_MERCHANTSAT = SiteToken.new("AMAZON_MERCHANTSAT")
   AMAZON_UK = SiteToken.new("AMAZON_UK")
@@ -1523,6 +1607,20 @@ class ShippingStatusCode < ::String
   PartiallyShipped = ShippingStatusCode.new("PartiallyShipped")
   Shipped = ShippingStatusCode.new("Shipped")
   Unshipped = ShippingStatusCode.new("Unshipped")
+end
+
+# {http://api.channeladvisor.com/datacontracts/orders}FlagType
+class FlagType < ::String
+  BlueFlag = FlagType.new("BlueFlag")
+  ExclamationPoint = FlagType.new("ExclamationPoint")
+  GreenFlag = FlagType.new("GreenFlag")
+  ItemCopied = FlagType.new("ItemCopied")
+  NoFlag = FlagType.new("NoFlag")
+  NotAvailable = FlagType.new("NotAvailable")
+  Price = FlagType.new("Price")
+  QuestionMark = FlagType.new("QuestionMark")
+  RedFlag = FlagType.new("RedFlag")
+  YellowFlag = FlagType.new("YellowFlag")
 end
 
 # {http://api.channeladvisor.com/datacontracts/orders}OrderRefundStatusCode
@@ -1738,6 +1836,35 @@ class SetSellerOrderIDResponse
   end
 end
 
+# {http://api.channeladvisor.com/webservices/}SetSellerOrderItemIDList
+#   accountID - SOAP::SOAPString
+#   orderID - SOAP::SOAPInt
+#   lineItemIDList - ChannelAdvisor::OrderServiceSOAP::ArrayOfInt
+#   sellerOrderItemIDList - ChannelAdvisor::OrderServiceSOAP::ArrayOfString
+class SetSellerOrderItemIDList
+  attr_accessor :accountID
+  attr_accessor :orderID
+  attr_accessor :lineItemIDList
+  attr_accessor :sellerOrderItemIDList
+
+  def initialize(accountID = nil, orderID = nil, lineItemIDList = nil, sellerOrderItemIDList = nil)
+    @accountID = accountID
+    @orderID = orderID
+    @lineItemIDList = lineItemIDList
+    @sellerOrderItemIDList = sellerOrderItemIDList
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}SetSellerOrderItemIDListResponse
+#   setSellerOrderItemIDListResult - ChannelAdvisor::OrderServiceSOAP::APIResultOfArrayOfBoolean
+class SetSellerOrderItemIDListResponse
+  attr_accessor :setSellerOrderItemIDListResult
+
+  def initialize(setSellerOrderItemIDListResult = nil)
+    @setSellerOrderItemIDListResult = setSellerOrderItemIDListResult
+  end
+end
+
 # {http://api.channeladvisor.com/webservices/}GetOrderRefundHistory
 #   accountID - SOAP::SOAPString
 #   orderID - SOAP::SOAPInt
@@ -1758,6 +1885,29 @@ class GetOrderRefundHistoryResponse
 
   def initialize(getOrderRefundHistoryResult = nil)
     @getOrderRefundHistoryResult = getOrderRefundHistoryResult
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}UpdateOrderList
+#   accountID - SOAP::SOAPString
+#   updateOrderSubmitList - ChannelAdvisor::OrderServiceSOAP::ArrayOfOrderUpdateSubmit
+class UpdateOrderList
+  attr_accessor :accountID
+  attr_accessor :updateOrderSubmitList
+
+  def initialize(accountID = nil, updateOrderSubmitList = nil)
+    @accountID = accountID
+    @updateOrderSubmitList = updateOrderSubmitList
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}UpdateOrderListResponse
+#   updateOrderListResult - ChannelAdvisor::OrderServiceSOAP::APIResultOfArrayOfBoolean
+class UpdateOrderListResponse
+  attr_accessor :updateOrderListResult
+
+  def initialize(updateOrderListResult = nil)
+    @updateOrderListResult = updateOrderListResult
   end
 end
 

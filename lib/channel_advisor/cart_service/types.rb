@@ -1,3 +1,4 @@
+
 module ChannelAdvisor; module CartServiceSOAP
 
 
@@ -235,6 +236,8 @@ end
 # {http://api.channeladvisor.com/datacontracts/orders}SiteToken
 class SiteToken < ::String
   AMAZON_AUCTIONS = SiteToken.new("AMAZON_AUCTIONS")
+  AMAZON_DE = SiteToken.new("AMAZON_DE")
+  AMAZON_FR = SiteToken.new("AMAZON_FR")
   AMAZON_MARKETPLACE = SiteToken.new("AMAZON_MARKETPLACE")
   AMAZON_MERCHANTSAT = SiteToken.new("AMAZON_MERCHANTSAT")
   AMAZON_UK = SiteToken.new("AMAZON_UK")

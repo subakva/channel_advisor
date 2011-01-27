@@ -1,7 +1,8 @@
+
 module ChannelAdvisor::OrderServiceSOAP
 
 class OrderServiceSoap < ::SOAP::RPC::Driver
-  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v1/OrderService.asmx"
+  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v3/OrderService.asmx"
 
   Methods = [
     [ "http://api.channeladvisor.com/webservices/SubmitAmazonFullRefund",
@@ -60,10 +61,26 @@ class OrderServiceSoap < ::SOAP::RPC::Driver
         :response_style => :document, :response_use => :literal,
         :faults => {} }
     ],
+    [ "http://api.channeladvisor.com/webservices/SetSellerOrderItemIDList",
+      "setSellerOrderItemIDList",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SetSellerOrderItemIDList"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SetSellerOrderItemIDListResponse"]] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal,
+        :faults => {} }
+    ],
     [ "http://api.channeladvisor.com/webservices/GetOrderRefundHistory",
       "getOrderRefundHistory",
       [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetOrderRefundHistory"]],
         ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetOrderRefundHistoryResponse"]] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal,
+        :faults => {} }
+    ],
+    [ "http://api.channeladvisor.com/webservices/UpdateOrderList",
+      "updateOrderList",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "UpdateOrderList"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "UpdateOrderListResponse"]] ],
       { :request_style =>  :document, :request_use =>  :literal,
         :response_style => :document, :response_use => :literal,
         :faults => {} }

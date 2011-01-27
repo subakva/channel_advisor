@@ -1,7 +1,8 @@
+
 module ChannelAdvisor::InventoryServiceSOAP
 
 class InventoryServiceSoap < ::SOAP::RPC::Driver
-  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v1/InventoryService.asmx"
+  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v3/InventoryService.asmx"
 
   Methods = [
     [ "http://api.channeladvisor.com/webservices/DoesSkuExist",
@@ -76,10 +77,10 @@ class InventoryServiceSoap < ::SOAP::RPC::Driver
         :response_style => :document, :response_use => :literal,
         :faults => {} }
     ],
-    [ "http://api.channeladvisor.com/webservices/GetInventoryItemClassificationAttributeList",
-      "getInventoryItemClassificationAttributeList",
-      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetInventoryItemClassificationAttributeList"]],
-        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetInventoryItemClassificationAttributeListResponse"]] ],
+    [ "http://api.channeladvisor.com/webservices/GetInventoryItemAttributeList",
+      "getInventoryItemAttributeList",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetInventoryItemAttributeList"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetInventoryItemAttributeListResponse"]] ],
       { :request_style =>  :document, :request_use =>  :literal,
         :response_style => :document, :response_use => :literal,
         :faults => {} }

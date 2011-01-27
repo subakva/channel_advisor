@@ -1,3 +1,4 @@
+
 module ChannelAdvisor; module ShippingServiceSOAP
 
 module DefaultMappingRegistry
@@ -134,6 +135,7 @@ module DefaultMappingRegistry
       ["carrierCode", "SOAP::SOAPString", [0, 1]],
       ["classCode", "SOAP::SOAPString", [0, 1]],
       ["trackingNumber", "SOAP::SOAPString", [0, 1]],
+      ["sellerFulfillmentID", "SOAP::SOAPString", [0, 1]],
       ["shipmentCost", "SOAP::SOAPDecimal"],
       ["shipmentTaxCost", "SOAP::SOAPDecimal"],
       ["insuranceCost", "SOAP::SOAPDecimal"]
@@ -173,6 +175,7 @@ module DefaultMappingRegistry
       ["carrierCode", "SOAP::SOAPString", [0, 1]],
       ["classCode", "SOAP::SOAPString", [0, 1]],
       ["trackingNumber", "SOAP::SOAPString", [0, 1]],
+      ["sellerFulfillmentID", "SOAP::SOAPString", [0, 1]],
       ["shipmentCost", "SOAP::SOAPDecimal"],
       ["shipmentTaxCost", "SOAP::SOAPDecimal"],
       ["insuranceCost", "SOAP::SOAPDecimal"]
@@ -330,6 +333,7 @@ module DefaultMappingRegistry
       ["carrierCode", "SOAP::SOAPString", [0, 1]],
       ["classCode", "SOAP::SOAPString", [0, 1]],
       ["trackingNumber", "SOAP::SOAPString", [0, 1]],
+      ["sellerFulfillmentID", "SOAP::SOAPString", [0, 1]],
       ["shipmentCost", "SOAP::SOAPDecimal"],
       ["shipmentTaxCost", "SOAP::SOAPDecimal"],
       ["insuranceCost", "SOAP::SOAPDecimal"]
@@ -369,6 +373,7 @@ module DefaultMappingRegistry
       ["carrierCode", "SOAP::SOAPString", [0, 1]],
       ["classCode", "SOAP::SOAPString", [0, 1]],
       ["trackingNumber", "SOAP::SOAPString", [0, 1]],
+      ["sellerFulfillmentID", "SOAP::SOAPString", [0, 1]],
       ["shipmentCost", "SOAP::SOAPDecimal"],
       ["shipmentTaxCost", "SOAP::SOAPDecimal"],
       ["insuranceCost", "SOAP::SOAPDecimal"]
@@ -453,7 +458,8 @@ module DefaultMappingRegistry
       ["dateShippedGMT", "SOAP::SOAPDateTime"],
       ["carrierCode", "SOAP::SOAPString", [0, 1]],
       ["classCode", "SOAP::SOAPString", [0, 1]],
-      ["trackingNumber", "SOAP::SOAPString", [0, 1]]
+      ["trackingNumber", "SOAP::SOAPString", [0, 1]],
+      ["sellerFulfillmentID", "SOAP::SOAPString", [0, 1]]
     ]
   )
 
