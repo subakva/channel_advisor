@@ -1,66 +1,54 @@
+require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
 require 'rake'
-require 'rake/gempackagetask'
-require 'rspec'
+
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "channel_advisor"
+  gem.homepage = "http://github.com/secondrotation/channel_advisor/"
+  gem.license = "MIT"
+  gem.summary = "channel_advisor"
+  gem.description = "channel_advisor was developed by: Second Rotation, Inc."
+  gem.email = "jason@gazelle.com"
+  gem.authors = ["Second Rotation, Inc."]
+  # Include your dependencies below. Runtime dependencies are required when using your gem,
+  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
+  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
+  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+end
+Jeweler::RubygemsDotOrgTasks.new
+
+require 'rspec/core'
 require 'rspec/core/rake_task'
-require 'rake/rdoctask'
-
-@gem_spec = Gem::Specification.new do |s|
-  s.name = "channel_advisor"
-  s.version = "0.0.8"
-  s.summary = "channel_advisor"
-  s.description = "channel_advisor was developed by: Second Rotation, Inc."
-  s.author = "Second Rotation, Inc."
-  s.email = "jason@secondrotation.com"
-  s.homepage = "http://github.com/secondrotation/channel_advisor/"
-
-  s.test_files = FileList['spec/**/*']
-
-  s.files = FileList['lib/**/*.*', 'README', 'doc/**/*.*', 'bin/**/*.*']
-  s.require_paths << 'lib'
-
-  s.add_development_dependency('rspec')
-  s.add_development_dependency('rcov')
-  s.add_development_dependency('metric_fu')
-  s.add_development_dependency('rake')
-  s.add_dependency("soap4r", ">=1.5.8")
-  s.add_dependency("configatron", ">=2.0.0")
-  s.extra_rdoc_files = ["README"]
-  s.has_rdoc = true
-
-  s.rubyforge_project = "channel_advisor"
-end
-
-# rake package
-Rake::GemPackageTask.new(@gem_spec) do |pkg|
-  pkg.need_zip = false
-  pkg.need_tar = false
-  rm_f FileList['pkg/**/*.*']
-  File.open(File.join(File.dirname(__FILE__), 'channel_advisor.gemspec'), 'w') {|f| f.puts @gem_spec.to_ruby}
-end
-
-# rake
-desc 'Run specifications'
 RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
+  spec.pattern = FileList['spec/**/*_spec.rb']
 end
-task :default => :spec
 
 RSpec::Core::RakeTask.new(:rcov) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
 end
 
+task :default => :spec
+
+require 'yard'
+YARD::Rake::YardocTask.new
+
+# Custom Tasks Beyond This Point
+
 namespace :spec do
   desc "Integration Spec. USE WITH CAUTION AS IT PUSHES TO CHANNEL ADVISOR"
   RSpec::Core::RakeTask.new(:integration) do |spec|
     spec.pattern = 'spec/integration/**/*_spec.rb'
   end
-end
-
-desc "Install the gem"
-task :install => [:package] do |t|
-  sudo = ENV['SUDOLESS'] == 'true' || RUBY_PLATFORM =~ /win32|cygwin/ ? '' : 'sudo'
-  puts `#{sudo} gem install #{File.join("pkg", @gem_spec.name)}-#{@gem_spec.version}.gem --no-update-sources --no-ri --no-rdoc`
 end
 
 desc "Run the automated hudson build"
@@ -89,26 +77,31 @@ task :generate do
     service_dir = File.join(lib_dir, service_name)
     camel_name = service_name.split('_').map {|w| w.capitalize}.join
 
+    # Create the service file and directory
     `touch #{File.join(lib_dir, service_name)}.rb`
     `mkdir -p #{service_dir}`
-    `cd #{service_dir} && wsdl2ruby.rb --wsdl https://api.channeladvisor.com/ChannelAdvisorAPI/v1/#{camel_name}.asmx?WSDL --type client --module_path ChannelAdvisor::#{camel_name}SOAP`
-    `rm -i #{File.join(service_dir, camel_name)}Client.rb`
-    `mv -i #{File.join(service_dir, 'defaultMappingRegistry')}.rb #{File.join(service_dir, 'mapping_registry')}.rb`
-    `mv -i #{File.join(service_dir, 'default')}.rb #{File.join(service_dir, 'types')}.rb`
-    `mv -i #{File.join(service_dir, 'defaultDriver')}.rb #{File.join(service_dir, 'client')}.rb`
+
+    # Generate the files from the wsdl
+    `cd #{service_dir} && wsdl2ruby.rb --wsdl https://api.channeladvisor.com/ChannelAdvisorAPI/v3/#{camel_name}.asmx?WSDL --type client --module_path ChannelAdvisor::#{camel_name}SOAP`
+
+    # Remove the generated client file
+    `rm #{File.join(service_dir, camel_name)}Client.rb`
+    
+    # Rename the generated files for consistency
+    `mv #{File.join(service_dir, 'defaultMappingRegistry')}.rb #{File.join(service_dir, 'mapping_registry')}.rb`
+    `mv #{File.join(service_dir, 'default')}.rb #{File.join(service_dir, 'types')}.rb`
+    `mv #{File.join(service_dir, 'defaultDriver')}.rb #{File.join(service_dir, 'client')}.rb`
+    
+    # Remove the unnecessary "require" lines from the generated code
+    `sed -i~ '/require/ d' "#{File.join(service_dir, 'client')}.rb"`
+    `sed -i~ '/require/ d' "#{File.join(service_dir, 'types')}.rb"`
+    `sed -i~ '/require/ d' "#{File.join(service_dir, 'mapping_registry')}.rb"`
+
+    # Remove the temp files created by sed
+    `rm "#{File.join(service_dir, 'client')}.rb~"`
+    `rm "#{File.join(service_dir, 'types')}.rb"~`
+    `rm "#{File.join(service_dir, 'mapping_registry')}.rb"~`
+
   end
   
-end
-
-
-Rake::RDocTask.new do |rd|
-  rd.main = "README"
-  files = Dir.glob("**/*.rb")
-  files = files.collect {|f| f unless f.match("spec/") || f.match("doc/") }.compact
-  files << "README"
-  rd.rdoc_files = files
-  rd.rdoc_dir = "doc"
-  rd.options << "--line-numbers"
-  rd.options << "--inline-source"
-  rd.title = "channel_advisor"
 end
