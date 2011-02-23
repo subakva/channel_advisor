@@ -638,6 +638,110 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellInfoSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryUpsellInfoSubmit"),
+    :schema_element => [
+      ["inventoryUpsellInfoSubmit", ["ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellInfoSubmit[]", XSD::QName.new(NsWebservices, "InventoryUpsellInfoSubmit")], [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellInfoSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryUpsellInfoSubmit"),
+    :schema_element => [
+      ["parentSKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ParentSKU")], [0, 1]],
+      ["childItemList", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellChildInfo", XSD::QName.new(NsWebservices, "ChildItemList")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellChildInfo,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryUpsellChildInfo"),
+    :schema_element => [
+      ["inventoryUpsellChildInfo", ["ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellChildInfo[]", XSD::QName.new(NsWebservices, "InventoryUpsellChildInfo")], [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellChildInfo,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryUpsellChildInfo"),
+    :schema_element => [
+      ["sKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "SKU")], [0, 1]],
+      ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "Quantity")]],
+      ["salePrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsWebservices, "SalePrice")]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfArrayOfBoolean,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfArrayOfBoolean"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfArrayOfBoolean", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfArrayOfBoolean,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfArrayOfBoolean"),
+    :schema_element => [
+      ["arrayOfBoolean", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfBoolean[]", XSD::QName.new(NsWebservices, "ArrayOfBoolean")], [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfBoolean,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfBoolean"),
+    :schema_element => [
+      ["boolean", "SOAP::SOAPBoolean[]", [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryUpsellInfoResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfInventoryUpsellInfoResponse"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellInfoResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellInfoResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryUpsellInfoResponse"),
+    :schema_element => [
+      ["inventoryUpsellInfoResponse", ["ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellInfoResponse[]", XSD::QName.new(NsWebservices, "InventoryUpsellInfoResponse")], [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellInfoResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryUpsellInfoResponse"),
+    :schema_element => [
+      ["parentSKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ParentSKU")], [0, 1]],
+      ["childItemList", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellChildInfo", XSD::QName.new(NsWebservices, "ChildItemList")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfBoolean,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfBoolean"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfBoolean", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
     :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -1336,6 +1440,110 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellInfoSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryUpsellInfoSubmit"),
+    :schema_element => [
+      ["inventoryUpsellInfoSubmit", ["ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellInfoSubmit[]", XSD::QName.new(NsWebservices, "InventoryUpsellInfoSubmit")], [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellInfoSubmit,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryUpsellInfoSubmit"),
+    :schema_element => [
+      ["parentSKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ParentSKU")], [0, 1]],
+      ["childItemList", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellChildInfo", XSD::QName.new(NsWebservices, "ChildItemList")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellChildInfo,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryUpsellChildInfo"),
+    :schema_element => [
+      ["inventoryUpsellChildInfo", ["ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellChildInfo[]", XSD::QName.new(NsWebservices, "InventoryUpsellChildInfo")], [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellChildInfo,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryUpsellChildInfo"),
+    :schema_element => [
+      ["sKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "SKU")], [0, 1]],
+      ["quantity", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "Quantity")]],
+      ["salePrice", ["SOAP::SOAPDecimal", XSD::QName.new(NsWebservices, "SalePrice")]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfArrayOfBoolean,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfArrayOfBoolean"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfArrayOfBoolean", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfArrayOfBoolean,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfArrayOfBoolean"),
+    :schema_element => [
+      ["arrayOfBoolean", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfBoolean[]", XSD::QName.new(NsWebservices, "ArrayOfBoolean")], [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfBoolean,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfBoolean"),
+    :schema_element => [
+      ["boolean", "SOAP::SOAPBoolean[]", [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryUpsellInfoResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfInventoryUpsellInfoResponse"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellInfoResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellInfoResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfInventoryUpsellInfoResponse"),
+    :schema_element => [
+      ["inventoryUpsellInfoResponse", ["ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellInfoResponse[]", XSD::QName.new(NsWebservices, "InventoryUpsellInfoResponse")], [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::InventoryUpsellInfoResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "InventoryUpsellInfoResponse"),
+    :schema_element => [
+      ["parentSKU", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ParentSKU")], [0, 1]],
+      ["childItemList", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellChildInfo", XSD::QName.new(NsWebservices, "ChildItemList")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfBoolean,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfBoolean"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::InventoryServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::InventoryServiceSOAP::ArrayOfBoolean", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::InventoryServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -1775,6 +1983,58 @@ module DefaultMappingRegistry
     :schema_name => XSD::QName.new(NsWebservices, "RemoveLabelListFromInventoryItemListResponse"),
     :schema_element => [
       ["removeLabelListFromInventoryItemListResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfBoolean", XSD::QName.new(NsWebservices, "RemoveLabelListFromInventoryItemListResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::AddUpsellRelationship,
+    :schema_name => XSD::QName.new(NsWebservices, "AddUpsellRelationship"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString"],
+      ["upsellInfoList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellInfoSubmit", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::AddUpsellRelationshipResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "AddUpsellRelationshipResponse"),
+    :schema_element => [
+      ["addUpsellRelationshipResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfArrayOfBoolean", XSD::QName.new(NsWebservices, "AddUpsellRelationshipResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::GetUpsellRelationship,
+    :schema_name => XSD::QName.new(NsWebservices, "GetUpsellRelationship"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString"],
+      ["parentSKUList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::GetUpsellRelationshipResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "GetUpsellRelationshipResponse"),
+    :schema_element => [
+      ["getUpsellRelationshipResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryUpsellInfoResponse", XSD::QName.new(NsWebservices, "GetUpsellRelationshipResult")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::DeleteUpsellRelationship,
+    :schema_name => XSD::QName.new(NsWebservices, "DeleteUpsellRelationship"),
+    :schema_element => [
+      ["accountID", "SOAP::SOAPString"],
+      ["parentSKU", "SOAP::SOAPString", [0, 1]],
+      ["childSKUList", "ChannelAdvisor::InventoryServiceSOAP::ArrayOfString", [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::InventoryServiceSOAP::DeleteUpsellRelationshipResponse,
+    :schema_name => XSD::QName.new(NsWebservices, "DeleteUpsellRelationshipResponse"),
+    :schema_element => [
+      ["deleteUpsellRelationshipResult", ["ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfBoolean", XSD::QName.new(NsWebservices, "DeleteUpsellRelationshipResult")], [0, 1]]
     ]
   )
 

@@ -19,10 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = "channel_advisor was developed by: Second Rotation, Inc."
   gem.email = "jason@gazelle.com"
   gem.authors = ["Second Rotation, Inc."]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  # Gem dependencies are declared in the gem file
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -82,16 +79,16 @@ task :generate do
     `mkdir -p #{service_dir}`
 
     # Generate the files from the wsdl
-    `cd #{service_dir} && wsdl2ruby.rb --wsdl https://api.channeladvisor.com/ChannelAdvisorAPI/v3/#{camel_name}.asmx?WSDL --type client --module_path ChannelAdvisor::#{camel_name}SOAP`
+    `cd #{service_dir} && wsdl2ruby.rb --wsdl https://api.channeladvisor.com/ChannelAdvisorAPI/v4/#{camel_name}.asmx?WSDL --type client --module_path ChannelAdvisor::#{camel_name}SOAP`
 
     # Remove the generated client file
     `rm #{File.join(service_dir, camel_name)}Client.rb`
-    
+
     # Rename the generated files for consistency
     `mv #{File.join(service_dir, 'defaultMappingRegistry')}.rb #{File.join(service_dir, 'mapping_registry')}.rb`
     `mv #{File.join(service_dir, 'default')}.rb #{File.join(service_dir, 'types')}.rb`
     `mv #{File.join(service_dir, 'defaultDriver')}.rb #{File.join(service_dir, 'client')}.rb`
-    
+
     # Remove the unnecessary "require" lines from the generated code
     `sed -i~ '/require/ d' "#{File.join(service_dir, 'client')}.rb"`
     `sed -i~ '/require/ d' "#{File.join(service_dir, 'types')}.rb"`
@@ -103,5 +100,5 @@ task :generate do
     `rm "#{File.join(service_dir, 'mapping_registry')}.rb"~`
 
   end
-  
+
 end

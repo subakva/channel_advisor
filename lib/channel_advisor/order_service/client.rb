@@ -2,29 +2,13 @@
 module ChannelAdvisor::OrderServiceSOAP
 
 class OrderServiceSoap < ::SOAP::RPC::Driver
-  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v3/OrderService.asmx"
+  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v4/OrderService.asmx"
 
   Methods = [
-    [ "http://api.channeladvisor.com/webservices/SubmitAmazonFullRefund",
-      "submitAmazonFullRefund",
-      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SubmitAmazonFullRefund"]],
-        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SubmitAmazonFullRefundResponse"]] ],
-      { :request_style =>  :document, :request_use =>  :literal,
-        :response_style => :document, :response_use => :literal,
-        :faults => {} }
-    ],
     [ "http://api.channeladvisor.com/webservices/SetOrdersExportStatus",
       "setOrdersExportStatus",
       [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SetOrdersExportStatus"]],
         ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SetOrdersExportStatusResponse"]] ],
-      { :request_style =>  :document, :request_use =>  :literal,
-        :response_style => :document, :response_use => :literal,
-        :faults => {} }
-    ],
-    [ "http://api.channeladvisor.com/webservices/SubmitAmazonPartialRefund",
-      "submitAmazonPartialRefund",
-      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SubmitAmazonPartialRefund"]],
-        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "SubmitAmazonPartialRefundResponse"]] ],
       { :request_style =>  :document, :request_use =>  :literal,
         :response_style => :document, :response_use => :literal,
         :faults => {} }

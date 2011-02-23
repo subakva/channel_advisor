@@ -2,7 +2,7 @@
 module ChannelAdvisor::InventoryServiceSOAP
 
 class InventoryServiceSoap < ::SOAP::RPC::Driver
-  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v3/InventoryService.asmx"
+  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v4/InventoryService.asmx"
 
   Methods = [
     [ "http://api.channeladvisor.com/webservices/DoesSkuExist",
@@ -177,6 +177,30 @@ class InventoryServiceSoap < ::SOAP::RPC::Driver
       "removeLabelListFromInventoryItemList",
       [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "RemoveLabelListFromInventoryItemList"]],
         ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "RemoveLabelListFromInventoryItemListResponse"]] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal,
+        :faults => {} }
+    ],
+    [ "http://api.channeladvisor.com/webservices/AddUpsellRelationship",
+      "addUpsellRelationship",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "AddUpsellRelationship"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "AddUpsellRelationshipResponse"]] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal,
+        :faults => {} }
+    ],
+    [ "http://api.channeladvisor.com/webservices/GetUpsellRelationship",
+      "getUpsellRelationship",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetUpsellRelationship"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "GetUpsellRelationshipResponse"]] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal,
+        :faults => {} }
+    ],
+    [ "http://api.channeladvisor.com/webservices/DeleteUpsellRelationship",
+      "deleteUpsellRelationship",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "DeleteUpsellRelationship"]],
+        ["out", "parameters", ["::SOAP::SOAPElement", "http://api.channeladvisor.com/webservices/", "DeleteUpsellRelationshipResponse"]] ],
       { :request_style =>  :document, :request_use =>  :literal,
         :response_style => :document, :response_use => :literal,
         :faults => {} }

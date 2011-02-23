@@ -1063,6 +1063,134 @@ class UpdateInventoryItemResponse
   end
 end
 
+# {http://api.channeladvisor.com/webservices/}ArrayOfInventoryUpsellInfoSubmit
+class ArrayOfInventoryUpsellInfoSubmit < ::Array
+end
+
+# {http://api.channeladvisor.com/webservices/}InventoryUpsellInfoSubmit
+#   parentSKU - SOAP::SOAPString
+#   childItemList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellChildInfo
+class InventoryUpsellInfoSubmit
+  attr_accessor :parentSKU
+  attr_accessor :childItemList
+
+  def initialize(parentSKU = nil, childItemList = nil)
+    @parentSKU = parentSKU
+    @childItemList = childItemList
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}ArrayOfInventoryUpsellChildInfo
+class ArrayOfInventoryUpsellChildInfo < ::Array
+end
+
+# {http://api.channeladvisor.com/webservices/}InventoryUpsellChildInfo
+#   sKU - SOAP::SOAPString
+#   quantity - SOAP::SOAPInt
+#   salePrice - SOAP::SOAPDecimal
+class InventoryUpsellChildInfo
+  attr_accessor :sKU
+  attr_accessor :quantity
+  attr_accessor :salePrice
+
+  def initialize(sKU = nil, quantity = nil, salePrice = nil)
+    @sKU = sKU
+    @quantity = quantity
+    @salePrice = salePrice
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfArrayOfBoolean
+#   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
+#   messageCode - SOAP::SOAPInt
+#   message - SOAP::SOAPString
+#   data - SOAP::SOAPString
+#   resultData - ChannelAdvisor::InventoryServiceSOAP::ArrayOfArrayOfBoolean
+class APIResultOfArrayOfArrayOfBoolean
+  attr_accessor :status
+  attr_accessor :messageCode
+  attr_accessor :message
+  attr_accessor :data
+  attr_accessor :resultData
+
+  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
+    @status = status
+    @messageCode = messageCode
+    @message = message
+    @data = data
+    @resultData = resultData
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}ArrayOfArrayOfBoolean
+class ArrayOfArrayOfBoolean < ::Array
+end
+
+# {http://api.channeladvisor.com/webservices/}ArrayOfBoolean
+class ArrayOfBoolean < ::Array
+end
+
+# {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfInventoryUpsellInfoResponse
+#   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
+#   messageCode - SOAP::SOAPInt
+#   message - SOAP::SOAPString
+#   data - SOAP::SOAPString
+#   resultData - ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellInfoResponse
+class APIResultOfArrayOfInventoryUpsellInfoResponse
+  attr_accessor :status
+  attr_accessor :messageCode
+  attr_accessor :message
+  attr_accessor :data
+  attr_accessor :resultData
+
+  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
+    @status = status
+    @messageCode = messageCode
+    @message = message
+    @data = data
+    @resultData = resultData
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}ArrayOfInventoryUpsellInfoResponse
+class ArrayOfInventoryUpsellInfoResponse < ::Array
+end
+
+# {http://api.channeladvisor.com/webservices/}InventoryUpsellInfoResponse
+#   parentSKU - SOAP::SOAPString
+#   childItemList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellChildInfo
+class InventoryUpsellInfoResponse
+  attr_accessor :parentSKU
+  attr_accessor :childItemList
+
+  def initialize(parentSKU = nil, childItemList = nil)
+    @parentSKU = parentSKU
+    @childItemList = childItemList
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfBoolean
+#   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
+#   messageCode - SOAP::SOAPInt
+#   message - SOAP::SOAPString
+#   data - SOAP::SOAPString
+#   resultData - ChannelAdvisor::InventoryServiceSOAP::ArrayOfBoolean
+class APIResultOfArrayOfBoolean
+  attr_accessor :status
+  attr_accessor :messageCode
+  attr_accessor :message
+  attr_accessor :data
+  attr_accessor :resultData
+
+  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
+    @status = status
+    @messageCode = messageCode
+    @message = message
+    @data = data
+    @resultData = resultData
+  end
+end
+
 # {http://api.channeladvisor.com/webservices/}APIResultOfString
 #   status - ChannelAdvisor::InventoryServiceSOAP::ResultStatus
 #   messageCode - SOAP::SOAPInt
@@ -1745,6 +1873,78 @@ class RemoveLabelListFromInventoryItemListResponse
 
   def initialize(removeLabelListFromInventoryItemListResult = nil)
     @removeLabelListFromInventoryItemListResult = removeLabelListFromInventoryItemListResult
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}AddUpsellRelationship
+#   accountID - SOAP::SOAPString
+#   upsellInfoList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfInventoryUpsellInfoSubmit
+class AddUpsellRelationship
+  attr_accessor :accountID
+  attr_accessor :upsellInfoList
+
+  def initialize(accountID = nil, upsellInfoList = nil)
+    @accountID = accountID
+    @upsellInfoList = upsellInfoList
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}AddUpsellRelationshipResponse
+#   addUpsellRelationshipResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfArrayOfBoolean
+class AddUpsellRelationshipResponse
+  attr_accessor :addUpsellRelationshipResult
+
+  def initialize(addUpsellRelationshipResult = nil)
+    @addUpsellRelationshipResult = addUpsellRelationshipResult
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}GetUpsellRelationship
+#   accountID - SOAP::SOAPString
+#   parentSKUList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfString
+class GetUpsellRelationship
+  attr_accessor :accountID
+  attr_accessor :parentSKUList
+
+  def initialize(accountID = nil, parentSKUList = nil)
+    @accountID = accountID
+    @parentSKUList = parentSKUList
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}GetUpsellRelationshipResponse
+#   getUpsellRelationshipResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfInventoryUpsellInfoResponse
+class GetUpsellRelationshipResponse
+  attr_accessor :getUpsellRelationshipResult
+
+  def initialize(getUpsellRelationshipResult = nil)
+    @getUpsellRelationshipResult = getUpsellRelationshipResult
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}DeleteUpsellRelationship
+#   accountID - SOAP::SOAPString
+#   parentSKU - SOAP::SOAPString
+#   childSKUList - ChannelAdvisor::InventoryServiceSOAP::ArrayOfString
+class DeleteUpsellRelationship
+  attr_accessor :accountID
+  attr_accessor :parentSKU
+  attr_accessor :childSKUList
+
+  def initialize(accountID = nil, parentSKU = nil, childSKUList = nil)
+    @accountID = accountID
+    @parentSKU = parentSKU
+    @childSKUList = childSKUList
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}DeleteUpsellRelationshipResponse
+#   deleteUpsellRelationshipResult - ChannelAdvisor::InventoryServiceSOAP::APIResultOfArrayOfBoolean
+class DeleteUpsellRelationshipResponse
+  attr_accessor :deleteUpsellRelationshipResult
+
+  def initialize(deleteUpsellRelationshipResult = nil)
+    @deleteUpsellRelationshipResult = deleteUpsellRelationshipResult
   end
 end
 

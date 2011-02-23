@@ -2,7 +2,7 @@
 module ChannelAdvisor::StoreServiceSOAP
 
 class StoreServiceSoap < ::SOAP::RPC::Driver
-  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v3/StoreService.asmx"
+  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v4/StoreService.asmx"
 
   Methods = [
     [ "http://api.channeladvisor.com/webservices/GetSearchAnalysisStats",

@@ -4,6 +4,7 @@ module ChannelAdvisor; module ShippingServiceSOAP
 module DefaultMappingRegistry
   EncodedRegistry = ::SOAP::Mapping::EncodedRegistry.new
   LiteralRegistry = ::SOAP::Mapping::LiteralRegistry.new
+  NsShippingService = "http://api.channeladvisor.com/datacontracts/ShippingService"
   NsWebservices = "http://api.channeladvisor.com/webservices/"
 
   EncodedRegistry.register(
@@ -183,6 +184,26 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
+    :class => ChannelAdvisor::ShippingServiceSOAP::APIResultOfArrayOfShipmentResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfShipmentResponse"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::ShippingServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::ShippingServiceSOAP::ArrayOfShipmentResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::ShippingServiceSOAP::ArrayOfShipmentResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfShipmentResponse"),
+    :schema_element => [
+      ["shipmentResponse", ["ChannelAdvisor::ShippingServiceSOAP::ShipmentResponse[]", XSD::QName.new(NsWebservices, "ShipmentResponse")], [0, nil]]
+    ]
+  )
+
+  EncodedRegistry.register(
     :class => ChannelAdvisor::ShippingServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -191,6 +212,15 @@ module DefaultMappingRegistry
       ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
       ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
       ["resultData", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  EncodedRegistry.register(
+    :class => ChannelAdvisor::ShippingServiceSOAP::ShipmentResponse,
+    :schema_type => XSD::QName.new(NsShippingService, "ShipmentResponse"),
+    :schema_element => [
+      ["success", ["SOAP::SOAPBoolean", XSD::QName.new(NsShippingService, "Success")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsShippingService, "Message")], [0, 1]]
     ]
   )
 
@@ -381,6 +411,26 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => ChannelAdvisor::ShippingServiceSOAP::APIResultOfArrayOfShipmentResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "APIResultOfArrayOfShipmentResponse"),
+    :schema_element => [
+      ["status", ["ChannelAdvisor::ShippingServiceSOAP::ResultStatus", XSD::QName.new(NsWebservices, "Status")]],
+      ["messageCode", ["SOAP::SOAPInt", XSD::QName.new(NsWebservices, "MessageCode")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
+      ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
+      ["resultData", ["ChannelAdvisor::ShippingServiceSOAP::ArrayOfShipmentResponse", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::ShippingServiceSOAP::ArrayOfShipmentResponse,
+    :schema_type => XSD::QName.new(NsWebservices, "ArrayOfShipmentResponse"),
+    :schema_element => [
+      ["shipmentResponse", ["ChannelAdvisor::ShippingServiceSOAP::ShipmentResponse[]", XSD::QName.new(NsWebservices, "ShipmentResponse")], [0, nil]]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => ChannelAdvisor::ShippingServiceSOAP::APIResultOfString,
     :schema_type => XSD::QName.new(NsWebservices, "APIResultOfString"),
     :schema_element => [
@@ -389,6 +439,15 @@ module DefaultMappingRegistry
       ["message", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Message")], [0, 1]],
       ["data", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "Data")], [0, 1]],
       ["resultData", ["SOAP::SOAPString", XSD::QName.new(NsWebservices, "ResultData")], [0, 1]]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => ChannelAdvisor::ShippingServiceSOAP::ShipmentResponse,
+    :schema_type => XSD::QName.new(NsShippingService, "ShipmentResponse"),
+    :schema_element => [
+      ["success", ["SOAP::SOAPBoolean", XSD::QName.new(NsShippingService, "Success")]],
+      ["message", ["SOAP::SOAPString", XSD::QName.new(NsShippingService, "Message")], [0, 1]]
     ]
   )
 
@@ -484,7 +543,7 @@ module DefaultMappingRegistry
     :class => ChannelAdvisor::ShippingServiceSOAP::SubmitOrderShipmentListResponse,
     :schema_name => XSD::QName.new(NsWebservices, "SubmitOrderShipmentListResponse"),
     :schema_element => [
-      ["submitOrderShipmentListResult", ["ChannelAdvisor::ShippingServiceSOAP::APIResultOfBoolean", XSD::QName.new(NsWebservices, "SubmitOrderShipmentListResult")], [0, 1]]
+      ["submitOrderShipmentListResult", ["ChannelAdvisor::ShippingServiceSOAP::APIResultOfArrayOfShipmentResponse", XSD::QName.new(NsWebservices, "SubmitOrderShipmentListResult")], [0, 1]]
     ]
   )
 

@@ -2,7 +2,7 @@
 module ChannelAdvisor::MarketplaceAdServiceSOAP
 
 class MarketplaceAdServiceSoap < ::SOAP::RPC::Driver
-  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v3/MarketplaceAdService.asmx"
+  DefaultEndpointUrl = "https://api.channeladvisor.com/ChannelAdvisorAPI/v4/MarketplaceAdService.asmx"
 
   Methods = [
     [ "http://api.channeladvisor.com/webservices/AddMarketplaceAd",

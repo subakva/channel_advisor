@@ -268,6 +268,32 @@ class FullShipmentContents
   end
 end
 
+# {http://api.channeladvisor.com/webservices/}APIResultOfArrayOfShipmentResponse
+#   status - ChannelAdvisor::ShippingServiceSOAP::ResultStatus
+#   messageCode - SOAP::SOAPInt
+#   message - SOAP::SOAPString
+#   data - SOAP::SOAPString
+#   resultData - ChannelAdvisor::ShippingServiceSOAP::ArrayOfShipmentResponse
+class APIResultOfArrayOfShipmentResponse
+  attr_accessor :status
+  attr_accessor :messageCode
+  attr_accessor :message
+  attr_accessor :data
+  attr_accessor :resultData
+
+  def initialize(status = nil, messageCode = nil, message = nil, data = nil, resultData = nil)
+    @status = status
+    @messageCode = messageCode
+    @message = message
+    @data = data
+    @resultData = resultData
+  end
+end
+
+# {http://api.channeladvisor.com/webservices/}ArrayOfShipmentResponse
+class ArrayOfShipmentResponse < ::Array
+end
+
 # {http://api.channeladvisor.com/webservices/}APIResultOfString
 #   status - ChannelAdvisor::ShippingServiceSOAP::ResultStatus
 #   messageCode - SOAP::SOAPInt
@@ -287,6 +313,19 @@ class APIResultOfString
     @message = message
     @data = data
     @resultData = resultData
+  end
+end
+
+# {http://api.channeladvisor.com/datacontracts/ShippingService}ShipmentResponse
+#   success - SOAP::SOAPBoolean
+#   message - SOAP::SOAPString
+class ShipmentResponse
+  attr_accessor :success
+  attr_accessor :message
+
+  def initialize(success = nil, message = nil)
+    @success = success
+    @message = message
   end
 end
 
@@ -412,7 +451,7 @@ class SubmitOrderShipmentList
 end
 
 # {http://api.channeladvisor.com/webservices/}SubmitOrderShipmentListResponse
-#   submitOrderShipmentListResult - ChannelAdvisor::ShippingServiceSOAP::APIResultOfBoolean
+#   submitOrderShipmentListResult - ChannelAdvisor::ShippingServiceSOAP::APIResultOfArrayOfShipmentResponse
 class SubmitOrderShipmentListResponse
   attr_accessor :submitOrderShipmentListResult
 

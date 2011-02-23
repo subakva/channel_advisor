@@ -8,3 +8,4 @@ build.my.gem
 pkg
 .bundle
 _credentials.rb
+Gemfile.lock
